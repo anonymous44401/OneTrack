@@ -1,0 +1,16 @@
+###################################
+#  All variables need : type      #
+###################################
+#  All functions need -> returns  #
+###################################
+
+
+siteMethods.py needs renamimg to siteInternalSystem.py
+
+database needs renamimg to Database
+artificial_intelligence needs renamimg to AI
+priority_queue needs renamimg to PriorityQueue
+
+siteDarwin.py needs moving to archive - along with all all mentions of it in other files
+
+Mock files can be removed

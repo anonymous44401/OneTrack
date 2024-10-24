@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/cedb998acc.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for ('static', filename='scripts/siteScript.js')}}"></script>
+
+    <!-- Metas -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Links -->
+    <link href="{{ url_for ('static', filename='styles/siteStyle.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="{{ url_for ('static', filename='images/OneTrackFavicon.jpeg') }}">
+    <!-- Title -->
+    <title>
+        Live Departures | OneTrack
+    </title>
+</head>
+
+<body>
+    <!-- vv Navigation Menu vv -->
+    <div class="menu">
+        <div class="menuHover">
+            <h6 id="menuTog">
+                <i class="fa-solid fa-bars" onclick="mobileMode()"></i>
+            </h6>
+            <!-- vv Desktop Navigation Menu vv -->
+            <div id="deskMenuArea">
+                <br>
+                <h5> <!-- SEARCH -->
+                    <i class="fa-solid fa-magnifying-glass" style="color: #7BB5E5;"></i>
+                    <form action="/search" method="POST">
+                        <input type="text" placeholder="Search.." class="searchItem">
+                    </form>
+                </h5>
+                </br>
+                <h6> <!-- HOME -->
+                    <a href="/home">
+                        <i class="fa-solid fa-house"></i>
+                        <a href="/home" class="menuItem">
+                            Home
+                        </a>
+                        <i class="fa-solid fa-chevron-right" id="right"></i>
+                    </a>
+                </h6>
+                <br>
+                <h6> <!-- DEPARTURES -->
+                    <a href="/departures">
+                        <i class="fa-regular fa-clock"></i>
+                        <a href="/departures" class="menuItem">
+                            Departures
+                        </a>
+                        <i class="fa-solid fa-chevron-right" id="right"></i>
+                    </a>
+                </h6>
+                <br>
+                <h6 onclick="mapsClick()"> <!-- MAPS -->
+                    <a href="https://www.opentraintimes.com/">
+                        <i class="fa-regular fa-map fa-sm"></i>
+                        <a href="https://www.opentraintimes.com/" class="menuItem">
+                            Maps
+                        </a>
+                        <i class="fa-solid fa-chevron-right" id="right"></i>
+                    </a>
+                </h6>
+                <br>
+                <h6> <!-- TICKETS -->
+                    <a href="/planner">
+                        <i class="fa-solid fa-ticket"></i>
+                        <a href="/planner" class="menuItem">
+                            Planner
+                        </a>
+                        <i class="fa-solid fa-chevron-right" id="right"></i>
+                    </a>
+                </h6>
+                <br>
+                <h6> <!-- ACCOUNT -->
+                    <a href="/My-OneTrack">
+                        <i class="fa-regular fa-user"></i>
+                        <a href="/My-OneTrack" class="menuItem">
+                            My:OneTrack
+                        </a>
+                        <i class="fa-solid fa-chevron-right" id="right"></i>
+                    </a>
+                </h6>
+            </div>
+            <!-- vv Mobile Navigation Menu vv -->
+            <div id="mobileMenuArea">
+                <br>
+                <h5> <!-- SEARCH -->
+                    <i class="fa-solid fa-magnifying-glass" style="color: #7BB5E5;"></i>
+                    <form action="/search" method="POST">
+                        <input type="text" placeholder="Search.." class="searchItem">
+                    </form>
+                </h5>
+                </br>
+                <h6> <!-- HOME -->
+                    <a href="/home">
+                        <i class="fa-solid fa-house"></i>
+                        <a href="/home" class="menuItem">
+                            Home
+                        </a>
+                        <i class="fa-solid fa-chevron-right" id="right"></i>
+                    </a>
+                </h6>
+                <br>
+                <h6> <!-- DEPARTURES -->
+                    <a href="/departures">
+                        <i class="fa-regular fa-clock"></i>
+                        <a href="/departures" class="menuItem">
+                            Departures
+                        </a>
+                        <i class="fa-solid fa-chevron-right" id="right"></i>
+                    </a>
+                </h6>
+                <br>
+                <h6 onclick="mapsClick()"> <!-- MAPS -->
+                    <a href="https://www.opentraintimes.com/">
+                        <i class="fa-regular fa-map fa-sm"></i>
+                        <a href="https://www.opentraintimes.com/" class="menuItem">
+                            Maps
+                        </a>
+                        <i class="fa-solid fa-chevron-right" id="right"></i>
+                    </a>
+                </h6>
+                <br>
+                <h6> <!-- TICKETS -->
+                    <a href="/planner">
+                        <i class="fa-solid fa-ticket"></i>
+                        <a href="/planner" class="menuItem">
+                            Planner
+                        </a>
+                        <i class="fa-solid fa-chevron-right" id="right"></i>
+                    </a>
+                </h6>
+                <br>
+                <h6> <!-- ACCOUNT -->
+                    <a href="/My-OneTrack">
+                        <i class="fa-regular fa-user"></i>
+                        <a href="/My-OneTrack" class="menuItem">
+                            My:OneTrack
+                        </a>
+                        <i class="fa-solid fa-chevron-right" id="right"></i>
+                    </a>
+                </h6>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <!-- vv Main Page vv -->
+
+    <!-- vv Header vv -->
+    <div class="header">
+        <h1 class="one">
+            <a href ="/home">
+                <img src="{{ url_for ('static', filename='images/OneTrackLogo.png') }}" class="signInHeaderImg">
+            </a>
+        </h1>
+    </div>
+
+    <!-- vv Content vv -->
+    <div class="mainContent">
+        <br>
+        <h1 class="pgTextHead">
+            Live Departures
+        </h1>
+        <!--
+        <h2 class="pgTextSubHead">
+            Here, there and everywhere. Select a station below
+        </h2>
+        -->
+        <form class="depSearch">
+            <input 
+                type = "text" 
+                name = "station_crs" 
+                placeholder ="Start typing to search" 
+                class = "depSearchAtt"
+                onkeyup = "updateDepartures()" 
+                id = "searchItem"
+            >
+        </form>
+        <table id="departuresBox">
+            {% for each in send_departures %}
+            <tr id="departuresList">
+                <!--<li id="stationCRS" onclick=""><a href="#">{{ each[1] }}</a></li>-->
+                <td id="stationName" onclick="" width="450px"><a href="/departures/{{each[1]}}">{{ each[0].title() }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <!-- vv Footer vv -->
+    <footer id="footer">
+        <h2 class="ftAtt">
+            OneTrack [ALPHA]
+        </h2>
+        <h1 class="ftTextLink">
+            <a href="https://facebook.com" class="ftLink facebook">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://twitter.com" class="ftLink twitter">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="https://discord.gg/32Rhb2j9B3" class="ftLink discord">
+                <i class="fa-brands fa-discord"></i>
+            </a>
+            <a href="https://youtube.com" class="ftLink youtube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://instagram.com" class="ftLink instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://trello.com/b/mh5z3K36/onetrackroadmap" class="ftLink trello">
+                <i class="fa-brands fa-trello"></i>
+            </a>
+        </h1>
+        <h2 class="ftAtt">
+            <a href="/policies/privacy-policy" class="ftAttBtn">Privacy Policy</a> |
+            <a href="/policies/terms-of-use" class="ftAttBtn">Terms of Use</a>
+        </h2>
+        <h2 class="ftAtt">
+            <a href="/about/contact" class="ftAttBtn">Contact us</a>
+        </h2>
+        <h2 class="ftAttA">
+            <a href="/about" class="ftAttBtnA">About</a>
+        </h2>
+        <h2 class="ftAttA">
+            <a href="/careers" class="ftAttBtnA">Careers</a>
+        </h2>
+        <h2 class="ftAttA">
+            <a href="/help" class="ftAttBtnA">Help</a>
+        </h2>
+        <h2 class="ftAttA">
+            <a href="/sitemap" class="ftAttBtnA">Sitemap</a>
+        </h2>  
+        
+        <br>
+        <p class="ftImg">
+            <!--<img src="{{ url_for ('static', filename='images/RTTLogo.png') }}">-->
+            <!--<img src="{{ url_for ('static', filename='images/RDGLogo.png') }}">-->
+            <!--<img src="{{ url_for ('static', filename='images/TfLLogo.png') }}">-->
+        </p>
+    </footer>
+</body>
+
+</html>
