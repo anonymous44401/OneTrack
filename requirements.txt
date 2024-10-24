@@ -1,5 +1,5 @@
-nre-darwin-py
 dotenv
-rttApi
 flask
+requests
+rttApi
 rtt
