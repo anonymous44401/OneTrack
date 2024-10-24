@@ -9,7 +9,7 @@ class database():
         self.__conn.close()
     
 
-    def _get_all_values(self, __from_table: str):
+    def _get_all_values(self, __from_table: str) -> list | str:
         self.__conn = sqlite3.connect(self.__database)
         self.__cursor = self.__conn.cursor()
 
@@ -34,7 +34,7 @@ class database():
         else:
             return None
 
-    def _get_all_values_in_order(self, __from_table: str, __order_by_query: str):
+    def _get_all_values_in_order(self, __from_table: str, __order_by_query: str) -> list | str:
         self.__conn = sqlite3.connect(self.__database)
         self.__cursor = self.__conn.cursor()
 
@@ -60,7 +60,7 @@ class database():
             return None
 
 
-    def _get_values(self, __find_value: str, __from_table: str, __condition_is_true: str, __argument: str):
+    def _get_values(self, __find_value: str, __from_table: str, __condition_is_true: str, __argument: str) -> list | str:
         # Can only be used to find one or all value(s) at a time so far
         self.__conn = sqlite3.connect(self.__database)
         self.__cursor = self.__conn.cursor()
@@ -87,7 +87,7 @@ class database():
             return None
 
 
-    def _insert_values(self, __into_table: str, __columns: str, __values: list):
+    def _insert_values(self, __into_table: str, __columns: str, __values: list) -> None:
         self.__conn = sqlite3.connect(self.__database)
         self.__cursor = self.__conn.cursor()
         __find_in_columns = __columns
@@ -109,7 +109,7 @@ class database():
         self.__conn.commit()
         
 
-    def _update_values(self, __in_table: str, __att_to_change: str, __val_to_change: str, __attribute: str, __value):
+    def _update_values(self, __in_table: str, __att_to_change: str, __val_to_change: str, __attribute: str, __value) -> None:
         # Can only update one value at a time
         self.__conn = sqlite3.connect(self.__database)
         self.__cursor = self.__conn.cursor()
@@ -121,7 +121,7 @@ class database():
         self.__conn.commit()
 
 
-    def _delete_values(self, __table: str, __attribute: str, __input: str):
+    def _delete_values(self, __table: str, __attribute: str, __input: str) -> None:
         self.__conn = sqlite3.connect(self.__database)
         self.__cursor = self.__conn.cursor()
 
