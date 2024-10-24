@@ -1,15 +1,17 @@
-OneTrack:Alpha
-========
+# OneTrack:Alpha
 
-Required modules:
------------------
+## Required modules:
 
 To run OneTrack, the following modules are required.
-
+```
     dotenv
     flask
     requests
     rtt
     rttapi
-subtitle
---------
+```
+## RealTime Trains API
+
+To access OneTrack, an API key and username can be created [here](https://api.rtt.io/accounts/register)
+
+Once you have an account, change your username and token in the `.env` file
