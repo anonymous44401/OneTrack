@@ -1,4 +1,4 @@
-from App.siteMethods import SiteInternalSystem
+from App.siteInternalSystem import SiteInternalSystem
 
 class SiteFlask():
     #SECTION - Init
@@ -49,15 +49,20 @@ class SiteFlask():
         else:
             self.__internal_system._reset_departures()
             if self.__internal_system._rtt_departures_failed != True:
-                user_favorites = self.__internal_system._get_user_favorites
-                print(user_favorites)
-                user_favorites = "None"
+                user_favorites: list = self.__internal_system._get_user_favorites()
+                #print(user_favorites)
+                #user_favorites = "None"
 
                 if user_favorites == "None":
                     #print("")
                     return 'departuresV1.html', "None"
             
                 else:
+                    return_user_favorites: list = []
+
+                    return_user_favorites.append(user_favorites)
+                    #for i in range(0, len(return_user_favorites)):
+                        #print(return_user_favorites[i].title())
                     return 'departuresV2.html', user_favorites
             
             else:
@@ -174,7 +179,7 @@ class SiteFlask():
                 return 'account.html'
 
 
-    def _create_new_user(self, first_name, __password1, __password2, username, surname, email) -> list:
+    def _create_new_user(self, first_name, __password1, __password2, username, surname, email):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
         
@@ -191,7 +196,7 @@ class SiteFlask():
                 return 'createFailed.html', error 
 
 
-    def _open_settings(self) -> str:
+    def _open_settings(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
         
@@ -205,7 +210,7 @@ class SiteFlask():
                 return 'signIn.html'
             
 
-    def _save_settings(self) -> list:
+    def _save_settings(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
         
@@ -219,7 +224,7 @@ class SiteFlask():
                 return 'signIn.html', None
             
 
-    def _report_error(self, errorInput) -> None:
+    def _report_error(self, errorInput):
         try:
             with open(".home/Admin/crashLogs.txt", "a") as file:
                 error = errorInput

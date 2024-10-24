@@ -1,5 +1,6 @@
 dotenv
 flask
+python-dotenv
 requests
 rttApi
 rtt
