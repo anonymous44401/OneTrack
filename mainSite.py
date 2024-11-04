@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request
-
 from App.siteFlaskSystem import SiteFlask
+from flask import Flask, render_template, request
 
 import socket
 
