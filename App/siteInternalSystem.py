@@ -1,5 +1,5 @@
 from App.siteAI import AI
-from App.siteDatabase import database
+from App.siteDatabase import Database
 from App.siteRTT import RTT, Service, Departures
 
 from datetime import datetime
@@ -15,7 +15,7 @@ class SiteInternalSystem():
         self._send_service: list = []
         self.__signed_in: bool = False
         self._send_station: str = ""
-        self.__database = database()
+        self.__database = Database()
         self._send_code: str = ""
         self._username: str = ""
 

@@ -1,3 +1,4 @@
+from App.siteDatabase import Database
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -6,13 +7,14 @@ import requests
 
 
 class Service():
-    def __init__(self, trainID, operator, origin, destination, all_calling_points, start_time):
+    def __init__(self, trainID, operator, origin, destination, all_calling_points, start_time, colour):
         self.trainID = trainID
         self.operator = operator
         self.origin = origin
         self.destination = destination
         self.all_calling_points = all_calling_points
         self.start_time = start_time
+        self.colour = colour
 
 class Departures():
     def __init__(self, wtt_departure, terminus, platform, exp_departure, service_uid):
@@ -24,7 +26,9 @@ class Departures():
 
 # Package for communicating with the RTT API
 class RTT():
-    def __init__(self) -> None:        
+    def __init__(self) -> None:  
+        self.__database = Database()
+
         load_dotenv()
         # Get the credentials from a dotenv file
         self.__rtt_user = os.getenv('RTT_USER')
@@ -206,6 +210,7 @@ class RTT():
 
             trainID = data_json["trainIdentity"]
             operator = data_json["atocName"]
+            colour = self.__database._get_values("opColour", "tblOperators", "OpName", operator)
             
             origins = data_json["origin"]
             origin = origins.pop()["description"]
@@ -258,7 +263,7 @@ class RTT():
                 
 
 
-            return Service(trainID, operator, origin, destination, all_calling_points, start_time)
+            return Service(trainID, operator, origin, destination, all_calling_points, start_time, colour)
             
 
     def __format_time(self, time: str):

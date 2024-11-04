@@ -186,7 +186,7 @@
             <img src="{{ url_for ('static', filename='images/RTTLogo.png') }}" class="nrePowered">
         </p>-->
         
-        <p class="{{ "".join(service.operator.lower().split()) }}">
+        <p class="operator" color="{{service.colour}}">
             Operated by {{service.operator}} 
         </p>
 

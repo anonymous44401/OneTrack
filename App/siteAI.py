@@ -1,4 +1,4 @@
-from App.siteDatabase import database
+from App.siteDatabase import Database
 
 from datetime import datetime
 from random import random
@@ -7,7 +7,7 @@ from random import random
 class AI():
     def __init__(self):
         self.__priority_queue = PriorityQueue(6)
-        self.__database = database()
+        self.__database = Database()
 
         self.__max_suggestions = 6
 

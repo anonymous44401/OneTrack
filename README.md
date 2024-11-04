@@ -5,11 +5,11 @@
 To run OneTrack, the following modules are required.
 
 ```
-    dotenv
-    flask
-    requests
-    rtt
-    rttapi
+dotenv
+flask
+requests
+rtt
+rttapi
 ```
 
 ## RealTime Trains API

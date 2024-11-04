@@ -1357,6 +1357,12 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
         font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
         padding-left: 60px;
     }
+
+    .operator {
+        font-size: 35px;
+        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
+        padding-left: 60px;
+    }
 }
 
 
