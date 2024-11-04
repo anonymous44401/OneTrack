@@ -1253,115 +1253,13 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
     }
 
     /* vv TOC Formatting vv */ 
-    .thameslink { /* TL */
-        color: #ff5aa4;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .greatnorthern { /* GN */
-        color: #ff5aa4;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .elizabethline { /* XR */
-        color: #60399E;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .lner { /* GR */
-        color: #ce0e2d;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .eastmidlandsrailway { /* EM */
-        color: #713563;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .greateranglia { /* LE */
-        color: #d70428;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .scotrail { /* SR */
-        color: #1e467d;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .transportforwales { /* AW */
-        color: #ff0000;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .greatwesternrailway { /* GW */
-        color: #0a493e;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .southeastern { /* SE */
-        color: #389cff;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .londonoverground { /* LO */
-        color: #e87722;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-    
-    .transpennineexpress { /* TP */
-        color: #09a4ec;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .northern { /* NT */
-        color: #0f0d78;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .eurostar { /* ES */
-        color: #086bfe;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
-    .southern { /* SN */
-        color: #8cc63e;
-        font-size: 35px;
-        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
-    }
-
     .operator {
+        color: inherit;
         font-size: 35px;
         font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
-        padding-left: 60px;
+        margin-top: -30px;
+        /*padding-left: 60px;*/
+        text-align: right;
     }
 }
 

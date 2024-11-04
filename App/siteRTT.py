@@ -211,6 +211,7 @@ class RTT():
             trainID = data_json["trainIdentity"]
             operator = data_json["atocName"]
             colour = self.__database._get_values("opColour", "tblOperators", "OpName", operator)
+            #print(colour)
             
             origins = data_json["origin"]
             origin = origins.pop()["description"]

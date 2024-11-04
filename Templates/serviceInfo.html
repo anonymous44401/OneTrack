@@ -186,8 +186,11 @@
             <img src="{{ url_for ('static', filename='images/RTTLogo.png') }}" class="nrePowered">
         </p>-->
         
-        <p class="operator" color="{{service.colour}}">
-            Operated by {{service.operator}} 
+        <p style="color: #E87620; text-decoration: bold;" class="operator">
+            Operated by 
+        </p>
+        <p style="color: #{{ service.colour }};" class="operator">
+            {{service.operator}} 
         </p>
 
         <table id="serviceBoard">
