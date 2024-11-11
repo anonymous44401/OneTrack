@@ -150,7 +150,6 @@ class SiteInternalSystem():
         return ['About', 'Contact', 'Create Account', 'Departures', 'Home', 'myOneTrack', 'Planner', 'Privacy Policy', 'Terms of Service']
 
     #SECTION Account handling 
-    #!SECTION ERROR WITH ACCOUNT
     def _sign_in(self, username, password):
         password_to_check = self.__database._get_values("Password", "tblUsers", "Username", username)
 
@@ -301,11 +300,9 @@ class SiteInternalSystem():
 
 
     #NOTE Reported account errors:
-    #       Account not staying signed in
-    #       System not able to delete account
     #       Account not being able to update settings
 
-    #SECTION Shutdown server
+    # Shutdown server
     def _shutdown(self):
         if self.__close_access == True:
             self._shutdown_time = ("Site shutdown:", self._get_now(3))
@@ -321,7 +318,7 @@ class SiteInternalSystem():
             return self.__close_access
 
 
-    #SECTION Report error 
+    # Report error 
     def _report_error(self, errorInput):
         try:
             with open(".home/Admin/crashLogs.txt", "a") as file:
@@ -332,7 +329,7 @@ class SiteInternalSystem():
             pass
 
 
-    #SECTION Get the current time
+    # Get the current time
     def _get_now(self, type):
         now = datetime.now()
         if type == 1:
@@ -357,8 +354,7 @@ class SiteInternalSystem():
         else:
             return None
 
-
-    #FIXME Hashing -- Not implemented
+    # Hashing 
     def __hash_item(self, content):           
         #hash_key = "5gz"
 
@@ -370,7 +366,7 @@ class SiteInternalSystem():
 
         return hashed_item.hexdigest()
 
-
+    # Password validation
     def __validate_password(self, content: str) -> bool:
         # Password validation rules
         # 1. Minimum length of 8 characters
@@ -404,7 +400,7 @@ class SiteInternalSystem():
         else:
             return True
 
-    #SECTION Print all self.variables -- used only for debugging
+    #SECTION Print all self.[variables] -- used only for debugging
     def __print_all(self):
         # This function prints all global variables at a given time
         print("-------------")

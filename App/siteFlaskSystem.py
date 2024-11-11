@@ -38,6 +38,7 @@ class SiteFlask():
             return 'planner.html'
 
 
+    #SECTION - Departures
     def _extract_stations(self):
         return self.__internal_system._get_stations_list()
 
@@ -223,7 +224,8 @@ class SiteFlask():
             else:
                 return 'signIn.html', None
             
-
+            
+    #SECTION - Error reporting
     def _report_error(self, errorInput):
         try:
             with open(".home/Admin/crashLogs.txt", "a") as file:
