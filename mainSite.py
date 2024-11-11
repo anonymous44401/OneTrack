@@ -43,7 +43,7 @@ def departure_page():
 
     
 
-###? Departures request
+###? Departures page request
 @app.route('/departures/', methods=['POST'])
 def departures(station_crs = None):
     departure_data = main_flask_system._get_departures(request.form['station_crs'])
@@ -95,7 +95,6 @@ def departures_train_info(train_UID = None):
 
     return render_template(service_data[0], service = service_data[1])
 
-
 @app.route('/departures/<station_crs>/')
 def add_new_favorite(station_crs = None):
     raise NotImplementedError("Service unavailable")
@@ -109,12 +108,10 @@ def add_new_favorite(station_crs = None):
 def information(station_crs = None):
     pass
 
-
 ##* Planner
 @app.route('/planner')
 def planner():
     return render_template(main_flask_system._planner())
-
 
 @app.route('/planner/search')
 def planner_search():
@@ -134,12 +131,10 @@ def planner_search():
 
         return render_template('plannerSearch.html')
 
-
 ##* Settings
 @app.route('/My-OneTrack/settings')
 def settings():
     return render_template(main_flask_system._open_settings())
-
 
 @app.route('/My-OneTrack/')
 def save_settings():
@@ -161,7 +156,6 @@ def my_one_track():
     except:
         return render_template(page)
 
-
 ##* Sign in request
 @app.route('/signIn', methods=['POST'])
 def sign_in():
@@ -175,13 +169,11 @@ def sign_in():
 
     return render_template(page, username = username)
 
-
 ##* Create account page
 @app.route('/My-OneTrack/createAccount')
 def create_account_page():
     
     return render_template(main_flask_system._create_account())
-
 
 ##* Create account request
 @app.route('/My-OneTrack/createAccount/', methods=['POST'])
@@ -204,27 +196,23 @@ def create_account():
     else:
         return render_template(page, error = content)
 
-
 ##* Sign out request
 @app.route('/signOut')
 def sign_out():
     
     return render_template(main_flask_system._sign_out())
     
-
 ##* Delete account confirmation
 @app.route('/deleteAccount')
 def delete_account():
     
     return render_template(main_flask_system._delete_account_1())
 
-
 ##* Delete account confirmed
 @app.route('/deleteAccount/')
 def delete_account2():
     
     return render_template(main_flask_system._delete_account_2())
-
 
 
 #? About pages #########################################
@@ -234,13 +222,11 @@ def about():
     
     return render_template(main_flask_system._about())
 
-
 ##* Contact
 @app.route('/about/contact')
 def about_contact():
     
     return render_template(main_flask_system._about_contact())
-
 
 ##* Terms of Use
 @app.route('/policies/terms-of-use')
@@ -248,13 +234,11 @@ def terms_of_use():
     
     return render_template(main_flask_system._terms_of_service())
 
-
 ##* Privacy Policy
 @app.route('/policies/privacy-policy')
 def privacy_policy():
     
     return render_template(main_flask_system._privacy_policy())
-
 
 
 #? ERROR HANDLING ######################################
@@ -265,14 +249,12 @@ def bad_request(e):
 
     return render_template('error400.html')
 
-
 ##* 404
 @app.errorhandler(404)
 def not_found(e):
     #main.report_error(e) #* Doesn't log intentionally
 
     return render_template('error404.html')
-
 
 ##* 405
 @app.errorhandler(405)
@@ -281,14 +263,12 @@ def method_not_allowed(e):
 
     return render_template('error405.html')
 
-
 ##* 500
 @app.errorhandler(500)
 def internal_server_error(e):
     main_flask_system._report_error(e)
 
     return render_template('error500.html')
-
 
 ##* 503
 @app.errorhandler(503)
