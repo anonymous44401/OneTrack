@@ -247,36 +247,28 @@ def privacy_policy():
 def bad_request(e):
     main_flask_system._report_error(e)
 
-    return render_template('error400.html')
+    return render_template('error.html', error = 400, errorText = e)
 
 ##* 404
 @app.errorhandler(404)
 def not_found(e):
     #main.report_error(e) #* Doesn't log intentionally
 
-    return render_template('error404.html')
+    return render_template('error.html', error = 404, errorText = e)
 
 ##* 405
 @app.errorhandler(405)
 def method_not_allowed(e):
     main_flask_system._report_error(e)
 
-    return render_template('error405.html')
+    return render_template('error.html', error = 405, errorText = e)
 
 ##* 500
 @app.errorhandler(500)
 def internal_server_error(e):
     main_flask_system._report_error(e)
 
-    return render_template('error500.html')
-
-##* 503
-@app.errorhandler(503)
-def service_unavailable(e):
-    main_flask_system._report_error(e)
-
-    return render_template('error503.html')
-
+    return render_template('error.html', error = 500, errorText = e)
 
 
 #? SOCKET ##############################################
