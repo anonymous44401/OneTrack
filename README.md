@@ -2,14 +2,10 @@
 
 ## Required modules:
 
-To run OneTrack, the following modules are required.
+To run OneTrack, the modules listed in `requirements.txt` should be installed. These can be installed simultaneously by running
 
 ```
-dotenv
-flask
-requests
-rtt
-rttapi
+pip install /requirements.txt
 ```
 
 > [!TIP]
