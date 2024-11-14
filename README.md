@@ -5,7 +5,7 @@
 To run OneTrack, the modules listed in `requirements.txt` should be installed. These can be installed simultaneously by running
 
 ```
-pip install
+pip install -r requirements.txt
 ```
 
 > [!TIP]
