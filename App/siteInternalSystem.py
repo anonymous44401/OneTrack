@@ -19,6 +19,10 @@ class SiteInternalSystem():
         self._send_code: str = ""
         self._username: str = ""
 
+        with open("App/hash.txt", "r") as file:
+            content = file.read()
+            self.__hash_key = (content.split("="))[1]
+
         try:
             self.__rtt = RTT()
             self._rtt_departures_failed: bool = False
@@ -101,7 +105,7 @@ class SiteInternalSystem():
         if self._username != "":
             return_values: list = []
             for i in range (1, 7):
-                favorite = self.__database._get_values(("Favorite" + str(i)), "tblUserFavorites", "Username", self._username)
+                favorite = self.__database._get_values(("Favorite" + str(i)), "tblUserFavorites", "UserID", self.__userID)
 
                 if str(favorite) != "None":
                     favorite_crs = self.__database._get_values("SID", "tblStations", "StationName", (favorite.upper()))
@@ -152,13 +156,15 @@ class SiteInternalSystem():
     #SECTION Account handling 
     def _sign_in(self, username, password):
         password_to_check = self.__database._get_values("Password", "tblUsers", "Username", username)
-
+        print(password_to_check)
         password = self.__hash_item(password)
+        print(password)
 
         if password_to_check == password:
             self.__signed_in = True
 
             self._username: str = str(username)
+            self.__userID: str = str(self.__database._get_values("UserID", "tblUsers", "Username", username))
             #print(self.username)
             return self._username
 
@@ -356,11 +362,12 @@ class SiteInternalSystem():
 
     # Hashing 
     def __hash_item(self, content):           
-        #hash_key = "5gz"
-
-        # Adding salt at the last of the password
-        new_item = content #+ hash_key
+        new_item = content + self.__hash_key
         hashed_item = hashlib.md5(new_item.encode())
+        print(hashed_item)
+        #for i in range(1, 5):
+            #hashed_item = hashlib.md5(str(hashed_item).encode())
+            #print(hashed_item)
 
         #print(hashed_item.hexdigest())
 

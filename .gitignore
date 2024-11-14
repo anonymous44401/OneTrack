@@ -1,7 +1,10 @@
 .vscode
 .vscode/settings.json
 App/.env
+App/hash.txt
 test.py
+test.txt
+TODO.md
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,venv,flask
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,python,venv,flask
