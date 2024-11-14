@@ -2,6 +2,8 @@
 
 - [ ] All functions need -> returns
 
-- [ ] Route sharing
+- [ ] Route sharing -- in the works
 
 - [ ] Route saving
+
+- [ ] Friend system

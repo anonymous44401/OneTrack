@@ -189,6 +189,7 @@
         <p style="color: #E87620; text-decoration: bold;" class="operator">
             Operated by 
         </p>
+                       <!-- Ignore error here -->
         <p style="color: #{{ service.colour }};" class="operator">
             {{service.operator}} 
         </p>
@@ -217,6 +218,11 @@
             </tr>
             {% endfor %}
         </table>
+        <br>
+        <p class="depShare">
+            <a href="/share/{{service.uid}}">
+                <i class="fa-solid fa-share-from-square"></i> Share this service
+            </a>
         <br>
         <h2 class="depRefresh">
             Powered by the <a href = "https://www.realtimetrains.co.uk/about/developer/">RealTime Trains API</a>

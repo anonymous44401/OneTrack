@@ -1261,6 +1261,52 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
         /*padding-left: 60px;*/
         text-align: right;
     }
+
+    .fa-clipboard {
+        color: #01213A;
+        transition: ease-in-out 200ms;
+        
+    }
+
+    .fa-clipboard:hover {
+        opacity: 50%;
+        cursor: pointer;
+        
+    }
+
+    .fa-share-from-square {
+        color: #01213A;
+        transition: ease-in-out 200ms;
+    }
+
+    .depShare {
+        padding-left: 60px;
+        color: #01213A;
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: ease-in-out 200ms;
+    }
+
+    .depShare:hover {
+        opacity: 50%;
+        cursor: pointer;
+    }
+
+    .shareExternal {
+        color: #01213A;
+        padding-left: 60px;
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: ease-in-out 200ms;
+    }
+
+    .shareExternal i {
+        transition: ease-in-out 200ms;
+    }
+
+    .shareExternal i:hover {
+        opacity: 50%;
+    }
 }
 
 

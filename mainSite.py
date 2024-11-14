@@ -102,6 +102,10 @@ def add_new_favorite(station_crs = None):
     main_flask_system._add_to_favorites(station_crs)
     return render_template(main_flask_system._departures(), send_departures = main_flask_system._extract_stations())
 
+@app.route('/share/<service_uid>')
+def share(service_uid = None):
+    
+    return render_template("share.html", service_uid = service_uid)
 
 ###? Information
 @app.route('/info/<station_crs>')

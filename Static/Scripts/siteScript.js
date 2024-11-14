@@ -25,6 +25,12 @@ function updateDepartures() {
     }
   }
 
+/* Copy currentl URL */
+function copyText() {
+    /*window.alert(window.location.href)*/
+    navigator.clipboard.writeText(window.location.href);
+}
+
 /* 
 # TODO Add onclick event to departures to add the clicked item into the search box 
 */

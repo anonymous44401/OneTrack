@@ -7,7 +7,7 @@ import requests
 
 
 class Service():
-    def __init__(self, trainID, operator, origin, destination, all_calling_points, start_time, colour):
+    def __init__(self, trainID, operator, origin, destination, all_calling_points, start_time, colour, uid):
         self.trainID = trainID
         self.operator = operator
         self.origin = origin
@@ -15,6 +15,7 @@ class Service():
         self.all_calling_points = all_calling_points
         self.start_time = start_time
         self.colour = colour
+        self.uid = uid
 
 class Departures():
     def __init__(self, wtt_departure, terminus, platform, exp_departure, service_uid):
@@ -264,7 +265,7 @@ class RTT():
                 
 
 
-            return Service(trainID, operator, origin, destination, all_calling_points, start_time, colour)
+            return Service(trainID, operator, origin, destination, all_calling_points, start_time, colour, service_uid)
             
 
     def __format_time(self, time: str):
