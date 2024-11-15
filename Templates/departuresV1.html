@@ -194,7 +194,7 @@
             {% for each in send_departures %}
             <tr id="departuresList">
                 <!--<li id="stationCRS" onclick=""><a href="#">{{ each[1] }}</a></li>-->
-                <td id="stationName" onclick="" width="450px"><a href="/departures/{{each[1]}}">{{ each[0].title() }}</a></td>
+                <td id="stationName" onclick="" width="450px"><a href="/departures/{{each[1]}}">{{ each[0].title() }} [{{ each[1].upper() }}]</a></td>
             </tr>
             {% endfor %}
         </table>

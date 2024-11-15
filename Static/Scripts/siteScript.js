@@ -31,6 +31,9 @@ function copyText() {
     navigator.clipboard.writeText(window.location.href);
 }
 
+function mapsClick() {
+    window.alert("This link takes you out of OneTrack")
+}
 /* 
 # TODO Add onclick event to departures to add the clicked item into the search box 
 */
