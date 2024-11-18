@@ -239,6 +239,22 @@ class SiteFlask():
             else:
                 return 'signIn.html', None
             
+
+    def _friends(self):
+        if self.__internal_system._shutdown() == True:
+            return 'siteClosed.html'
+        
+        else:
+            sign_in_check = self.__internal_system._check_sign_in()
+            if sign_in_check != False:
+                friendsList = [] ## Needs to get friends from DB
+                friendRequests = [] ## Needs to get friend requests from DB
+                requestsSent = [] ## Needs to get requests sent from DB
+
+                return 'friends.html', friendsList, friendRequests, requestsSent
+            
+            else:
+                return 'signIn.html', None, None, None
             
     #SECTION - Error reporting
     def _report_error(self, errorInput):

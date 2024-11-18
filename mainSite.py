@@ -152,28 +152,16 @@ def save_settings():
 ##* Open My:OneTrack
 @app.route('/My-OneTrack')
 def my_one_track():
-    return_item = main_flask_system._my_one_track()
 
-    page = return_item[0]
-    try:
-        username = str(return_item[1])
-
-        return render_template(page, username = username)
-    except:
-        return render_template(page)
+    return render_template(main_flask_system._my_one_track())
 
 ##* Sign in request
 @app.route('/signIn', methods=['POST'])
 def sign_in():
     username = request.form['username']
     password = request.form['password']
-    
-    details = main_flask_system._sign_in(username, password)
-    
-    page = details[0]
-    username = details[1]
 
-    return render_template(page, username = username)
+    return render_template(main_flask_system._sign_in(username, password))
 
 ##* Create account page
 @app.route('/My-OneTrack/createAccount')
@@ -220,6 +208,20 @@ def delete_account2():
     
     return render_template(main_flask_system._delete_account_2())
 
+
+##* Friends
+@app.route('/My-OneTrack/friends')
+def friends_page():
+    content = main_flask_system._friends()
+
+    return render_template(content[0], friendsList = content[1], friendRequests = content[2], requestsSent = content[3])
+
+
+@app.route('/My-OneTrack/friends/')
+def friends_page_send_request():
+    content = main_flask_system._friends()
+    
+    return render_template(content[0], friendsList = content[1], friendRequests = content[2], requestsSent = content[3])
 
 #? About pages #########################################
 ##* About

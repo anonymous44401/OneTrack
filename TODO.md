@@ -6,4 +6,4 @@
 
 - [ ] Route saving
 
-- [ ] Friend system
+- [ ] Friend system -- wip

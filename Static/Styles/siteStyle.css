@@ -1307,6 +1307,24 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
     .shareExternal i:hover {
         opacity: 50%;
     }
+
+    .addFriendsBox {
+        padding-left: 60px;
+        font-size: 25px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .addFriendsBox {
+        padding-left: 60px;
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .friendsRequestsBox {
+        padding-left: 60px;
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 }
 
 
