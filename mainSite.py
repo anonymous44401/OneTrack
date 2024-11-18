@@ -109,8 +109,10 @@ def share(service_uid = None):
 
 ###? Information
 @app.route('/info/<station_crs>')
-def information(station_crs = None):
-    pass
+def station_information(station_crs = None):
+    information = main_flask_system._station_info(station_crs)
+
+    return render_template(information[0], station_crs = station_crs, station_name = information[1])
 
 ##* Planner
 @app.route('/planner')
@@ -274,9 +276,10 @@ def internal_server_error(e):
 
     return render_template('error.html', error = 500, errorText = e)
 
+app.run()
 
 #? SOCKET ##############################################
-if __name__ == "__main__":
+if __name__ != "__main__":
    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
    s.connect(('8.8.8.8', 1)) 
    local_ip_address = s.getsockname()[0]

@@ -173,19 +173,19 @@
     <div class="mainContent">
         <div class="accBtns">
             <button class="backBtn" name="btn" type="submit">
-                <a href="/departures"><i class="fa-solid fa-chevron-left"></i> Back</a>
+                <a href="/departures/{{station_crs}}"><i class="fa-solid fa-chevron-left"></i> Back</a>
             </button>
         </div>
         <h1 class="pgTextHead">
             {{station_name}} | {{station_crs}} 
         </h1>
         <h1 class="pgTextHead">
-            Let me cook...
+            Service unavailable
         </h1>
         <!--<p>
             <img src="{{ url_for ('static', filename='images/RTTLogo.png') }}" class="nrePowered">
         </p>-->
-        
+        <!--
         <table class="depBoard">
             <tr>
                 <th>
@@ -207,23 +207,11 @@
             </tr>
             {% endfor %}
         </table>
+        -->
         <br>
         <h2 class="depRefresh">
             Powered by the <a href = "https://www.realtimetrains.co.uk/about/developer/">RealTime Trains API</a>
        </h2>
-        <h2 class="depRefresh">
-             Last updated {{date_now}} 
-        </h2>
-        <a href="/departures/{{station_crs}}" class="depRefresh">
-            <i class="fa-solid fa-arrows-rotate"></i> Click to refresh
-        </a>
-        <br>
-        <br>
-        <div class="accBtns">
-            <button class="infoBtn" name="btn" type="submit">
-                <a href="/info/{{station_crs}}"><i class="fa-solid fa-circle-info"></i> Station info</a>
-            </button>
-        </div>
         <br>
         <br>
         <p class="ftImg">

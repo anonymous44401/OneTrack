@@ -78,6 +78,22 @@ class SiteFlask():
         return "serviceInfo.html", self.__internal_system._get_rtt_service_info(service_uid)
 
 
+    def _station_info(self, station_crs):
+        if self.__internal_system._shutdown() == True:
+            return "siteClosed.html", None
+
+        else:
+            try:
+                station_name = (self.__internal_system._get_station_name(station_crs)).title()
+                #print(station_name)
+
+            except:
+                station_name = None
+
+            return "stationInfo.html", station_name
+        
+
+
     #SECTION - Policies and info pages
     def _privacy_policy(self):
         if self.__internal_system._shutdown() == True:
@@ -120,10 +136,10 @@ class SiteFlask():
             sign_in_check = self.__internal_system._check_sign_in()
             #print(sign_in_check)
             if sign_in_check != False:
-                return 'account.html', sign_in_check
+                return 'account.html'
 
             else:
-                return 'signIn.html', None
+                return 'signIn.html'
     
 
     def _create_account(self):
@@ -143,16 +159,15 @@ class SiteFlask():
             return 'signedOut.html'
 
 
-    def _sign_in(self, username, __password):
+    def _sign_in(self, username, password):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html', None
         
         else:
-            sign_in_request = self.__internal_system._sign_in(username, __password)
-            username = sign_in_request  
+            sign_in_request = self.__internal_system._sign_in(username, password) 
 
             if sign_in_request != None:
-                return 'account.html', username
+                return 'account.html'
             
             else:
                 return 'signInFail.html', None
@@ -180,12 +195,12 @@ class SiteFlask():
                 return 'account.html'
 
 
-    def _create_new_user(self, first_name, __password1, __password2, username, surname, email):
+    def _create_new_user(self, first_name, password1, password2, username, surname, email):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
         
         else:
-            account_created = self.__internal_system._create_account(first_name, surname, email, username, __password1, __password2)
+            account_created = self.__internal_system._create_account(first_name, surname, email, username, password1, password2)
             account_created_status = account_created[0]
             username = account_created[1]    
                 

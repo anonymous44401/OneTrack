@@ -100,6 +100,9 @@ class SiteInternalSystem():
         return self._all_stations
 
 
+    def _get_station_name(self, station_crs):
+        return self.__database._get_values("StationName", "tblStations", "SID", station_crs)
+
     def _get_user_favorites(self):
         #print(self._username)
         if self._username != "":
