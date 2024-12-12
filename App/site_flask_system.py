@@ -1,15 +1,12 @@
 from App.site_internal_system import SiteInternalSystem
 
 class SiteFlask():
-    #SECTION - Init
     def __init__(self):
         self.__internal_system = SiteInternalSystem()
 
         self._site_version = self.__internal_system._site_version
         self._time_created = self.__internal_system._time_created
 
-
-    #SECTION - Search
     def _search(self, search_item):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -20,7 +17,6 @@ class SiteFlask():
             return 'searchResults.html'
 
 
-    #SECTION - Main pages
     def _home(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -38,8 +34,7 @@ class SiteFlask():
             return 'planner.html'
 
 
-    #SECTION - Departures
-    def _extract_stations(self):
+    def _get_stations(self):
         return self.__internal_system._get_stations_list()
 
 
@@ -93,8 +88,6 @@ class SiteFlask():
             return "stationInfo.html", station_name
         
 
-
-    #SECTION - Policies and info pages
     def _privacy_policy(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -127,7 +120,6 @@ class SiteFlask():
             return 'contact.html'
 
 
-    #SECTION - Account handling
     def _my_one_track(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -254,9 +246,9 @@ class SiteFlask():
                 return 'friends.html', friendsList, friendRequests, requestsSent
             
             else:
-                return 'signIn.html', None, None, None
-            
-    #SECTION - Error reporting
+                return 'signIn.html', None, None, None 
+
+
     def _report_error(self, errorInput):
         try:
             with open(".home/Admin/crashLogs.txt", "a") as file:

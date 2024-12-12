@@ -196,10 +196,10 @@
             <tr class="depAttribute">
                 <a href = "/departures/info/{{ Departures.service_uid }}">
                     <td></td>
-                    <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.wtt_departure }}</a></td> <!-- Time -->
+                    <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.gbtt_departure }}</a></td> <!-- Time -->
                     <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.terminus }}</a></td> <!-- Dest -->
                     <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.platform }}</a></td> <!-- Plat -->
-                    <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.exp_departure }}</a></td> <!-- Stat -->
+                    <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.realtime_departure }}</a></td> <!-- Stat -->
                 </a>
             </tr>
             {% endfor %}

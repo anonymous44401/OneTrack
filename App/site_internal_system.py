@@ -12,7 +12,7 @@ class SiteInternalSystem():
         self._time_created = ("Site created:", self._get_now(3))
         self._shutdown_time = ("Site shutdown: None")
         self.__close_access: bool = False
-        self._send_service: list = []
+        self.send_service: list = []
         self.__signed_in: bool = False
         self._send_station: str = ""
         self.__database = Database()
@@ -27,7 +27,7 @@ class SiteInternalSystem():
         self.__rtt_user = os.getenv('RTT_USER')
         self.__rtt_token = os.getenv('RTT_TOKEN')
         try:
-            self.__rtt = RealtimeTrainsPy(complexity = "a.n", username = self.__rtt_user, password = self.__rtt_token)
+            self.__rtt = RealtimeTrainsPy(complexity = "s.n", username = self.__rtt_user, password = self.__rtt_token)
             self._rtt_departures_failed: bool = False
         except:
             self._report_error("Couldn't connect to RTT API Service")
@@ -36,7 +36,7 @@ class SiteInternalSystem():
         ###########################
 
         self._all_stations = self.__database._get_all_values_in_order("tblStations", "StationName")
-        self._site_version = "V0.1.1 [ALPHA]"
+        self._site_version = "V1.1.1 [ALPHA]"
         
 
     #SECTION - Departures
@@ -50,24 +50,26 @@ class SiteInternalSystem():
 
             try:
                 self._send_code = self.__database._get_values("SID", "tblStations", "StationName", (self._send_station.upper()))
-                self._send_service = self.__rtt.get_departures_board(tiploc = self._send_code)
+                self.send_service = self.__rtt.get_departures_board(tiploc = self._send_code)
 
-                if self._send_service == "No services found":
-                    return 'departuresNotFound.html', self._send_station.title(), self._send_code, self._send_service, return_date
+                if self.send_service == "No services found":
+                    return 'departuresNotFound.html', self._send_station.title(), self._send_code, self.send_service, return_date
                 
 
             except:
                 self._send_code = station_name
                 self._send_station = self.__database._get_values("StationName", "tblStations", "SID", (self._send_code.upper()))
-                self._send_service = self.__rtt.get_departures_board(tiploc = self._send_code)
+                self.send_service = self.__rtt.get_departures_board(tiploc = self._send_code)
 
-                if self._send_service == "No services found":
-                    return 'departuresNotFound.html', self._send_station.title(), self._send_code, self._send_service, return_date
+                # print(self.send_service)
+
+                if self.send_service == "No services found":
+                    return 'departuresNotFound.html', self._send_station.title(), self._send_code, self.send_service, return_date
                 
 
             
 
-            return 'departuresAdv.html', self._send_station.title(), self._send_code, self._send_service, return_date
+            return 'departureResults.html', self._send_station.title(), self._send_code, self.send_service, return_date
         
         else:
             self._report_error("Failed to connect to RTT API Service")
@@ -104,7 +106,7 @@ class SiteInternalSystem():
 
     def _reset_departures(self):
         self._send_station = ""
-        self._send_service = []
+        self.send_service = []
         self._send_code = ""
 
 
@@ -137,9 +139,9 @@ class SiteInternalSystem():
     #SECTION Account handling 
     def _sign_in(self, username, password):
         password_to_check = self.__database._get_values("Password", "tblUsers", "Username", username)
-        print(password_to_check)
+        # print(password_to_check)
         password = self.__hash_item(password)
-        print(password)
+        # print(password)
 
         if password_to_check == password:
             self.__signed_in = True
@@ -295,7 +297,7 @@ class SiteInternalSystem():
             self._shutdown_time = ("Site shutdown:", self._get_now(3))
             self.__close_access = True
             self._send_station = ""
-            self._send_service = []
+            self.send_service = []
             self.__signed_in = False
             self._send_code = ""
             self._username = ""
@@ -345,7 +347,7 @@ class SiteInternalSystem():
     def __hash_item(self, content):           
         new_item = content + self.__hash_key
         hashed_item = hashlib.md5(new_item.encode())
-        print(hashed_item)
+        # print(hashed_item)
         #for i in range(1, 5):
             #hashed_item = hashlib.md5(str(hashed_item).encode())
             #print(hashed_item)
@@ -401,7 +403,7 @@ class SiteInternalSystem():
         print("self.username:", self._username)
         print("-------------")
         print("self.send_station:", self._send_station)
-        print("self.send_service:", self._send_service)
+        print("self.send_service:", self.send_service)
         print("self.send_code:", self._send_code)
         print("-------------")
         print("self.variables generated", (self._get_now(3)))

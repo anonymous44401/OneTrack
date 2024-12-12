@@ -177,7 +177,7 @@
             </button>
         </div>
         <h1 class="pgTextHead">
-           Service Information for {{service.trainID}}
+           Service Information for {{train_UID}}
         </h1>
         <h2 class="pgTextSubHead">
             {{ service.start_time }} {{ service.origin }} to {{ service.destination }}
@@ -220,7 +220,7 @@
         </table>
         <br>
         <p class="depShare">
-            <a href="/share/{{service.uid}}">
+            <a href="/share/{{train_UID}}">
                 <i class="fa-solid fa-share-from-square"></i> Share this service
             </a>
         <br>
