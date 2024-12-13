@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/cedb998acc.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for ('static', filename='scripts/siteScript.js')}}"></script>
+
+    <!-- Metas -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Links -->
+    <link href="{{ url_for ('static', filename='styles/siteStyle.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ url_for ('static', filename='images/OneTrackFavicon.jpeg') }}">
+    
+    <!-- Title -->
+    <title>
+        My:OneTrack | OneTrack
+    </title>
+</head>
+
+<body>
+    <!-- vv Main Page vv -->
+
+    <!-- vv Header vv -->
+    <div class="signInHeader">
+        <h1 class="one">
+            <a href ="/home">
+                <img src="{{ url_for ('static', filename='images/OneTrackLogo.png') }}" class="signInHeaderImg">
+            </a>
+        </h1>
+    </div>
+    <!--TODO: Waiting for init -->
+    <!-- vv Content vv -->
+    <div class="signInMainContent">
+        <br>
+        <h1 class="signInPgTextHead">
+            Create your My:OneTrack account
+        </h1>
+        <h2 class="signInPgTextMain">
+            <form action="/My-OneTrack/createAccount/" method="POST" class="signIn">
+                <input type="text" name="firstName" placeholder="First name" class="signInAtt">
+                <br>
+                <br>
+                <input type="text" name="surname" placeholder="Surname" class="signInAtt">
+                <br>
+                <br>
+                <input type="email" name="email" placeholder="Email address" class="signInAtt">
+                <br>
+                <br>
+                <input type="text" name="username" placeholder="Username" class="signInAtt">
+                <br>
+                <br>
+                <input type="password" name="password1" placeholder="Password" class="signInAtt">
+                <br>
+                <br>
+                <input type="password" name="password2" placeholder="Re-enter password" class="signInAtt">
+                <br>
+                
+                <p class="errorP">
+                    <h2 class="passwordsInfo">
+                        Password validation rules:
+                        1. Minimum length of 8 characters
+                        2. At least one uppercase letter
+                        3. At least one lowercase letter
+                        4. At least one digit
+                        5. At least one special character (!@#$%^&*)
+                        6. No spaces
+                    </h2>
+                </p>
+                <br>
+                <br>
+                <button class="signInBtn" name="btn" type="submit">
+                    Create account
+                </button>
+            </form>
+        </h2>
+        <h2 class="create">
+            Or <a href="/My-OneTrack" class="createBtn">sign in</a>
+        </h2>
+        <br>
+        <h2 class="create">
+            <a href="/policies/privacy-policy" class="createBtn">Privacy Policy</a> |
+            <a href="/policies/terms-of-use" class="createBtn">Terms of Use</a>
+        </h2>
+        <br>
+    </div>
+</body>
+
+</html>

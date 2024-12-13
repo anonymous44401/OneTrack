@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/cedb998acc.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for ('static', filename='scripts/siteScript.js')}}"></script>
+
+    <!-- Metas -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Links -->
+    <link href="{{ url_for ('static', filename='styles/siteStyle.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="{{ url_for ('static', filename='images/OneTrackFavicon.jpeg') }}">
+    <!-- Title -->
+    <title>
+        Settings | OneTrack
+    </title>
+</head>
+
+<body>
+    <!-- vv Navigation Menu vv -->
+    
+
+    <!-- vv Main Page vv -->
+
+    <!-- vv Header vv -->
+    <div class="header">
+        <h1 class="one">
+            <a href ="/home">
+                <img src="{{ url_for ('static', filename='images/OneTrackLogo.png') }}" class="signInHeaderImg">
+            </a>
+        </h1>
+    </div>
+    <!--TODO: Waiting for init -->
+    <!-- vv Content vv -->
+    <div class="mainContent">
+        <br>
+        <h1 class="pgTextHead">
+            <i class="fa-solid fa-gear"></i> Settings
+        </h1>
+        <br>
+        <div class="settingsOptionArea">
+            <button class="settingsOption" name="btn" type="submit"></button>
+                <a href="#">Account Details</a>
+            </button>
+            <button class="settingsOption" name="btn" type="submit"></button>
+                <a href="#">Accessibility</a>
+            </button>
+            <button class="settingsOption" name="btn" type="submit"></button>
+                <a href="#">Appearance</a>
+            </button>
+        </div>
+        <div class="pgTextSubHead">
+            <input type="checkbox" name="showOperator">
+            <label for="showOperator" class="pgTextMain">Show operators</label>
+        </div>
+        <br>
+        <br>
+        <!-- Settings coming soon
+            TODO    Show operators in departure boards
+            TODO    Show advanced departure board
+            TODO    Dark/light mode (implement soon)
+            Account Information: Users can view and update their account details, such as username, email address, password, and profile picture.
+            Notification Settings: Options to control how and when the website sends notifications, such as email alerts, push notifications, or in-app notifications.
+            Privacy Settings: Controls for managing privacy preferences, such as who can view user profiles, interact with content, or send messages.
+            Security Settings: Tools for enhancing account security, such as two-factor authentication (2FA), login alerts, or device management.
+            Email Preferences: Settings to customize email communication from the website, including newsletters, promotional offers, and account-related messages.
+            Language and Region Settings: Options to set preferred language, time zone, or location-based features.
+            Theme or Display Preferences: Choices for customizing the website's appearance, such as color themes, font sizes, or dark mode.
+            Notification Sound Settings: Controls for adjusting the volume, tone, or frequency of notification sounds.
+            Connected Accounts: Integration options for linking third-party accounts or services, such as social media accounts or payment platforms.
+            Data and Privacy: Access to tools for managing data privacy, such as data export requests, data deletion, or consent management for cookies and tracking.
+            Subscription or Membership Management: Features for managing subscription plans, upgrading/downgrading memberships, or canceling subscriptions.
+            Billing Information: Access to billing details, payment methods, and invoices for users with paid accounts or subscriptions.
+            Accessibility Settings: Options to enhance accessibility for users with disabilities, such as text size adjustments, screen reader compatibility, or keyboard shortcuts.
+            Help and Support: Links to support resources, FAQs, help articles, or contact options for assistance with account-related issues or questions.
+        -->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="accBtns">
+            <button class="settingsBtn" name="btn" type="submit">
+                <a href="/My-OneTrack">Cancel Changes</a>
+            </button>
+            <button class="signOutBtn" name="btn" type="submit">
+                <a href="/My-OneTrack/">Save Changes</a>
+            </button>
+            <button class="deleteAccBtn" name="btn" type="submit">
+                <a href="/My-OneTrack">Back</a>
+            </button>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <!-- vv Footer vv -->
+    <footer class="footer">
+        <h2 class="ftAtt">
+            OneTrack [ALPHA]
+        </h2>
+        <h1 class="ftTextLink">
+            <a href="https://facebook.com" class="ftLink facebook">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://twitter.com" class="ftLink twitter">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="https://discord.gg/32Rhb2j9B3" class="ftLink discord">
+                <i class="fa-brands fa-discord"></i>
+            </a>
+            <a href="https://youtube.com" class="ftLink youtube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://instagram.com" class="ftLink instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://trello.com/b/mh5z3K36/onetrackroadmap" class="ftLink trello">
+                <i class="fa-brands fa-trello"></i>
+            </a>
+        </h1>
+        <h2 class="ftAtt">
+            <a href="/policies/privacy-policy" class="ftAttBtn">Privacy Policy</a> |
+            <a href="/policies/terms-of-use" class="ftAttBtn">Terms of Use</a>
+        </h2>
+        <h2 class="ftAtt">
+            <a href="/about/contact" class="ftAttBtn">Contact us</a>
+        </h2>
+        <h2 class="ftAttA">
+            <a href="/about" class="ftAttBtnA">About</a>
+        </h2>
+        <h2 class="ftAttA">
+            <a href="/careers" class="ftAttBtnA">Careers</a>
+        </h2>
+        <h2 class="ftAttA">
+            <a href="/help" class="ftAttBtnA">Help</a>
+        </h2>
+        <h2 class="ftAttA">
+            <a href="/sitemap" class="ftAttBtnA">Sitemap</a>
+        </h2>  
+        
+        <br>
+        <p class="ftImg">
+            <img src="{{ url_for ('static', filename='images/NRELogo.png') }}">
+            <img src="{{ url_for ('static', filename='images/RDGLogo.png') }}">
+            <!--<img src="{{ url_for ('static', filename='images/TfLLogo.png') }}">-->
+        </p>
+    </footer>
+</body>
+
+</html>
