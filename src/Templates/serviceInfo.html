@@ -5,7 +5,7 @@
 
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/cedb998acc.js" crossorigin="anonymous"></script>
-    <script src="{{ url_for ('static', filename='scripts/siteScript.js')}}"></script>
+    <script src="{{ url_for ('static', filename='JS/siteScript.js')}}"></script>
 
     <!-- Metas -->
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
         <link rel="icon" type="image/x-icon" href="{{ url_for ('static', filename='images/OneTrackFavicon.jpeg') }}">
     <!-- Title -->
     <title>
-        {{service.trainID}} | OneTrack
+        {{train_UID}} | OneTrack
     </title>
 </head>
 
@@ -225,7 +225,7 @@
             </a>
         <br>
         <h2 class="depRefresh">
-            Powered by the <a href = "https://www.realtimetrains.co.uk/about/developer/">RealTime Trains API</a>
+            Powered by the <a href = "https://www.realtimetrains.co.uk/about/developer/">RealTime Trains API</a> and <a href= "https://github.com/anonymous44401/realtime-trains-py">realtime-trains-py</a>.
        </h2>
         <br>
         <br>
