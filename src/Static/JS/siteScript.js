@@ -36,8 +36,6 @@ function mapsClick() {
 
     if (confirmation == true) {
         open("https://www.opentraintimes.com/")
-    } else {
-        open("http://127.0.0.1:5000/home")
     }
 }
 
