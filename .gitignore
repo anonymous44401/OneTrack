@@ -1,7 +1,8 @@
 .vscode
 .vscode/settings.json
 App/.env
-App/hash.txt
+src/App/hash.txt
+OneTrack-Alpha-V2/src/App/hash.txt
 test.py
 test.txt
 

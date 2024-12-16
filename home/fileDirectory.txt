@@ -1,0 +1,59 @@
+OneTrack-Alpha-V2/
+ ├── home/
+ │   ├── crashLogs.txt
+ │   ├── fileDirectory.txt 
+ │   └── siteNotes.txt
+ ├── src/
+ │   ├── App/
+ │   │   ├── .env
+ │   │   ├── create_hash.py 
+ │   │   ├── hash.txt
+ │   │   ├── NOTES.txt
+ │   │   ├── site_ai.py
+ │   │   ├── site_database.py
+ │   │   ├── site_flask_system.py
+ │   │   └── site_internal_system.py
+ │   ├── Static/
+ │   │   ├── Images/
+ │   │   │   ├── OneTrackLogo.png
+ │   │   │   └── OneTrackFavicon.jpeg
+ │   │   ├── JS/
+ │   │   │   └── siteScript.js
+ │   │   └── Styles/
+ │   │       └── siteStyle.css
+ │   ├── Templates/
+ │   │   ├── about.html
+ │   │   ├── account.html
+ │   │   ├── accountDeleted.html
+ │   │   ├── contact.html
+ │   │   ├── createAccount.html
+ │   │   ├── createFailed.html
+ │   │   ├── deleteAccount.html
+ │   │   ├── departureResults.html
+ │   │   ├── departuresAdv.html
+ │   │   ├── departuresFailed.html
+ │   │   ├── departuresNotFound.html.html
+ │   │   ├── departuresV1.html
+ │   │   ├── departuresV2.html
+ │   │   ├── error.html
+ │   │   ├── friends.html
+ │   │   ├── home.html
+ │   │   ├── planner.html
+ │   │   ├── plannerSearch.html
+ │   │   ├── privPol.html
+ │   │   ├── search.html
+ │   │   ├── serviceInfo.html
+ │   │   ├── settings.html
+ │   │   ├── share.html
+ │   │   ├── signedOut.html
+ │   │   ├── signIn.html
+ │   │   ├── signInFail.html
+ │   │   ├── siteClosed.html
+ │   │   ├── stationInfo.html
+ │   │   └── terms.html
+ │   └── main_site.py
+ ├── .gitignore
+ ├── OneTrack_database.db
+ ├── README.md
+ ├── requirements.txt
+ └── TODO.md
