@@ -251,7 +251,7 @@ class SiteFlask():
 
     def _report_error(self, errorInput):
         try:
-            with open(".home/Admin/crashLogs.txt", "a") as file:
+            with open("home/crashLogs.txt", "a") as file:
                 error = errorInput
                 #print(str(error))
                 file.write("\n\n" + str(error) + "\n" + str(self.__internal_system._get_now(3)))
