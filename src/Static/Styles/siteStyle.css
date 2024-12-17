@@ -1092,8 +1092,12 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
         border-right: 1px solid none;
     }
 
+    .cancelled {
+        color: red;
+    }
+
     .depAttribute:hover {
-        background-color: #535353;
+        background-color: #53535360;
         border-right: 1px solid #535353;
         border-left: 1px solid #535353;
         color: #DEDEDE;
@@ -1244,7 +1248,7 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
     }
 
     .serviceBoardAttribute:hover {
-        background-color: #535353;
+        background-color: #53535360;
         border-right: 1px solid #535353;
         border-left: 1px solid #535353;
         color: #DEDEDE;

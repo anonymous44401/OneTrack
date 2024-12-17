@@ -38,7 +38,7 @@ class PriorityQueue():
         self.__max_length: int = __max_length
         self.__queue: list = []
 
-        for i in range(0, self.__max_length):
+        for i in self.__max_length:
             self.__queue.append("")
             #print(self.__queue)
 

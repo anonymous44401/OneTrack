@@ -200,7 +200,7 @@
                     <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.gbtt_departure }}</a></td> <!-- Time -->
                     <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.terminus }}</a></td> <!-- Dest -->
                     <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.platform }}</a></td> <!-- Plat -->
-                    <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.realtime_departure }}</a></td> <!-- Stat -->
+                    <td><a href="/departures/info/{{ Departures.service_uid }}" class = "{{ Departures.realtime_departure.lower() }}">{{ Departures.realtime_departure }}</a></td> <!-- Stat -->
                 </a>
             </tr>
             {% endfor %}

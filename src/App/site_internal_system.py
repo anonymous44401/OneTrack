@@ -35,7 +35,13 @@ class SiteInternalSystem():
         
         ###########################
 
-        self._all_stations = self.__database._get_all_values_in_order("tblStations", "StationName")
+        self._all_stations: dict = {}
+        all_stations = self.__database._get_all_values_in_order("tblStations", "StationName")
+        for att in all_stations:
+            self._all_stations[att[0]] = att[1]
+
+        print(self._all_stations)
+
         self._site_version = "V1.1.1 [ALPHA]"
         
 
@@ -51,9 +57,6 @@ class SiteInternalSystem():
             try:
                 self._send_code = self.__database._get_values("SID", "tblStations", "StationName", (self._send_station.upper()))
                 self.send_service = self.__rtt.get_departures_board(tiploc = self._send_code)
-
-                if self.send_service == "No services found":
-                    return 'departuresNotFound.html', self._send_station.title(), self._send_code, self.send_service, return_date
                 
 
             except:
@@ -61,10 +64,7 @@ class SiteInternalSystem():
                 self._send_station = self.__database._get_values("StationName", "tblStations", "SID", (self._send_code.upper()))
                 self.send_service = self.__rtt.get_departures_board(tiploc = self._send_code)
 
-                # print(self.send_service)
-
-                if self.send_service == "No services found":
-                    return 'departuresNotFound.html', self._send_station.title(), self._send_code, self.send_service, return_date
+                # print(self.send_service)s
                 
 
             
