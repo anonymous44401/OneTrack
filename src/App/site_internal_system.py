@@ -38,9 +38,10 @@ class SiteInternalSystem():
         self._all_stations: dict = {}
         all_stations = self.__database._get_all_values_in_order("tblStations", "StationName")
         for att in all_stations:
+            # print(att[0], att[1])
             self._all_stations[att[0]] = att[1]
 
-        print(self._all_stations)
+        # print(self._all_stations)
 
         self._site_version = "V1.1.1 [ALPHA]"
         

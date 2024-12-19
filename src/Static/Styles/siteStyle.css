@@ -1197,13 +1197,12 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
         font-size: 20px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         text-decoration: none;
-        transition: ease-in-out 200ms;
+        transition: ease-in-out 350ms;
     }
 
     #departuresList:hover {
-        background-color: #262626;
+        background-color: #26262660;
         border: #262626;
-        border-radius: 20px;
         color: #FFFFFF;
     }
 
@@ -1264,6 +1263,10 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
         margin-top: -30px;
         /*padding-left: 60px;*/
         text-align: right;
+    }
+
+    .operatorName {
+        font-style: italic;
     }
 
     .fa-clipboard {

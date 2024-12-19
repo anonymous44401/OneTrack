@@ -23,7 +23,7 @@
         <link rel="icon" type="image/x-icon" href="{{ url_for ('static', filename='images/OneTrackFavicon.jpeg') }}">
     <!-- Title -->
     <title>
-        {{train_UID}} | OneTrack
+        {{service.train_id}} ({{train_UID}}) | OneTrack
     </title>
 </head>
 
@@ -178,10 +178,10 @@
             </button>
         </div>
         <h1 class="pgTextHead">
-           Service Information for {{train_UID}}
+           Service Information for {{ service.train_id }} ({{ train_UID }})
         </h1>
         <h2 class="pgTextSubHead">
-            {{ service.start_time }} {{ service.origin }} to {{ service.destination }}
+            {{ service.train_id }} {{ service.start_time }} {{ service.origin }} to {{ service.destination }}
         </h2>
         <!--<p>
             <img src="{{ url_for ('static', filename='images/RTTLogo.png') }}" class="nrePowered">
@@ -191,7 +191,8 @@
             Operated by 
         </p>
                        <!-- Ignore error here -->
-        <p style="color: #{{ service.colour }};" class="operator">
+        <!-- <p style="color: #colour;" class="operator"> -->
+        <p class="operator operatorName">
             {{service.operator}} 
         </p>
 
@@ -210,12 +211,12 @@
             <tr class="serviceBoardAttribute">
                 <!--stop_name, booked_arrival, expected_arrival, platform, booked_departure, expected_departure-->
                 <td></td>
-                <td>{{ calling_point.stop_name }}</td>
-                <td>{{ calling_point.platform }}</td>
-                <td>{{ calling_point.booked_arrival }}</td>
-                <td>{{ calling_point.realtime_arrival }}</td>
-                <td>{{ calling_point.booked_departure }}</td>
-                <td>{{ calling_point.realtime_departure }}</td>
+                <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.stop_name }}</a></td>
+                <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.platform }}</a></td>
+                <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.booked_arrival }}</a></td>
+                <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.realtime_arrival }}</a></td>
+                <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.booked_departure }}</a></td>
+                <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.realtime_departure }}</a></td>
             </tr>
             {% endfor %}
         </table>

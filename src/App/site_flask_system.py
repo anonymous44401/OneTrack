@@ -16,7 +16,6 @@ class SiteFlask():
 
             return 'searchResults.html'
 
-
     def _home(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -25,7 +24,6 @@ class SiteFlask():
             #return 'home.html'
             return 'home.html'
 
-
     def _planner(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -33,10 +31,8 @@ class SiteFlask():
         else:
             return 'planner.html'
 
-
     def _get_stations(self):
         return self.__internal_system._get_stations_list()
-
 
     def _departures(self):
         if self.__internal_system._shutdown() == True:
@@ -64,14 +60,11 @@ class SiteFlask():
             else:
                 return 'departuresFailed.html'
 
-
     def _get_departures(self,station_crs):
         return self.__internal_system._get_rtt_departures(station_crs)
 
-
     def _get_service_info(self, service_uid):
-        return "serviceInfo.html", self.__internal_system._get_rtt_service_info(service_uid)
-
+        return "serviceInfo.html", self.__internal_system._get_rtt_service_info(service_uid), self.__internal_system._all_stations
 
     def _station_info(self, station_crs):
         if self.__internal_system._shutdown() == True:
@@ -87,14 +80,12 @@ class SiteFlask():
 
             return "stationInfo.html", station_name
         
-
     def _privacy_policy(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
         
         else:
             return 'privPol.html'
-
     
     def _terms_of_service(self):
         if self.__internal_system._shutdown() == True:
@@ -103,7 +94,6 @@ class SiteFlask():
         else:
             return 'terms.html'
 
-
     def _about(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -111,14 +101,12 @@ class SiteFlask():
         else:
             return 'about.html'
     
-
     def _about_contact(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
         
         else:
             return 'contact.html'
-
 
     def _my_one_track(self):
         if self.__internal_system._shutdown() == True:
@@ -133,7 +121,6 @@ class SiteFlask():
             else:
                 return 'signIn.html'
     
-
     def _create_account(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -141,7 +128,6 @@ class SiteFlask():
         else:
             return 'createAccount.html'
     
-
     def _sign_out(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -149,7 +135,6 @@ class SiteFlask():
         else:
             self.__internal_system._sign_out() 
             return 'signedOut.html'
-
 
     def _sign_in(self, username, password):
         if self.__internal_system._shutdown() == True:
@@ -164,14 +149,12 @@ class SiteFlask():
             else:
                 return 'signInFail.html', None
 
-
     def _delete_account_1(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
         
         else:
             return 'deleteAccount.html'
-
 
     def _delete_account_2(self):
         if self.__internal_system._shutdown() == True:
@@ -185,7 +168,6 @@ class SiteFlask():
             else:
                 self.__internal_system._report_error("Failed to delete user account. (" +  + ")")
                 return 'account.html'
-
 
     def _create_new_user(self, first_name, password1, password2, username, surname, email):
         if self.__internal_system._shutdown() == True:
@@ -203,7 +185,6 @@ class SiteFlask():
                 error = username
                 return 'createFailed.html', error 
 
-
     def _open_settings(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -217,7 +198,6 @@ class SiteFlask():
             else:
                 return 'signIn.html'
             
-
     def _save_settings(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -231,7 +211,6 @@ class SiteFlask():
             else:
                 return 'signIn.html', None
             
-
     def _friends(self):
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -247,7 +226,6 @@ class SiteFlask():
             
             else:
                 return 'signIn.html', None, None, None 
-
 
     def _report_error(self, errorInput):
         try:

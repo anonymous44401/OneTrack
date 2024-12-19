@@ -71,7 +71,7 @@ def departures_train_info(train_UID = None):
     service_data = main_flask_system._get_service_info(train_UID)
     #print(service_data)
 
-    return render_template(service_data[0], service = service_data[1], train_UID = train_UID)
+    return render_template(service_data[0], service = service_data[1], train_UID = train_UID, stations = service_data[2])
 
 
 @app.route('/departures/<station_crs>/')
