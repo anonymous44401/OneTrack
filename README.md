@@ -8,9 +8,6 @@ To run OneTrack, the modules listed in `requirements.txt` should be installed. T
 pip install -r requirements.txt
 ```
 
-> [!TIP]
-> If dotenv doesn't work, try importing pydotenv, and replace all imports in files.
-
 ## RealTime Trains API
 
 > [!IMPORTANT]
