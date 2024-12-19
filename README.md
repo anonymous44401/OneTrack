@@ -1,6 +1,8 @@
 # OneTrack:Alpha
 
-## Required modules:
+![License](https://img.shields.io/github/license/anonymous44401/OneTrack-Alpha-V2)
+
+## Required modules
 
 To run OneTrack, the modules listed in `requirements.txt` should be installed. These can be installed simultaneously by running
 
