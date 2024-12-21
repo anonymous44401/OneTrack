@@ -2,30 +2,28 @@
 
 ![License](https://img.shields.io/github/license/anonymous44401/OneTrack-Alpha-V2)
 
-## Required modules
+## Contents
 
-To run OneTrack, the modules listed in `requirements.txt` should be installed. These can be installed simultaneously by running
+### main_site.py 
+The place where everything comes together.
 
-```
-pip install -r requirements.txt
-```
+### site_database.py
+The database management class.
 
-## RealTime Trains API
+### [realtime-trains-py](https://www.github.com/anonymous44401/realtime-trains-py)
+A custom-made API Wrapper for the RTT API.
 
-> [!IMPORTANT]
-> To access OneTrack, an API key and username can be created [here](https://api.rtt.io/accounts/register)
->
-> Once you have an account, change your username and token in a `.env` file. This should be added into the `App` folder
+### site_flask_system.py
+The class for managing the internals of the flask system.
 
-## Hashing
+### site_internal_system.py
+The class for handling all the backend boring stuff.
 
-OneTrack uses hashing for saving data into the database. A hashing key is generated and saved in a file called `hash.txt`. This file should contain data as shown below:
+### siteScript.js
+The file for making the site do cool stuff.
 
-```
-hash_key = [your_hash_key]
-```
+### siteStyle.css
+The file that turns ugly boring html into a beautiful formatted heaven.
 
-It is recommended that the hash key contains 16 (sixteen) base 64 characters. The file `createHash.py` can be used to create a 16-character random hash. Using your own hash will mean that signing into OneTrack with any password already in the database will not work, so all current passwords should be reset for this to work.
-
-> [!WARNING]
-> It is not recommended to reset the hash key during public deployment. Resetting your hash key will cause all data in the database to be invalid as passwords will not verify correctly.
+### create_hash.py
+Create a hash for the site.
