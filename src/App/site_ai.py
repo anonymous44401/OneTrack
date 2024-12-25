@@ -1,7 +1,6 @@
-from App.site_database import Database
-
 from datetime import datetime
 
+from App.site_database import Database
 
 class AI():
     def __init__(self):

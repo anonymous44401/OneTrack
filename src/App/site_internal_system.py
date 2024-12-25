@@ -1,10 +1,11 @@
-from App.site_database import Database
-from dotenv import load_dotenv
-from realtime_trains_py import RealtimeTrainsPy
+import os
 
 from datetime import datetime
 import hashlib
-import os
+
+from App.site_database import Database
+from dotenv import load_dotenv
+from realtime_trains_py import RealtimeTrainsPy
 
 
 class SiteInternalSystem():
@@ -57,19 +58,16 @@ class SiteInternalSystem():
 
             try:
                 self._send_code = self.__database._get_values("SID", "tblStations", "StationName", (self._send_station.upper()))
-                self.send_service = self.__rtt.get_departures_board(tiploc = self._send_code)
+                self.send_service = self.__rtt.get_departures(tiploc = self._send_code)
                 
 
             except:
                 self._send_code = station_name
                 self._send_station = self.__database._get_values("StationName", "tblStations", "SID", (self._send_code.upper()))
-                self.send_service = self.__rtt.get_departures_board(tiploc = self._send_code)
+                self.send_service = self.__rtt.get_departures(tiploc = self._send_code)
 
                 # print(self.send_service)s
                 
-
-            
-
             return 'departureResults.html', self._send_station.title(), self._send_code, self.send_service, return_date
         
         else:

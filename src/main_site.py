@@ -1,7 +1,9 @@
-from App.site_flask_system import SiteFlask
+import socket
+
 from flask import Flask, render_template, request
 
-import socket
+from App.site_flask_system import SiteFlask
+
 
 app = Flask(__name__)
 main_flask_system = SiteFlask()
