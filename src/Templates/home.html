@@ -180,18 +180,26 @@
             <h2 class="pgTextSubHead">
                 Where would you like to go?
             </h2>
-            <form action="/departures/" method="POST" class="depSearch">
-                <input type="text" 
-                        name="station_crs" 
-                        placeholder="Start typing to search" 
-                        class="depSearchAtt"
-                        onkeyup="" 
-                        id="searchItem">
-    
-                <button class="depSearchBtn" name="btn" type="submit">
-                    Search <i class="fa-solid fa-chevron-right"></i>
-                </button>
-            </form>
+            <span class="depSearch">
+                <input 
+                    type = "text" 
+                    name = "station_crs" 
+                    placeholder ="Start typing to search" 
+                    class = "depSearchAtt"
+                    onkeyup = "updateDepartures()" 
+                    id = "searchItem"
+                >
+            </span>
+            <table id="departuresBox">
+                {% for each in send_departures %}
+                <tr id="departuresList">
+                    <!--<li id="stationCRS" onclick=""><a href="#">{{ each[1] }}</a></li>-->
+                    <td id="stationName" onclick="" width="450px"><a href="/departures/{{ send_departures[each].upper() }}">{{ each.title() }} [{{ send_departures[each].upper() }}]</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br>
+            <br>
             <br>
             <br>
             <br>

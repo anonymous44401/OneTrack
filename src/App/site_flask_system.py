@@ -58,7 +58,7 @@ class SiteFlask():
                     return 'departuresV2.html', user_favorites
             
             else:
-                return 'departuresFailed.html'
+                return 'departuresFailed.html', None
 
     def _get_departures(self,station_crs):
         return self.__internal_system._get_rtt_departures(station_crs)
