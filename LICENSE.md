@@ -1,7 +1,7 @@
 GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
-Copyright © [2024] [anonymous44401]
+Copyright © [2025] [anonymous44401]
 
 # TERMS AND CONDITIONS
 0. Definitions.
