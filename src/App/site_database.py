@@ -58,16 +58,18 @@ class Database():
         value_found = self.__cursor.execute(f"SELECT {find_value} FROM {from_table} WHERE {condition_is_true} = '{argument}'")
         self.__conn.commit()
 
-        # Check if the value(s) returned are None
-        if value_found != None:
-            # Empty list for the values
-            values_found = []
-            # Iterate over each value and append it to the list
-            for each in value_found:
-                values_found.append(list(each))
+        try:
+            # Check if the value(s) returned are None
+            if value_found != None:
+                # Empty list for the values
+                values_found = []
+                # Iterate over each value and append it to the list
+                for each in value_found:
+                    values_found.append(list(each))
 
-            return values_found[0][0]
-        else:
+                return values_found[0][0]
+        
+        except:
             return None
 
     def _insert_values(self, into_table: str, columns: str, values: list) -> None:

@@ -12,16 +12,19 @@ class SiteInternalSystem():
     def __init__(self) -> None:
         self._time_created: tuple = ("Site created:", self._get_now(3))
         self.__close_access: bool = False
-        self.__database = Database() # Database
+        self.__database: Database = Database() # Database
+        self.__fail_count: int = 0
+        self.__signed_in: bool = False
+        self._username: str = ""
 
         with open("src/App/hash.txt", "r") as file:
             # Read the hash key from the file
-            self.__hash_key = file.read()
+            self.__hash_key: str = file.read()
         
         try:
             # Initialise RealtimeTrainsPy using the credentials from the dotenv file
             load_dotenv()
-            self.__rtt = RealtimeTrainsPy(complexity = "s.n", username = os.getenv('RTT_USER'), password = os.getenv('RTT_TOKEN'))
+            self.__rtt: RealtimeTrainsPy = RealtimeTrainsPy(complexity = "s.n", username = os.getenv('RTT_USER'), password = os.getenv('RTT_TOKEN'))
             self._rtt_departures_failed: bool = False
         except:
             # If an error occurs, report it
@@ -37,7 +40,7 @@ class SiteInternalSystem():
             # Add each pair of values to the dictionary
             self._all_stations[att[0]] = att[1]
 
-        self._site_version = "V1.1.1 [ALPHA]"
+        self._site_version: str = "V1.1.1 [ALPHA]"
         
 
     #SECTION - Departures
@@ -139,6 +142,7 @@ class SiteInternalSystem():
     def _sign_in(self, username, password) -> str:
         # Get the user password
         password_to_check = self.__database._get_values("Password", "tblUsers", "Username", username)
+        
         # Hash the provided password
         password = self.__hash_item(password)
 
@@ -151,7 +155,15 @@ class SiteInternalSystem():
             return self._username
 
         else:
+            # Iterate the fail count
+            self.__fail_count += 1
             self.__signed_in = False
+
+            # If fail count is 3, reset fail count and apply an infinite server lock
+            if self.__fail_count == 3:
+                self.__fail_count = 0    
+                self.__close_access = True
+
             return None
 
     def _create_account(self, first_name: str, surname: str, email: str, username: str, password1: str, password2: str) ->  bool | str:

@@ -69,3 +69,18 @@ on 27/12/2024 at 17:33:22
 
 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
 on 27/12/2024 at 17:33:25
+
+500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+on 02/01/2025 at 08:49:00
+
+500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+on 07/01/2025 at 16:35:00
+
+500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+on 07/01/2025 at 16:39:25
+
+500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+on 07/01/2025 at 16:39:31
+
+405 Method Not Allowed: The method is not allowed for the requested URL.
+on 07/01/2025 at 16:42:15
