@@ -1,5 +1,5 @@
 flask
 python-dotenv
-realtime-trains-py
+realtime-trains-py==2025.1.0
 requests
 tabulate

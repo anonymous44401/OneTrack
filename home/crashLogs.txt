@@ -84,3 +84,6 @@ on 07/01/2025 at 16:39:31
 
 405 Method Not Allowed: The method is not allowed for the requested URL.
 on 07/01/2025 at 16:42:15
+
+500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+on 09/01/2025 at 10:56:39

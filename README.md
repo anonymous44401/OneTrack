@@ -1,6 +1,6 @@
 # OneTrack:Alpha
 
-![License](https://img.shields.io/github/license/anonymous44401/OneTrack-Alpha-V2)
+GNU License
 
 ## Contents
 
@@ -10,7 +10,7 @@ The place where everything comes together.
 ### site_database.py
 The database management class.
 
-### [realtime-trains-py](https://www.github.com/anonymous44401/realtime-trains-py)
+### [realtime-trains-py 2025.1.0](https://github.com/anonymous44401/realtime-trains-py/tree/v2025.1.0)
 A custom-made API Wrapper for the RTT API.
 
 ### site_flask_system.py

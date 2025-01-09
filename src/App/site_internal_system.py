@@ -73,7 +73,7 @@ class SiteInternalSystem():
             self._report_error("Failed to connect to RTT API Service in _get_rtt_departures")
             return "departuresFailed.html"
 
-    def _get_stations_list(self) -> dict:
+    def _get_stations_dict(self) -> dict:
         # Return all stations
         return self._all_stations
 

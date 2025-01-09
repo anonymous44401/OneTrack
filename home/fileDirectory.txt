@@ -1,10 +1,12 @@
-OneTrack-Alpha-V2/
- ├── home/
+OneTrack/                       
+ ├── .devcontainer/             The dev container for OneTrack
+ │   └──  devcontainer.json
+ ├── home/                      Location of internal information such as crash logs, notes and the file directory
  │   ├── crashLogs.txt
  │   ├── fileDirectory.txt 
  │   └── siteNotes.txt
- ├── src/
- │   ├── App/
+ ├── src/   
+ │   ├── App/                   Location of all the internal files, such as hashes and python files
  │   │   ├── .env
  │   │   ├── create_hash.py 
  │   │   ├── hash.txt
@@ -12,15 +14,15 @@ OneTrack-Alpha-V2/
  │   │   ├── site_database.py
  │   │   ├── site_flask_system.py
  │   │   └── site_internal_system.py
- │   ├── Static/
- │   │   ├── Images/
+ │   ├── Static/                
+ │   │   ├── Images/            Location of all the images OneTrack uses
  │   │   │   ├── OneTrackLogo.png
  │   │   │   └── OneTrackFavicon.jpeg
- │   │   ├── JS/
+ │   │   ├── JS/                Location of all the JavaScript OneTrack uses
  │   │   │   └── siteScript.js
- │   │   └── Styles/
+ │   │   └── Styles/            Location of all the CSS OneTrack uses
  │   │       └── siteStyle.css
- │   ├── Templates/
+ │   ├── Templates/             Location of all the HTML file templates OneTrack uses
  │   │   ├── about.html
  │   │   ├── account.html
  │   │   ├── accountDeleted.html
@@ -50,11 +52,10 @@ OneTrack-Alpha-V2/
  │   │   ├── siteClosed.html
  │   │   ├── stationInfo.html
  │   │   └── terms.html
- │   └── main_site.py
- ├── .gitignore
- ├── LICENSE.md
- ├── OneTrack_database.db
- ├── OneTrack_database.sqbpro
- ├── README.md
- ├── requirements.txt
- └── TODO.md
+ │   └── main_site.py           Main file for running the flask app
+ ├── .gitignore                 Gitignore
+ ├── LICENSE.md                 LICENSE
+ ├── OneTrack_database.db       Database
+ ├── README.md                  README
+ ├── requirements.txt           Requirements (auto installed when using the dev container)
+ └── TODO.md                    TODO
