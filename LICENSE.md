@@ -1,5 +1,4 @@
-GNU GENERAL PUBLIC LICENSE
-Version 3, 29 June 2007
+GENERAL PUBLIC LICENSE
 
 Copyright © [2025] [anonymous44401]
 
