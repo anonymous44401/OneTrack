@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 import hashlib
 
+from App.encryption import Encryption
 from App.site_database import Database
 from dotenv import load_dotenv
 from realtime_trains_py import RealtimeTrainsPy
@@ -13,18 +14,18 @@ class SiteInternalSystem():
         self._time_created: tuple = ("Site created:", self._get_now(3))
         self.__close_access: bool = False
         self.__database: Database = Database() # Database
+        self.__encryption: Encryption = Encryption()
         self.__fail_count: int = 0
         self.__signed_in: bool = False
         self._username: str = ""
-
-        with open("src/App/hash.txt", "r") as file:
-            # Read the hash key from the file
-            self.__hash_key: str = file.read()
         
         try:
             # Initialise RealtimeTrainsPy using the credentials from the dotenv file
-            load_dotenv()
+            load_dotenv(dotenv_path = "src/App/keys/.env")
             self.__rtt: RealtimeTrainsPy = RealtimeTrainsPy(complexity = "s.n", username = os.getenv('RTT_USER'), password = os.getenv('RTT_TOKEN'))
+            # Test the connection
+            self.__rtt.get_departures(tiploc = "WAT")
+
             self._rtt_departures_failed: bool = False
         except:
             # If an error occurs, report it
@@ -71,7 +72,7 @@ class SiteInternalSystem():
         else:
             # Report the error and return departuresFailed
             self._report_error("Failed to connect to RTT API Service in _get_rtt_departures")
-            return "departuresFailed.html"
+            return "departuresFailed.html", None, None, None, None
 
     def _get_stations_dict(self) -> dict:
         # Return all stations
@@ -205,7 +206,7 @@ class SiteInternalSystem():
                     self._user_id = self.__database._get_values("UserID" , "tblUsers", "Email", email)
                     # Set their settings
                     self.__database._insert_values("tblUserSettings", "UserID, OperatorEnabled, SystemMode", [self._user_id, "0", "0"])
-                    # Add their favourites
+                    # Add their favorites
                     self.__database._insert_values("tblUserFavorites", "UserID, Favorite1, Favorite2, Favorite3, Favorite4, Favorite5, Favorite6", [self._user_id, "None", "None", "None", "None", "None", "None"])
 
                     self.__signed_in = True
@@ -294,7 +295,6 @@ class SiteInternalSystem():
             self._username = username
             return False
 
-    # Shutdown server
     def _shutdown(self) -> bool:
         # Check if shutdown
         if self.__close_access == True:

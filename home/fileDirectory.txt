@@ -7,9 +7,11 @@ OneTrack/
  │   └── siteNotes.txt                          Notes (1)
  ├── src/                                       Folder with all of OneTrack's core code 
  │   ├── App/                                   Location of all the internal files, such as hashes and python files
- │   │   ├── .env                               File with API keys and passwords
+ │   │   ├── Keys/                              Folder with API keys and passwords
+ │   │   │   ├── .env                           File with API keys
+ │   │   │   └── hash.txt                       File with the secret password for encryption and decryption
  │   │   ├── create_hash.py                     File for creating hashes
- │   │   ├── hash.txt                           The hash for the site
+ │   │   ├── encryption.py                      File for handling data encryption
  │   │   ├── NOTES.txt                          Notes (2)
  │   │   ├── site_database.py                   File for handling database queries
  │   │   ├── site_flask_system.py               File for handling flask requests

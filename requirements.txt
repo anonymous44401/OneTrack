@@ -2,4 +2,5 @@ flask
 python-dotenv
 realtime-trains-py==2025.1.0
 requests
+scrypt
 tabulate
