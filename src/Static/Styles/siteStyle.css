@@ -1,20 +1,15 @@
+/* Not used, this is just for reference */
 .colourPalette {
-    color: #FFFFFF
-        /* ^ White */
-        #DEDEDE
-        /* ^ Platinum */
-        #7BB5E5
-        /* ^ Argentinian Blue */
-        #328CD6
-        /* ^ Tufts BLue */
-        #E87620
-        /* ^ Pumpkin */
-        #535353
-        /* ^ Davy's Grey */
-        #262626;
-        /* ^ Eerie Black */
+    color: #FFFFFF  /* White */
+           #DEDEDE  /* Platinum */
+           #7BB5E5  /* Argentinian Blue */
+           #328CD6  /* Tufts BLue */
+           #E87620  /* Pumpkin */
+           #535353  /* Davy's Grey */
+           #262626; /* Eerie Black */
 }
 
+/* Set the properties for all the pages */
 html {
     height: 100%;
     width: 100%;
@@ -26,6 +21,7 @@ html {
 
 /* vv Desktop vv */
 @media only screen and (min-width: 600px) {
+    /* Properties for the arrows on the menu */
     i.fa-chevron-right {
         text-align: center;
         padding-left: 10px;
@@ -33,11 +29,13 @@ html {
         color: inherit;
     }
 
+    /* Properties for the hamburger menu bars on the menu */
     i.fa-bars {
         display: none;
         color: transparent;
     }
 
+    /* Properties for the house icon on the menu */
     i.fa-house {
         text-align: center;
         padding-left: 8px;
@@ -45,6 +43,7 @@ html {
         color: #7BB5E5;
     }
 
+    /* Properties for the user icon on the menu */
     i.fa-user {
         text-align: center;
         padding-left: 12px;
@@ -52,6 +51,7 @@ html {
         color: #7BB5E5;
     }
 
+    /* Properties for the clock icon on the menu */
     i.fa-clock {
         text-align: center;
         padding-left: 10px;
@@ -59,6 +59,7 @@ html {
         color: #7BB5E5;
     }
 
+    /* Properties for the map icon on the menu */
     i.fa-map {
         text-align: center;
         padding-left: 10px;
@@ -66,6 +67,7 @@ html {
         color: #7BB5E5;
     }
 
+    /* Properties for the ticket icon on the menu */
     i.fa-ticket {
         text-align: center;
         padding-left: 8.5px;
@@ -73,6 +75,7 @@ html {
         color: #7BB5E5;
     }
 
+    /* Properties for the magnifying glass on the menu */
     i.fa-magnifying-glass {
         text-align: center;
         padding-left: 10px;
@@ -80,6 +83,7 @@ html {
         color: #7BB5E5;
     }
 
+    /* Properties for the star icon on the departures page */
     i.fa-star {
         text-align: center;
         padding-left: 0px;
@@ -89,6 +93,7 @@ html {
         transition: ease-in-out 300ms;
     }
 
+    /* Hover effect for star icons */
     i.fa-star:hover {
         text-align: center;
         padding-left: 0px;
@@ -98,6 +103,7 @@ html {
         cursor: pointer;
     }
 
+    /* Properties for starred items on the departures page */
     #starred {
         text-align: center;
         padding-left: 0px;
@@ -106,6 +112,7 @@ html {
         font-size: 20px;
     }
 
+    /* Properties for the search item on the menu */
     .searchItem {
         border: none;
         font-size: 30px;
@@ -121,16 +128,19 @@ html {
         color: #808080;
     }
 
+    /* Properties for the items to the right */
     #right {
         align-items: right;
     }
 
+    /* Properties for the a tags on the menu */
     a {
         text-align: left;
         text-decoration: none;
         color: inherit;
     }
 
+    /* Properties for the menu items on the menu */
     .menuItem {
         display: span;
         padding-top: 15px;
@@ -140,6 +150,7 @@ html {
         background-color: none;
     }
 
+    /* Properties for the h5 on the menu */
     h5 {
         color: #808080;
         font-size: 30px;
@@ -159,6 +170,7 @@ html {
         transition: ease-in-out 500ms;
     }
 
+    /* Properties for the h6 on the menu */
     h6 {
         color: inherit;
         font-size: 30px;
@@ -180,6 +192,7 @@ html {
         cursor: pointer;
     }
 
+    /* Hover effect for h6 */
     h6:hover {
         width: 300px;
         color: #FFFFFF;

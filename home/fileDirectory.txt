@@ -8,8 +8,9 @@ OneTrack/
  ├── src/                                       Folder with all of OneTrack's core code 
  │   ├── App/                                   Location of all the internal files, such as hashes and python files
  │   │   ├── Keys/                              Folder with API keys and passwords
- │   │   │   ├── .env                           File with API keys
- │   │   │   └── hash.txt                       File with the secret password for encryption and decryption
+ │   │   │   ├── hash.txt                       File with the secret password for encryption and decryption
+ │   │   │   ├── rtt_token                      File with API token
+ │   │   │   └── rtt_user                       File with API user
  │   │   ├── create_hash.py                     File for creating hashes
  │   │   ├── encryption.py                      File for handling data encryption
  │   │   ├── NOTES.txt                          Notes (2)

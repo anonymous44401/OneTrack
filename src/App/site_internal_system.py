@@ -1,11 +1,10 @@
-import os
+import hashlib
 
 from datetime import datetime
-import hashlib
+
 
 from App.encryption import Encryption
 from App.site_database import Database
-from dotenv import load_dotenv
 from realtime_trains_py import RealtimeTrainsPy
 
 
@@ -14,15 +13,15 @@ class SiteInternalSystem():
         self._time_created: tuple = ("Site created:", self._get_now(3))
         self.__close_access: bool = False
         self.__database: Database = Database() # Database
-        self.__encryption: Encryption = Encryption()
+        self.__encryption: Encryption = Encryption() # Encryption
         self.__fail_count: int = 0
         self.__signed_in: bool = False
         self._username: str = ""
         
         try:
-            # Initialise RealtimeTrainsPy using the credentials from the dotenv file
-            load_dotenv(dotenv_path = "src/App/keys/.env")
-            self.__rtt: RealtimeTrainsPy = RealtimeTrainsPy(complexity = "s.n", username = os.getenv('RTT_USER'), password = os.getenv('RTT_TOKEN'))
+            # Initialise RealtimeTrainsPy using the credentials from the .txt files
+            
+            self.__rtt: RealtimeTrainsPy = RealtimeTrainsPy(complexity = "s.n", username = self.__encryption.__rtt_user, password = self.__encryption.__rtt_token)
             # Test the connection
             self.__rtt.get_departures(tiploc = "WAT")
 
@@ -354,7 +353,7 @@ class SiteInternalSystem():
     # Hashing 
     def __hash_item(self, content) -> str:    
         # Add the hash key to the content       
-        new_item = content + self.__hash_key
+        new_item = content + self.__encryption.__key
         # Hash the item
         hashed_item = hashlib.md5(new_item.encode())
 

@@ -44,7 +44,7 @@ function mapsClick() {
     // Confirm the user choice
     let confirmation = confirm("This link takes you out of OneTrack. Are you sure you want to leave?")
 
-    // If true, open open train times
+    // If true, open "open train times"
     if (confirmation == true) {
         open("https://www.opentraintimes.com/")
     }

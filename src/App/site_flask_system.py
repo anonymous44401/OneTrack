@@ -1,5 +1,7 @@
 from App.site_internal_system import SiteInternalSystem
 
+##### THIS FILE IS NOT FULLY COMMENTED YET #####
+
 class SiteFlask():
     def __init__(self):
         self.__internal_system = SiteInternalSystem()
