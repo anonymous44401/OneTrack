@@ -19,9 +19,8 @@ class SiteInternalSystem():
         self._username: str = ""
         
         try:
-            # Initialise RealtimeTrainsPy using the credentials from the .txt files
-            
-            self.__rtt: RealtimeTrainsPy = RealtimeTrainsPy(complexity = "s.n", username = self.__encryption.__rtt_user, password = self.__encryption.__rtt_token)
+            # Initialise RealtimeTrainsPy using the credentials from the .txt files            
+            self.__rtt: RealtimeTrainsPy = RealtimeTrainsPy(complexity = "s.n", username = self.__encryption._rtt_user, password = self.__encryption._rtt_token)
             # Test the connection
             self.__rtt.get_departures(tiploc = "WAT")
 
@@ -40,11 +39,11 @@ class SiteInternalSystem():
             # Add each pair of values to the dictionary
             self._all_stations[att[0]] = att[1]
 
-        self._site_version: str = "V1.1.1 [ALPHA]"
+        self._site_version: str = "V2.1.1 [ALPHA]"
         
 
     #SECTION - Departures
-    def _get_rtt_departures(self, station_name) -> str | tuple:
+    def _get_departures(self, station_name) -> str | tuple:
         # Reset the departures to prevent any conflicts
         self._reset_departures()
         
@@ -56,14 +55,14 @@ class SiteInternalSystem():
             try:
                 # Try to get the station CRS code from the database and get its departure board
                 self._send_code = self.__database._get_values("SID", "tblStations", "StationName", (self._send_station.upper()))
-                self._send_service = self.__rtt.get_departures(tiploc = self._send_code)
+                self._send_service = self.__rtt.get_station(tiploc = self._send_code)
                 
 
             except:
                 self._send_code = station_name
                 # Use the station CRS code to get its departure board
                 self._send_station = self.__database._get_values("StationName", "tblStations", "SID", (self._send_code.upper()))
-                self._send_service = self.__rtt.get_departures(tiploc = self._send_code)
+                self._send_service = self.__rtt.get_station(tiploc = self._send_code)
                 
             # Return the return information
             return 'departureResults.html', self._send_station.title(), self._send_code, self._send_service, return_date
@@ -109,7 +108,7 @@ class SiteInternalSystem():
         self._send_service = []
         self._send_code = ""
 
-    def _get_rtt_service_info(self, service_uid) -> list:
+    def _get_service_info(self, service_uid) -> list:
         # Return the service info
         return self.__rtt.get_service(service_uid = service_uid)
 
@@ -353,7 +352,7 @@ class SiteInternalSystem():
     # Hashing 
     def __hash_item(self, content) -> str:    
         # Add the hash key to the content       
-        new_item = content + self.__encryption.__key
+        new_item = content + self.__encryption._key
         # Hash the item
         hashed_item = hashlib.md5(new_item.encode())
 

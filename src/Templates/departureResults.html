@@ -23,7 +23,7 @@
         <link rel="icon" type="image/x-icon" href="{{ url_for ('static', filename='images/OneTrackFavicon.jpeg') }}">
     <!-- Title -->
     <title>
-        Live Departures from {{station_name}} | OneTrack
+        {{station_name}} Live | OneTrack
     </title>
 </head>
 
@@ -178,7 +178,7 @@
             </button>
         </div>
         <h1 class="pgTextHead">
-            Departures from {{station_name}} [{{station_crs}}] <a href="/departures/{{station_crs}}/"><i class="fa-solid fa-star"></i></a>
+            Departures and Arrivals from {{station_name}} [{{station_crs}}] <a href="/departures/{{station_crs}}/"><i class="fa-solid fa-star"></i></a>
         </h1>
         <!--<p>
             <img src="{{ url_for ('static', filename='images/RTTLogo.png') }}" class="nrePowered">
@@ -187,20 +187,26 @@
         <table class="depBoard">
             <tr>
                 <th>
-                    <td class="depHeader">Time</td>
+                    <td class="depHeader">Arrival</td>
+                    <td class="depHeader">Departure</td>
+                    <td class="depHeader">origin</td>
                     <td class="depHeader">Destination</td>
                     <td class="depHeader">Platform</td>
-                    <td class="depHeader">Status</td>
+                    <td class="depHeader">Expected Arrival</td>
+                    <td class="depHeader">Expected Departure</td>
                 </th>
             </tr>
             {% for Departures in send_service %}
             <tr class="depAttribute">
                 <a href = "/departures/info/{{ Departures.service_uid }}">
                     <td></td>
-                    <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.gbtt_departure }}</a></td> <!-- Time -->
+                    <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.gbtt_arrival }}</a></td> <!-- Arrival time -->
+                    <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.gbtt_departure }}</a></td> <!-- Departure time -->
+                    <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.origin }}</a></td> <!-- Origin -->
                     <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.terminus }}</a></td> <!-- Dest -->
                     <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.platform }}</a></td> <!-- Plat -->
-                    <td><a href="/departures/info/{{ Departures.service_uid }}" class = "{{ Departures.realtime_departure.lower() }}">{{ Departures.realtime_departure }}</a></td> <!-- Stat -->
+                    <td><a href="/departures/info/{{ Departures.service_uid }}" class = "{{ Departures.realtime_arrival.lower() }}">{{ Departures.realtime_arrival }}</a></td> <!-- Actual -->
+                    <td><a href="/departures/info/{{ Departures.service_uid }}" class = "{{ Departures.realtime_departure.lower() }}">{{ Departures.realtime_departure }}</a></td> <!-- Actual -->
                 </a>
             </tr>
             {% endfor %}

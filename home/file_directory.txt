@@ -1,0 +1,64 @@
+OneTrack/                       
+ ├── .devcontainer/                             The dev container for OneTrack
+ │   └──  devcontainer.json                     Dev container
+ ├── home/                                      Location of internal information such as crash logs, notes and the file directory
+ │   ├── crashLogs.txt                          Crash logs
+ │   ├── fileDirectory.txt                      File directory (This file)
+ │   └── siteNotes.txt                          Notes (1)
+ ├── src/                                       Folder with all of OneTrack's core code 
+ │   ├── App/                                   Location of all the internal files, such as hashes and python files
+ │   │   ├── Keys/                              Folder with API keys and passwords
+ │   │   │   ├── hash.txt                       File with the secret password for encryption and decryption
+ │   │   │   ├── rtt_token                      File with API token
+ │   │   │   └── rtt_user                       File with API user
+ │   │   ├── create_hash.py                     File for creating hashes
+ │   │   ├── encryption.py                      File for handling data encryption
+ │   │   ├── NOTES.txt                          Notes (2)
+ │   │   ├── site_database.py                   File for handling database queries
+ │   │   ├── site_flask_system.py               File for handling flask requests
+ │   │   └── site_internal_system.py            File for handling anything that needs to be forwarded to other locations (database.py, realtime-trains-py)
+ │   ├── Static/                
+ │   │   ├── Images/                            Location of all the images OneTrack uses
+ │   │   │   ├── OneTrackLogo.png
+ │   │   │   └── OneTrackFavicon.jpeg
+ │   │   ├── JS/                                Location of all the JavaScript OneTrack uses
+ │   │   │   └── siteScript.js                  OneTrack JavaScript file
+ │   │   └── Styles/                            Location of all the CSS OneTrack uses
+ │   │       └── siteStyle.css                  OneTrack CSS file 
+ │   ├── Templates/                             Location of all the HTML file templates OneTrack uses
+ │   │   ├── about.html                         HTML page for the about OneTrack page
+ │   │   ├── account.html                       HTML page for the My:OneTrack account centre
+ │   │   ├── accountDeleted.html                HTML page for confirmation of account deletion
+ │   │   ├── contact.html                       HTML page for contact information
+ │   │   ├── createAccount.html                 HTML page for creating account
+ │   │   ├── createFailed.html                  HTML page for creating account errors
+ │   │   ├── deleteAccount.html                 HTML page for getting user confirmation of account deletion
+ │   │   ├── departureResults.html              HTML page for departure results
+ │   │   ├── departuresAdv.html                 HTML page for departures advanced
+ │   │   ├── departuresFailed.html              HTML page for departure errors
+ │   │   ├── departuresNotFound.html.html       HTML page for departures not found
+ │   │   ├── departuresV1.html                  HTML page for departures search (not signed in)
+ │   │   ├── departuresV2.html                  HTML page for departures search (signed in)
+ │   │   ├── error.html                         HTML page for errors (401, 404 etc)
+ │   │   ├── friends.html                       HTML page for My:OneTrack friends
+ │   │   ├── home.html                          HTML page for home
+ │   │   ├── planner.html                       HTML page for the planer (not functional)
+ │   │   ├── plannerSearch.html                 HTML page for searching the planer (not functional)
+ │   │   ├── privPol.html                       HTML page for the privacy policy
+ │   │   ├── search.html                        HTML page for searching (not functional)
+ │   │   ├── serviceInfo.html                   HTML page for service information
+ │   │   ├── settings.html                      HTML page for My:OneTrack settings
+ │   │   ├── share.html                         HTML page for route sharing
+ │   │   ├── signedOut.html                     HTML page for signing out of My:OneTrack
+ │   │   ├── signIn.html                        HTML page for signing in
+ │   │   ├── signInFail.html                    HTML page for sign in errors
+ │   │   ├── siteClosed.html                    HTML page for site closure
+ │   │   ├── stationInfo.html                   HTML page for station information (not functional)
+ │   │   └── terms.html                         HTML page for terms and conditions
+ │   └── main_site.py                           Main file for running the flask app
+ ├── .gitignore                                 OneTrack gitignore file
+ ├── LICENSE.md                                 OneTrack license (GPL license)
+ ├── OneTrack_database.db                       OneTrack Database
+ ├── README.md                                  README (contents page)
+ ├── requirements.txt                           Requirements (auto installed when using the dev container)
+ └── TODO.md                                    TODO list

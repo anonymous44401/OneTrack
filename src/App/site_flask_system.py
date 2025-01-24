@@ -71,10 +71,10 @@ class SiteFlask():
                 return 'departuresFailed.html', None
 
     def _get_departures(self,station_crs):
-        return self.__internal_system._get_rtt_departures(station_crs)
+        return self.__internal_system._get_departures(station_crs)
 
     def _get_service_info(self, service_uid):
-        return "serviceInfo.html", self.__internal_system._get_rtt_service_info(service_uid), self.__internal_system._all_stations
+        return "serviceInfo.html", self.__internal_system._get_service_info(service_uid), self.__internal_system._all_stations
 
     def _station_info(self, station_crs):
         # Check if the system is shutdown and run appropriate actions
@@ -253,10 +253,4 @@ class SiteFlask():
                 return 'signIn.html', None, None, None 
 
     def _report_error(self, errorInput):
-        try:
-            with open("home/crashLogs.txt", "a") as file:
-                error = errorInput
-                #print(str(error))
-                file.write("\n\n" + str(error) + "\n" + str(self.__internal_system._get_now(3)))
-        except:
-            pass
+        self.__internal_system._report_error(errorInput=errorInput)

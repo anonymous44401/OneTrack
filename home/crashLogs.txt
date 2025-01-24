@@ -1,131 +1,19 @@
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 17/12/2024 at 13:56:13
 
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 17/12/2024 at 14:03:57
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 17/12/2024 at 20:23:08
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 18/12/2024 at 13:44:05
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 08:39:55
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 08:40:04
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 08:40:54
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 08:43:56
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 08:44:12
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 09:18:54
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 09:19:05
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 09:23:52
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 09:23:57
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 09:26:21
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 09:33:14
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 19/12/2024 at 09:35:59
-
-405 Method Not Allowed: The method is not allowed for the requested URL.
-on 19/12/2024 at 09:38:42
-
-405 Method Not Allowed: The method is not allowed for the requested URL.
-on 19/12/2024 at 09:38:47
-
-405 Method Not Allowed: The method is not allowed for the requested URL.
-on 19/12/2024 at 09:39:06
-
-405 Method Not Allowed: The method is not allowed for the requested URL.
-on 19/12/2024 at 09:39:34
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 27/12/2024 at 17:12:08
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 27/12/2024 at 17:12:32
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 27/12/2024 at 17:33:22
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 27/12/2024 at 17:33:25
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 02/01/2025 at 08:49:00
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 07/01/2025 at 16:35:00
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 07/01/2025 at 16:39:25
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 07/01/2025 at 16:39:31
-
-405 Method Not Allowed: The method is not allowed for the requested URL.
-on 07/01/2025 at 16:42:15
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 09/01/2025 at 10:56:39
 
 Couldn't connect to RTT API Service in __init__
-on 13/01/2025 at 14:25:57
+on 16/01/2025 at 14:40:54
 
 Failed to connect to RTT API Service in _get_rtt_departures
-on 13/01/2025 at 14:26:06
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 13/01/2025 at 14:26:06
+on 16/01/2025 at 14:41:03
 
 Couldn't connect to RTT API Service in __init__
-on 13/01/2025 at 14:27:03
+on 16/01/2025 at 14:41:53
+
+Couldn't connect to RTT API Service in __init__
+on 16/01/2025 at 14:42:38
 
 Failed to connect to RTT API Service in _get_rtt_departures
-on 13/01/2025 at 14:27:08
-
-Couldn't connect to RTT API Service in __init__
-on 13/01/2025 at 14:57:24
-
-Couldn't connect to RTT API Service in __init__
-on 13/01/2025 at 15:45:19
+on 16/01/2025 at 14:42:45
 
 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 13/01/2025 at 15:46:23
-
-Couldn't connect to RTT API Service in __init__
-on 13/01/2025 at 15:49:36
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 13/01/2025 at 15:49:51
-
-Couldn't connect to RTT API Service in __init__
-on 14/01/2025 at 13:46:23
-
-400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
-on 14/01/2025 at 13:48:51
-
-500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
-on 14/01/2025 at 13:49:13
-
-Couldn't connect to RTT API Service in __init__
-on 14/01/2025 at 13:56:02
+on 24/01/2025 at 09:19:54
