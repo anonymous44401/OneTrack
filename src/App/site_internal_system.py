@@ -308,12 +308,12 @@ class SiteInternalSystem():
         return self.__close_access
 
     # Report error 
-    def _report_error(self, errorInput) -> None:
+    def _report_error(self, error) -> None:
         try:
             # Open the file
-            with open("home/crashLogs.txt", "a") as file:
+            with open("home/crash_logs.txt", "a") as file:
                 # Write the error to the file
-                file.write("\n\n" + str(errorInput) + "\n" + str(self._get_now(3)))
+                file.write("\n\n" + str(error) + "\n" + str(self._get_now(3)))
         except:
             pass
 

@@ -252,5 +252,5 @@ class SiteFlask():
             else:
                 return 'signIn.html', None, None, None 
 
-    def _report_error(self, errorInput):
-        self.__internal_system._report_error(errorInput=errorInput)
+    def _report_error(self, error):
+        self.__internal_system._report_error(error=error)
