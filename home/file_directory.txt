@@ -1,22 +1,17 @@
 OneTrack/                       
- ├── .devcontainer/                             The dev container for OneTrack
- │   └──  devcontainer.json                     Dev container
  ├── home/                                      Location of internal information such as crash logs, notes and the file directory
- │   ├── crashLogs.txt                          Crash logs
- │   ├── fileDirectory.txt                      File directory (This file)
- │   └── siteNotes.txt                          Notes (1)
+ │   ├── crash_logs.txt                         Crash logs
+ │   ├── file_directory.txt                     File directory (This file)
  ├── src/                                       Folder with all of OneTrack's core code 
  │   ├── App/                                   Location of all the internal files, such as hashes and python files
- │   │   ├── Keys/                              Folder with API keys and passwords
+ │   │   ├── keys/                              Folder with API keys and passwords
  │   │   │   ├── hash.txt                       File with the secret password for encryption and decryption
  │   │   │   ├── rtt_token                      File with API token
  │   │   │   └── rtt_user                       File with API user
- │   │   ├── create_hash.py                     File for creating hashes
  │   │   ├── encryption.py                      File for handling data encryption
- │   │   ├── NOTES.txt                          Notes (2)
  │   │   ├── site_database.py                   File for handling database queries
  │   │   ├── site_flask_system.py               File for handling flask requests
- │   │   └── site_internal_system.py            File for handling anything that needs to be forwarded to other locations (database.py, realtime-trains-py)
+ │   │   └── site_internal_system.py            File for handling anything that needs to be forwarded to other locations (database.py, encryption.py, realtime-trains-py)
  │   ├── Static/                
  │   │   ├── Images/                            Location of all the images OneTrack uses
  │   │   │   ├── OneTrackLogo.png
@@ -60,5 +55,5 @@ OneTrack/
  ├── LICENSE.md                                 OneTrack license (GPL license)
  ├── OneTrack_database.db                       OneTrack Database
  ├── README.md                                  README (contents page)
- ├── requirements.txt                           Requirements (auto installed when using the dev container)
+ ├── requirements.txt                           Requirements
  └── TODO.md                                    TODO list

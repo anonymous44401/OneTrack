@@ -57,7 +57,7 @@ class Database():
     def _get_values(self, find_value: str, from_table: str, condition_is_true: str, argument: str) -> None | str:
         # Connect
         self.__conn = sqlite3.connect(self.__database)
-        self.__cursor = self.__conn.cursor()        
+        self.__cursor = self.__conn.cursor()    
 
         # Get value from the database with command
         value_found = self.__cursor.execute(f"SELECT {find_value} FROM {from_table} WHERE {condition_is_true} = '{argument}'")
@@ -82,17 +82,18 @@ class Database():
 
         # Create first half of the database command 
         db_cmd = f"INSERT INTO {into_table} ({columns}) VALUES ("
+
         for i in range(len(values)-1):
             # Add values to the end of the command
             db_cmd += f"'{str(values[i])}',"
         
         # Add final value to the end of the command
-        db_cmd += f"'{str(values[-1])});"
+        db_cmd += f"'{str(values[-1])}');"
 
         self.__cursor.execute(db_cmd)
         self.__conn.commit()
         
-    def _update_values(self, in_table: str, att_to_change: str, val_to_change: str, attribute: str, value) -> None:
+    def _update_values(self, in_table: str, att_to_change: str, val_to_change: str, attribute: str, value: str) -> None:
         # Connect
         self.__conn = sqlite3.connect(self.__database)
         self.__cursor = self.__conn.cursor()

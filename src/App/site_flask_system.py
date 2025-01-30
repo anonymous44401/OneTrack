@@ -243,14 +243,12 @@ class SiteFlask():
         else:
             sign_in_check = self.__internal_system._check_sign_in()
             if sign_in_check != False:
-                friendsList = [] ## Needs to get friends from DB
-                friendRequests = [] ## Needs to get friend requests from DB
-                requestsSent = [] ## Needs to get requests sent from DB
+                content = self.__internal_system._get_friend_items()
 
-                return 'friends.html', friendsList, friendRequests, requestsSent
+                return 'friends.html', content[0], content[1]
             
             else:
-                return 'signIn.html', None, None, None 
+                return 'signIn.html', None, None 
 
     def _report_error(self, error):
         self.__internal_system._report_error(error=error)

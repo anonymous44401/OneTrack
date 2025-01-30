@@ -1,5 +1,3 @@
-import hashlib
-
 from datetime import datetime
 
 
@@ -138,18 +136,21 @@ class SiteInternalSystem():
 
 
     #SECTION Account handling 
-    def _sign_in(self, username, password) -> str:
+    def _sign_in(self, username, check_password) -> str:
         # Get the user password
-        password_to_check = self.__database._get_values("Password", "tblUsers", "Username", username)
-        
-        # Hash the provided password
-        password = self.__hash_item(password)
+        username = self.__hash_item(username)
+        correct_password = self.__database._get_values(
+            "Password", 
+            "tblUsers", 
+            "Username", 
+            username
+        )
 
         # Check if the provided password matches the password in the db
-        if password_to_check == password:
+        if self.__encryption._validate_items(check_password, correct_password):
             # Set the user ID, username and state
             self.__signed_in = True
-            self._username: str = str(username)
+            self._username: str = username
             self.__userID: str = str(self.__database._get_values("UserID", "tblUsers", "Username", username))
             return self._username
 
@@ -168,44 +169,43 @@ class SiteInternalSystem():
     def _create_account(self, first_name: str, surname: str, email: str, username: str, password1: str, password2: str) ->  bool | str:
         continue_search: bool = True
         username_fail: bool = False
-        password_fail: bool = False
+        password_valid: bool = False
         email_fail: bool = False
 
         # Hash each item
         first_name: str = self.__hash_item(first_name)
         surname: str = self.__hash_item(surname)
         email: str = self.__hash_item(email)
+        username: str = self.__hash_item(username)
 
         # Check if the password meets validation requirements
-        password_fail = self.__validate_password(password1)
+        password_valid: bool = self.__validate_password(password1)
 
         # Check if the passwords are equal
-        if password1 == password2 and password_fail == False:
+        if password1 == password2 and password_valid:
             # Check if the username already exists
             search_for_username = self.__database._get_values("UserID" , "tblUsers", "Username", username)
-            if search_for_username != "None":
+            if search_for_username != None:
                 username_fail = True
                 continue_search = False
 
             # Check if the email already exists
             search_for_email = self.__database._get_values("UserID" , "tblUsers", "Email", email)
-            if str(search_for_email) != "None":
+            if search_for_email != None:
                 email_fail = True
                 continue_search = False
             
             # Hash the password
-            password = self.__hash_item(password1)
+            password: str = self.__hash_item(password1)
 
-            if continue_search == True:
+            if continue_search:
                 try:
                     # Insert user details
-                    self.__database._insert_values("tblUsers", "FirstName, Surname, Username, Email, Password", [first_name, surname, username, email, password])
+                    self.__database._insert_values(into_table="tblUsers", columns="FirstName, Surname, Username, Email, Password", values=[first_name, surname, username, email, password])
                     # Get user ID
                     self._user_id = self.__database._get_values("UserID" , "tblUsers", "Email", email)
-                    # Set their settings
-                    self.__database._insert_values("tblUserSettings", "UserID, OperatorEnabled, SystemMode", [self._user_id, "0", "0"])
                     # Add their favorites
-                    self.__database._insert_values("tblUserFavorites", "UserID, Favorite1, Favorite2, Favorite3, Favorite4, Favorite5, Favorite6", [self._user_id, "None", "None", "None", "None", "None", "None"])
+                    self.__database._insert_values("tblUserFavorites", "UserID, Favorite1, Favorite2, Favorite3, Favorite4, Favorite5, Favorite6", [self._user_id, None, None, None, None, None, None])
 
                     self.__signed_in = True
                     self._username = username
@@ -214,22 +214,22 @@ class SiteInternalSystem():
                 except:
                     # Report an error if an error occurs
                     self._report_error("***Database crash detected.")
-                    return False, "An unexpected error occurred. Try again."
+                    return False, "An unexpected error occurred in the database. Try again."
 
-            # Return errors based on failure types
-            elif email_fail == True and username_fail == True:
+        # Return errors based on failure types
+            elif email_fail and username_fail:
                 return False, "The username and email you entered appear to be taken. Try a different one."
             
-            elif email_fail == True and username_fail == False:
+            elif email_fail and not username_fail:
                 return False, "The email you entered appears to be taken. Try a different one."
 
-            elif email_fail == False and username_fail == True:
+            elif not email_fail and username_fail:
                 return False, "The username you entered appears to be taken. Try a different one."
 
             else:
                 return False, "An unexpected error occurred. Try again."
 
-        elif password_fail == True:
+        elif not password_valid:
             return False, "The password you entered doesn't meet the requirements. Try again."
 
         else:
@@ -261,36 +261,35 @@ class SiteInternalSystem():
         else:
             return False
 
+    def _get_friend_items(self) -> list:
+        # Get the user's friends
+        friends = self.__database._get_values("UserFriend", "tblFriends", "UserID", self._user_id)
+        friend_requests = self.__database._get_values("RequesterID", "tblFriendRequests", "UserID", self._user_id)
+
+        return friends, friend_requests
+
     #FIXME Not implemented
     def _update_account(self) -> None:
         raise NotImplementedError("Code not added yet.")
         #NOTE See update_settings
         self.__database._update_values()
 
-    def _delete_account(self, username) -> bool:
+    def _delete_account(self) -> bool:
         # Check if the username is null
-        if username != "":
-            try:
-                # Try removing the values from the database
-                user_id = self.__database._get_values("UserID", "tblUsers", "Username", username)
-                self.__database._delete_values("tblUsers", "Username", username)
-                self.__database._delete_values("tblUserSettings", "UserID", user_id)
+        try:
+            # Try removing the values from the database
+            self.__database._delete_values("tblUsers", "Username", self._username)
+            self.__database._delete_values("tblUserSettings", "UserID", self._user_id)
 
-                # Set the username and state
-                self.__signed_in = False
-                self._username = None
-                return True
-            
-            except:
-                # Set the username and state
-                self.__signed_in = True
-                self._username = username
-                return False
-
-        else:
+            # Set the username and state
+            self.__signed_in = False
+            self._username = None
+            self._user_id = None
+            return True
+        
+        except:
             # Set the username and state
             self.__signed_in = True
-            self._username = username
             return False
 
     def _shutdown(self) -> bool:
@@ -351,12 +350,8 @@ class SiteInternalSystem():
 
     # Hashing 
     def __hash_item(self, content) -> str:    
-        # Add the hash key to the content       
-        new_item = content + self.__encryption._key
-        # Hash the item
-        hashed_item = hashlib.md5(new_item.encode())
-
-        return hashed_item.hexdigest()
+        # Hash and return the item    
+        return self.__encryption._encrypt_item(content)
 
     # Password validation
     def __validate_password(self, content: str) -> bool:
@@ -380,5 +375,5 @@ class SiteInternalSystem():
                         if any(char.isdigit() for char in content):
                             # Check if there is a special char in the password
                             if any(char in "!@#$%^&*" for char in content):
-                                return False
-        return True
+                                return True
+        return False

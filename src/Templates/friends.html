@@ -184,12 +184,17 @@
         </div>
         <br>
         <br>
-        
         <div class="addFriendsBox">
             <h2 style="font-size: 30px;">
                 Friends List
             </h2>
+            { % for friend in friends % }
+            <h3 class="friends">
+                {{ friend.username }} <a href="/My-OneTrack/remove/{{ friend.id }}"><i class="fa-solid fa-trash" style="color: #e92b2b;"></i></a>
+            </h3>
+            { % endfor % }
         </div>
+        <br>
         <br>
         
         <div class="addFriendsBox">

@@ -217,17 +217,19 @@ def friends_page():
     content = main_flask_system._friends()
 
     # Return the friends page
-    return render_template(content[0], friendsList = content[1], friendRequests = content[2], requestsSent = content[3])
+    return render_template(content[0], friends = content[1], friend_requests = content[2])
 
 
 # My:OneTrack - friend request send
 @app.route('/My-OneTrack/friends/')
 def friends_page_send_request():
+    # Send a friend request
+    main_flask_system._send_friend_request(request.form['username'])
     # Get the content to display
     content = main_flask_system._friends()
 
     # Return the updated friends page
-    return render_template(content[0], friendsList = content[1], friendRequests = content[2], requestsSent = content[3])
+    return render_template(content[0], friends = content[1], friend_requests = content[2])
 
 
 
