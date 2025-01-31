@@ -19,9 +19,6 @@ class SiteInternalSystem():
         try:
             # Initialise RealtimeTrainsPy using the credentials from the .txt files            
             self.__rtt: RealtimeTrainsPy = RealtimeTrainsPy(complexity = "s.n", username = self.__encryption._rtt_user, password = self.__encryption._rtt_token)
-            # Test the connection
-            self.__rtt.get_departures(tiploc = "WAT")
-
             self._rtt_departures_failed: bool = False
         except:
             # If an error occurs, report it
@@ -138,7 +135,7 @@ class SiteInternalSystem():
     #SECTION Account handling 
     def _sign_in(self, username, check_password) -> str:
         # Get the user password
-        username = self.__hash_item(username)
+        username = self.__encryption._encrypt_item(username)
         correct_password = self.__database._get_values(
             "Password", 
             "tblUsers", 
@@ -173,10 +170,10 @@ class SiteInternalSystem():
         email_fail: bool = False
 
         # Hash each item
-        first_name: str = self.__hash_item(first_name)
-        surname: str = self.__hash_item(surname)
-        email: str = self.__hash_item(email)
-        username: str = self.__hash_item(username)
+        first_name: str = self.__encryption._encrypt_item(first_name)
+        surname: str = self.__encryption._encrypt_item(surname)
+        email: str = self.__encryption._encrypt_item(email)
+        username: str = self.__encryption._encrypt_item(username)
 
         # Check if the password meets validation requirements
         password_valid: bool = self.__validate_password(password1)
@@ -196,7 +193,7 @@ class SiteInternalSystem():
                 continue_search = False
             
             # Hash the password
-            password: str = self.__hash_item(password1)
+            password: str = self.__encryption._encrypt_item(password1)
 
             if continue_search:
                 try:
@@ -260,13 +257,6 @@ class SiteInternalSystem():
 
         else:
             return False
-
-    def _get_friend_items(self) -> list:
-        # Get the user's friends
-        friends = self.__database._get_values("UserFriend", "tblFriends", "UserID", self._user_id)
-        friend_requests = self.__database._get_values("RequesterID", "tblFriendRequests", "UserID", self._user_id)
-
-        return friends, friend_requests
 
     #FIXME Not implemented
     def _update_account(self) -> None:
@@ -347,11 +337,6 @@ class SiteInternalSystem():
 
         else:
             return None
-
-    # Hashing 
-    def __hash_item(self, content) -> str:    
-        # Hash and return the item    
-        return self.__encryption._encrypt_item(content)
 
     # Password validation
     def __validate_password(self, content: str) -> bool:

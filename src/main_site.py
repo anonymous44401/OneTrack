@@ -210,29 +210,6 @@ def delete_account2():
     return render_template(main_flask_system._delete_account_2())
 
 
-# My:OneTrack - friends page
-@app.route('/My-OneTrack/friends')
-def friends_page():
-    # Get the content to display
-    content = main_flask_system._friends()
-
-    # Return the friends page
-    return render_template(content[0], friends = content[1], friend_requests = content[2])
-
-
-# My:OneTrack - friend request send
-@app.route('/My-OneTrack/friends/')
-def friends_page_send_request():
-    # Send a friend request
-    main_flask_system._send_friend_request(request.form['username'])
-    # Get the content to display
-    content = main_flask_system._friends()
-
-    # Return the updated friends page
-    return render_template(content[0], friends = content[1], friend_requests = content[2])
-
-
-
 # OneTrack - about
 @app.route('/about')
 def about():
@@ -268,28 +245,23 @@ def bad_request(e):
     # Report the error 
     main_flask_system._report_error(e)
 
-    return render_template('error.html', error = 400, errorText = e)
-
+    return render_template('error.html', error=400, error_text=e)
 
 @app.errorhandler(404)
 def not_found(e):
-    # Doesn't log error intentionally
-
-    return render_template('error.html', error = 404, errorText = e)
-
+    return render_template('error.html', error=404, error_text=e)
 
 @app.errorhandler(405)
 def method_not_allowed(e):
     main_flask_system._report_error(e)
 
-    return render_template('error.html', error = 405, errorText = e)
-
+    return render_template('error.html', error=405, error_text=e)
 
 @app.errorhandler(500)
 def internal_server_error(e):
     main_flask_system._report_error(e)
 
-    return render_template('error.html', error = 500, errorText = e)
+    return render_template('error.html', error=500, error_text=e)
 
 # Run the program
 if __name__ == "__main__":

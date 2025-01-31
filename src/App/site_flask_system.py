@@ -73,6 +73,7 @@ class SiteFlask():
     def _get_departures(self,station_crs):
         return self.__internal_system._get_departures(station_crs)
 
+    # TODO: this
     def _get_service_info(self, service_uid):
         return "serviceInfo.html", self.__internal_system._get_service_info(service_uid), self.__internal_system._all_stations
 
@@ -235,20 +236,5 @@ class SiteFlask():
             else:
                 return 'signIn.html', None
             
-    def _friends(self):
-        # Check if the system is shutdown and run appropriate actions
-        if self.__internal_system._shutdown() == True:
-            return 'siteClosed.html'
-        
-        else:
-            sign_in_check = self.__internal_system._check_sign_in()
-            if sign_in_check != False:
-                content = self.__internal_system._get_friend_items()
-
-                return 'friends.html', content[0], content[1]
-            
-            else:
-                return 'signIn.html', None, None 
-
     def _report_error(self, error):
         self.__internal_system._report_error(error=error)
