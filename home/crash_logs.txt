@@ -180,3 +180,15 @@ on 30/01/2025 at 10:24:28
 
 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
 on 30/01/2025 at 10:31:43
+
+***Database crash detected.
+on 03/02/2025 at 12:14:50
+
+***Database crash detected.
+on 03/02/2025 at 12:19:58
+
+***Database crash detected.
+on 03/02/2025 at 12:21:00
+
+***Database crash detected.
+on 03/02/2025 at 12:21:54

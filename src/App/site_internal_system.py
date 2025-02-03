@@ -201,13 +201,12 @@ class SiteInternalSystem():
                     self.__database._insert_values(into_table="tblUsers", columns="FirstName, Surname, Username, Email, Password", values=[first_name, surname, username, email, password])
                     # Get user ID
                     self._user_id = self.__database._get_values("UserID" , "tblUsers", "Email", email)
-                    # Add their favorites
-                    self.__database._insert_values("tblUserFavorites", "UserID, Favorite1, Favorite2, Favorite3, Favorite4, Favorite5, Favorite6", [self._user_id, None, None, None, None, None, None])
 
                     self.__signed_in = True
                     self._username = username
 
                     return True, self._username
+                
                 except:
                     # Report an error if an error occurs
                     self._report_error("***Database crash detected.")
