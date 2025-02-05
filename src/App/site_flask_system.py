@@ -51,19 +51,16 @@ class SiteFlask():
 
             # Check if the departure service failed and run appropriate actions
             if self.__internal_system._rtt_departures_failed != True:
-                user_favorites: list = self.__internal_system._get_user_favorites()
-                #print(user_favorites)
-                #user_favorites = "None"
+                user_favorites = self.__internal_system._get_user_favorites()
 
                 if user_favorites == None:
-                    #print("")
-                    return 'departuresV1.html', "None"
+                    return 'departuresV1.html', None, None
             
                 else:
-                    return 'departuresV2.html', user_favorites
+                    return 'departuresV2.html', user_favorites, self.__internal_system._all_stations_reversed
             
             else:
-                return 'departuresFailed.html', None
+                return 'departuresFailed.html', None, None
 
     def _get_departures(self,station_crs):
         return self.__internal_system._get_departures(station_crs)

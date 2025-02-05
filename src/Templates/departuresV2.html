@@ -192,8 +192,7 @@
         <table id="departuresBox">
             {% for each in favorites %}
             <tr id="departuresList">
-                
-                <td id="stationName" onclick="" width="450px"><a href="/departures/{{ send_departures[each].upper() }}"><i class="fa-solid fa-star" id="starred"></i>{{ each.title() }} [{{ send_departures[each].upper() }}]</a></td>
+                <td id="stationName" onclick="" width="450px"><a href="/departures/{{ each.upper() }}"><i class="fa-solid fa-star" id="starred"></i> {{ send_reversed[each].title() }} [{{ each.upper() }}]</a></td>
             </tr>
             {% endfor %}
             {% for each in send_departures %}

@@ -37,14 +37,17 @@ def departure_page():
     favorites = departure_items[1]
 
     # Select page based on favorites
-    if favorites == "None":
+    if favorites == None:
         return render_template(departure_items[0], # Page
                                send_departures = main_flask_system._get_stations()) # Dict of stations and CRS codes 
     
     else:
-        return render_template(departure_items[0], # Page
-                               favorites = favorites, # List of favorites
-                               send_departures = main_flask_system._get_stations()) # Dict of stations and CRS codes
+        return render_template(
+            departure_items[0], # Page
+            favorites = favorites, # List of favorites
+            send_departures = main_flask_system._get_stations(), # Dict of stations and CRS codes
+            send_reversed = departure_items[2] # Reversed dict of stations and CRS code
+        ) 
 
     
 # Departure results (POST)

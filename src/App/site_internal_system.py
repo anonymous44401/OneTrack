@@ -34,6 +34,13 @@ class SiteInternalSystem():
             # Add each pair of values to the dictionary
             self._all_stations[att[0]] = att[1]
 
+        # Reverse the dictionary
+        self._all_stations_reversed = {} 
+
+        for key, value in self._all_stations.items():
+            self._all_stations_reversed[value] = key
+
+
         self._site_version: str = "V2.1.1 [ALPHA]"
         
 
@@ -75,15 +82,14 @@ class SiteInternalSystem():
         # Get the station name from the database
         return self.__database._get_values("StationName", "tblStations", "SID", station_crs)
 
-    def _get_user_favorites(self) -> list | str:
+    def _get_user_favorites(self) -> list | None | str:
         # Check if the username is null
         if self.__signed_in:
-            return_values: list = []
             favorites = self.__database._get_values_in_order("Favorite", "tblUserFavorites", "UserID", self._userID, "Favorite")
 
             # Check if the favorite is None
             if favorites != None:                
-                return return_values
+                return favorites
 
         return None
 
@@ -266,8 +272,8 @@ class SiteInternalSystem():
             self.__signed_in = True
             return False
 
-    def _add_favorite(self, station) -> bool:
-        favorites = self.__database._get_values("Favorite", "tblUserFavorites", "UserID", self._userID)
+    def _add_favorite(self, station) -> None:
+        favorites = self.__database._get_values_in_order("Favorite", "tblUserFavorites", "UserID", self._userID, "Favorite")
 
         if favorites != None and station in favorites:
             self.__database._delete_values("tblUserFavorites", "Favorite", station, "UserID", self._userID)

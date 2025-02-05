@@ -89,9 +89,9 @@ class Database():
             values = []
             # Iterate over each value and append it to the list
             for each in values_found:
-                values.append(list(each))
+                values.append((list(each))[0])
 
-            return values[0]
+            return values
         
         except:
             return None
