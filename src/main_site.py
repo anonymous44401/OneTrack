@@ -77,12 +77,20 @@ def departures_train_info(train_UID=None):
 # Add station as favorite
 @app.route('/departures/<station_crs>/')
 def add_new_favorite(station_crs=None):
-    # Not functional
-    raise NotImplementedError("Service unavailable")
+    # Add station to favorites
+    main_flask_system._add_new_favorite(station_crs)
 
-    main_flask_system._add_to_favorites(station_crs)
-    return render_template(main_flask_system._departures(), send_departures = main_flask_system._get_stations())
-
+    # Get departure items
+    departure_data = main_flask_system._get_departures(station_crs)
+    
+    # Return the departures page
+    return render_template(
+        str(departure_data[0]), # Page
+        station_name = str(departure_data[1]), # Station name
+        station_crs = departure_data[2], # Station CRS
+        send_service = departure_data[3], # List of services
+        date_now = departure_data[4] # Date and time of last request
+    )
 
 # Share service
 @app.route('/share/<service_uid>')

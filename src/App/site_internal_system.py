@@ -77,25 +77,15 @@ class SiteInternalSystem():
 
     def _get_user_favorites(self) -> list | str:
         # Check if the username is null
-        if self._username != "":
+        if self.__signed_in:
             return_values: list = []
-            for i in range (1, 7):
-                # Get 6 favorites from the database
-                favorite = self.__database._get_values(("Favorite" + str(i)), "tblUserFavorites", "UserID", self.__userID)
+            favorites = self.__database._get_values_in_order("Favorite", "tblUserFavorites", "UserID", self._userID, "Favorite")
 
-                # Check if the favorite is None
-                if str(favorite) != "None":
-                    # Get the CRS of the station
-                    favorite_crs = self.__database._get_values("SID", "tblStations", "StationName", (favorite.upper()))
-                    return_values.append([favorite.title(), favorite_crs])
-                else:
-                    # Break if none
-                    break
-                
-            return return_values
+            # Check if the favorite is None
+            if favorites != None:                
+                return return_values
 
-        else:
-            return "None"
+        return None
 
     def _reset_departures(self) -> None:
         # Set departures related variables to empty
@@ -135,7 +125,9 @@ class SiteInternalSystem():
     #SECTION Account handling 
     def _sign_in(self, username, check_password) -> str:
         # Get the user password
-        username = self.__encryption._encrypt_item(username)
+        # FIXME: Work out encryption for password validation
+        # -> Currently, the username is being encrypted and compared to the encrypted username in the database, which is incorrect
+        # -> It should decrypt the correct password and compare it to the provided password
         correct_password = self.__database._get_values(
             "Password", 
             "tblUsers", 
@@ -148,7 +140,7 @@ class SiteInternalSystem():
             # Set the user ID, username and state
             self.__signed_in = True
             self._username: str = username
-            self.__userID: str = str(self.__database._get_values("UserID", "tblUsers", "Username", username))
+            self._userID: str = str(self.__database._get_values("UserID", "tblUsers", "Username", username))
             return self._username
 
         else:
@@ -173,7 +165,6 @@ class SiteInternalSystem():
         first_name: str = self.__encryption._encrypt_item(first_name)
         surname: str = self.__encryption._encrypt_item(surname)
         email: str = self.__encryption._encrypt_item(email)
-        username: str = self.__encryption._encrypt_item(username)
 
         # Check if the password meets validation requirements
         password_valid: bool = self.__validate_password(password1)
@@ -238,12 +229,6 @@ class SiteInternalSystem():
     
         #NOTE Needs to allow user to update settings in the database 
 
-    #FIXME Not implemented
-    def _get_operator_status(self) -> str:
-        get_status = self.__database._get_values("OperatorStatus", "tblUserSettings", "username", self._username)
-
-        return get_status
-
     def _sign_out(self) -> None:
         # Set username to null and state to false
         self.__signed_in = False
@@ -280,6 +265,15 @@ class SiteInternalSystem():
             # Set the username and state
             self.__signed_in = True
             return False
+
+    def _add_favorite(self, station) -> bool:
+        favorites = self.__database._get_values("Favorite", "tblUserFavorites", "UserID", self._userID)
+
+        if favorites != None and station in favorites:
+            self.__database._delete_values("tblUserFavorites", "Favorite", station, "UserID", self._userID)
+
+        else:
+            self.__database._insert_values("tblUserFavorites", "UserID, Favorite", [self._userID, station])
 
     def _shutdown(self) -> bool:
         # Check if shutdown

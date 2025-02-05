@@ -54,7 +54,7 @@ class Database():
         except:
             return None
 
-    def _get_values(self, find_value: str, from_table: str, condition_is_true: str, argument: str) -> None | str:
+    def _get_values(self, find_value: str, from_table: str, condition_is_true: str, argument: str) -> list | None | str:
         # Connect
         self.__conn = sqlite3.connect(self.__database)
         self.__cursor = self.__conn.cursor()    
@@ -72,6 +72,27 @@ class Database():
 
             return values_found[0][0]
     
+        except:
+            return None
+
+    def _get_values_in_order(self, find_value: str, from_table: str, condition_is_true: str, argument: str, order_by_query: str) -> list | None | str:
+        # Connect
+        self.__conn = sqlite3.connect(self.__database)
+        self.__cursor = self.__conn.cursor()    
+
+        # Get value from the database with command
+        values_found = self.__cursor.execute(f"SELECT {find_value} FROM {from_table} WHERE {condition_is_true} = '{argument}' ORDER BY {order_by_query}")
+        self.__conn.commit()
+
+        try:
+            # Empty list for the values
+            values = []
+            # Iterate over each value and append it to the list
+            for each in values_found:
+                values.append(list(each))
+
+            return values[0]
+        
         except:
             return None
 
@@ -102,11 +123,15 @@ class Database():
         self.__cursor.execute(f"UPDATE {in_table} SET {att_to_change} = {val_to_change} WHERE {attribute} = {value}")
         self.__conn.commit()
 
-    def _delete_values(self, table: str, attribute: str, input: str) -> None:
+    def _delete_values(self, table: str, attribute: str, input: str, attribute2: str=None, input1: str=None) -> None:
         # Connect
         self.__conn = sqlite3.connect(self.__database)
         self.__cursor = self.__conn.cursor()
 
         # Delete values with command
-        self.__cursor.execute(f"DELETE FROM {table} WHERE {attribute} = '{input}'")
+        if attribute2 != None and input1 != None:
+            self.__cursor.execute(f"DELETE FROM {table} WHERE {attribute} = '{input}' AND {attribute2} = '{input1}'")
+        else:
+            self.__cursor.execute(f"DELETE FROM {table} WHERE {attribute} = '{input}'")
+        
         self.__conn.commit()

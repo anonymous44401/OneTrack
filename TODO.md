@@ -1,9 +1,9 @@
-- [ ] All variables need : type
+- [x] All variables need : type
 
-- [ ] All functions need -> returns
+- [x] All functions need -> returns
 
 - [ ] Route sharing -- in the works
 
-- [ ] Route saving
+- [ ] Station saving -- wip
 
-- [ ] Friend system -- wip
+- [x] Comments needed

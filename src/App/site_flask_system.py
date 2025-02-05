@@ -55,16 +55,11 @@ class SiteFlask():
                 #print(user_favorites)
                 #user_favorites = "None"
 
-                if user_favorites == "None":
+                if user_favorites == None:
                     #print("")
                     return 'departuresV1.html', "None"
             
                 else:
-                    return_user_favorites: list = []
-
-                    return_user_favorites.append(user_favorites)
-                    #for i in range(0, len(return_user_favorites)):
-                        #print(return_user_favorites[i].title())
                     return 'departuresV2.html', user_favorites
             
             else:
@@ -168,6 +163,12 @@ class SiteFlask():
             
             else:
                 return 'signInFail.html', None
+
+    def _add_new_favorite(self, station):
+        # Check if the user is signed in
+        if self.__internal_system._check_sign_in() != False:
+            self.__internal_system._add_favorite(station)
+                
 
     def _delete_account_1(self):
         # Check if the system is shutdown and run appropriate actions
