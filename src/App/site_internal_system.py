@@ -1,9 +1,9 @@
 from datetime import datetime
 
-
-from App.encryption import Encryption
-from App.site_database import Database
+from app.encryption import Encryption
+from app.site_database import Database
 from realtime_trains_py import RealtimeTrainsPy
+
 
 
 class SiteInternalSystem():
@@ -56,14 +56,14 @@ class SiteInternalSystem():
 
             try:
                 # Try to get the station CRS code from the database and get its departure board
-                self._send_code = self.__database._get_values("SID", "tblStations", "StationName", (self._send_station.upper()))
+                self._send_code = self.__database._get_values("CRS", "tblStations", "StationName", (self._send_station.upper()))
                 self._send_service = self.__rtt.get_station(tiploc = self._send_code)
                 
 
             except:
                 self._send_code = station_name
                 # Use the station CRS code to get its departure board
-                self._send_station = self.__database._get_values("StationName", "tblStations", "SID", (self._send_code.upper()))
+                self._send_station = self.__database._get_values("StationName", "tblStations", "CRS", (self._send_code.upper()))
                 self._send_service = self.__rtt.get_station(tiploc = self._send_code)
                 
             # Return the return information
@@ -80,7 +80,7 @@ class SiteInternalSystem():
 
     def _get_station_name(self, station_crs) -> None | str:
         # Get the station name from the database
-        return self.__database._get_values("StationName", "tblStations", "SID", station_crs)
+        return self.__database._get_values("StationName", "tblStations", "CRS", station_crs)
 
     def _get_user_favorites(self) -> list | None | str:
         # Check if the username is null

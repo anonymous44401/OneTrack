@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request
 
 # Import class from site_flask_system.py
-from App.site_flask_system import SiteFlask
+from app.site_flask_system import SiteFlask
 
 # Name app
 app = Flask(__name__)

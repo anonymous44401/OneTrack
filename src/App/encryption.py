@@ -5,13 +5,13 @@ import scrypt
 class Encryption():
     def __init__(self):
         # Open the files and read the keys
-        with open("src/App/keys/hash.txt", "r") as file:
+        with open("src/app/keys/hash.txt", "r") as file:
             self._key = file.read()
 
-        with open("src/App/keys/rtt_user.txt", "r") as file:
+        with open("src/app/keys/rtt_user.txt", "r") as file:
             self._rtt_user = file.read()
 
-        with open("src/App/keys/rtt_token.txt", "r") as file:
+        with open("src/app/keys/rtt_token.txt", "r") as file:
             self._rtt_token = file.read()
 
     def _encrypt_item(self, item) -> str:

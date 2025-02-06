@@ -1,6 +1,8 @@
 keys/
 tests/
+database/
 *.db
+update_stations.py
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,venv,flask
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,python,venv,flask

@@ -3,7 +3,7 @@ import sqlite3
 class Database():
     def __init__(self):
         # Get the database ready
-        self.__database = 'OneTrack_database.db'
+        self.__database = 'src/app/database/OneTrack_database.db'
         # Connect
         self.__conn = sqlite3.connect(self.__database)
         self.__cursor = self.__conn.cursor()

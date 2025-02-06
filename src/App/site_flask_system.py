@@ -1,4 +1,4 @@
-from App.site_internal_system import SiteInternalSystem
+from app.site_internal_system import SiteInternalSystem
 
 ##### THIS FILE IS NOT FULLY COMMENTED YET #####
 
