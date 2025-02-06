@@ -1,15 +1,16 @@
 from app.site_internal_system import SiteInternalSystem
 
-##### THIS FILE IS NOT FULLY COMMENTED YET #####
-
+# Class for the site flask system
 class SiteFlask():
+    # Initialise
     def __init__(self):
         self.__internal_system = SiteInternalSystem()
 
         self._site_version = self.__internal_system._site_version
         self._time_created = self.__internal_system._time_created
 
-    def _search(self, search_item):
+    # Get the search page
+    def _search_page(self, search_item) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -20,7 +21,8 @@ class SiteFlask():
 
             return 'searchResults.html'
 
-    def _home(self):
+    # Get the home page
+    def _home_page(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -28,7 +30,8 @@ class SiteFlask():
         else:
             return 'home.html'
 
-    def _planner(self):
+    # Return the planner page
+    def _planner_page(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -36,14 +39,16 @@ class SiteFlask():
         else:
             return 'planner.html'
 
-    def _get_stations(self):
+    # Return the dictionary of all stations
+    def _get_stations(self) -> dict:
         # Return the dict of stations
         return self.__internal_system._get_stations_dict()
 
-    def _departures(self):
+    # Get the departures page
+    def _departures_page(self) -> tuple:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
-            return 'siteClosed.html', None
+            return 'siteClosed.html', None, None
         
         else:
             # Reset departures
@@ -62,29 +67,38 @@ class SiteFlask():
             else:
                 return 'departuresFailed.html', None, None
 
-    def _get_departures(self,station_crs):
+    # Get the departures
+    def _get_departures(self,station_crs) -> tuple:
         return self.__internal_system._get_departures(station_crs)
 
-    # TODO: this
-    def _get_service_info(self, service_uid):
-        return "serviceInfo.html", self.__internal_system._get_service_info(service_uid), self.__internal_system._all_stations
+    # Get the service information
+    def _get_service_info(self, service_uid) -> tuple:
+        # Check if the system is shutdown and run appropriate actions
+        if self.__internal_system._shutdown():
+            return 'siteClosed.html', None, None
+        
+        else:
+            # Return the service info page, the service information and the dictionary of all stations
+            return "serviceInfo.html", self.__internal_system._get_service_info(service_uid), self.__internal_system._all_stations
 
-    def _station_info(self, station_crs):
+    # Get the station info
+    def _station_info(self, station_crs) -> tuple:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return "siteClosed.html", None
 
         else:
+            # Try to get the station name from the database
             try:
-                station_name = (self.__internal_system._get_station_name(station_crs)).title()
-                #print(station_name)
+                station_name = self.__internal_system._get_station_name(station_crs).title()
 
             except:
                 station_name = None
 
             return "stationInfo.html", station_name
         
-    def _privacy_policy(self):
+    # Get the privacy policy page
+    def _privacy_policy_page(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -92,7 +106,8 @@ class SiteFlask():
         else:
             return 'privPol.html'
     
-    def _terms_of_service(self):
+    # Get the ToS page
+    def _terms_of_service_page(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -100,7 +115,8 @@ class SiteFlask():
         else:
             return 'terms.html'
 
-    def _about(self):
+    # Get the about page
+    def _about_page(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -108,7 +124,8 @@ class SiteFlask():
         else:
             return 'about.html'
     
-    def _about_contact(self):
+    # Get the about (contact) page
+    def _about_contact_page(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -116,7 +133,8 @@ class SiteFlask():
         else:
             return 'contact.html'
 
-    def _my_one_track(self):
+    # Get the My:OneTrack page
+    def _my_one_track_page(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -130,7 +148,8 @@ class SiteFlask():
             else:
                 return 'signIn.html'
     
-    def _create_account(self):
+    # Get the create account page
+    def _create_account_page(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -138,7 +157,8 @@ class SiteFlask():
         else:
             return 'createAccount.html'
     
-    def _sign_out(self):
+    # Sign out the user
+    def _sign_out_request(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -147,7 +167,8 @@ class SiteFlask():
             self.__internal_system._sign_out() 
             return 'signedOut.html'
 
-    def _sign_in(self, username, password):
+    # Sign the user in
+    def _sign_in_request(self, username, password) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html', None
@@ -161,13 +182,14 @@ class SiteFlask():
             else:
                 return 'signInFail.html', None
 
-    def _add_new_favorite(self, station):
+    # Add a new user favorite
+    def _add_new_favorite(self, station) -> None:
         # Check if the user is signed in
         if self.__internal_system._check_sign_in() != False:
             self.__internal_system._add_favorite(station)
-                
 
-    def _delete_account_1(self):
+    # Delete account confirmation        
+    def _delete_account_conf(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -175,24 +197,28 @@ class SiteFlask():
         else:
             return 'deleteAccount.html'
 
-    def _delete_account_2(self):
+    # Delete account request
+    def _delete_account_request(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
         
         else:
+            # Delete the user account
             if self.__internal_system._delete_account() == True:
                 
                 return 'accountDeleted.html'
             
             else:
-                self.__internal_system._report_error("Failed to delete user account. (" +  + ")")
+                # If it fails, report an error
+                self.__internal_system._report_error("Failed to delete a user account.")
                 return 'account.html'
 
-    def _create_new_user(self, first_name, password1, password2, username, surname, email):
+    # Create a new user
+    def _create_new_user(self, first_name, password1, password2, username, surname, email) -> tuple:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
-            return 'siteClosed.html'
+            return 'siteClosed.html', None
         
         else:
             account_created = self.__internal_system._create_account(first_name, surname, email, username, password1, password2)
@@ -206,7 +232,8 @@ class SiteFlask():
                 error = username
                 return 'createFailed.html', error 
 
-    def _open_settings(self):
+    # Open the settings page
+    def _open_settings_page(self) -> str:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
             return 'siteClosed.html'
@@ -219,11 +246,12 @@ class SiteFlask():
             
             else:
                 return 'signIn.html'
-            
-    def _save_settings(self):
+
+    # Save the user settings
+    def _save_settings(self) -> tuple:
         # Check if the system is shutdown and run appropriate actions
         if self.__internal_system._shutdown() == True:
-            return 'siteClosed.html'
+            return 'siteClosed.html', None
         
         else:
             sign_in_check = self.__internal_system._check_sign_in()
@@ -234,5 +262,6 @@ class SiteFlask():
             else:
                 return 'signIn.html', None
             
-    def _report_error(self, error):
+    # Report an error
+    def _report_error(self, error) -> None:
         self.__internal_system._report_error(error=error)

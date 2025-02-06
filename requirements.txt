@@ -1,6 +1,7 @@
+beautifulsoup4==4.13.3
 flask==3.1.0
 python-dotenv==1.0.1
-realtime-trains-py==2025.2.0rc1
+realtime-trains-py==2025.2.0
 requests==2.32.3
 scrypt==0.8.27
 tabulate==0.9.0

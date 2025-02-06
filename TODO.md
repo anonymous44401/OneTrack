@@ -2,8 +2,8 @@
 
 - [x] All functions need -> returns
 
-- [ ] Route sharing -- in the works
+~~- [ ] Route sharing~~
 
-- [ ] Station saving -- wip
+- [x] Station saving -- wip
 
 - [x] Comments needed

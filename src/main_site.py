@@ -16,7 +16,7 @@ main_flask_system = SiteFlask()
 @app.route('/home')
 def home():
     # Return the home page
-    return render_template(main_flask_system._home(),
+    return render_template(main_flask_system._home_page(),
                            send_departures = main_flask_system._get_stations())
 
 
@@ -25,14 +25,14 @@ def home():
 def search():
     # Just here for show - not functional
     # Return the search results page
-    return render_template(main_flask_system._search(request.form["searchItem"]))  
+    return render_template(main_flask_system._search_page(request.form["searchItem"]))  
 
 
 # Departures page
 @app.route('/departures')
 def departure_page():
     # Get departure items
-    departure_items = main_flask_system._departures()
+    departure_items = main_flask_system._departures_page()
 
     favorites = departure_items[1]
 
@@ -119,7 +119,7 @@ def station_information(station_crs=None):
 @app.route('/planner')
 def planner():
     # Return the planner page
-    return render_template(main_flask_system._planner())
+    return render_template(main_flask_system._planner_page())
 
 
 #  Planner search
@@ -146,7 +146,7 @@ def planner_search():
 @app.route('/My-OneTrack/settings')
 def settings():
     # Return the settings page
-    return render_template(main_flask_system._open_settings())
+    return render_template(main_flask_system._open_settings_page())
 
 
 # My:OneTrack - save settings
@@ -162,21 +162,21 @@ def save_settings():
 @app.route('/My-OneTrack')
 def my_one_track():
     # Return the My:OneTrack page - or sign in page if not signed in
-    return render_template(main_flask_system._my_one_track())
+    return render_template(main_flask_system._my_one_track_page())
 
 
 # My:OneTrack - sign in
 @app.route('/signIn', methods=['POST'])
 def sign_in():
     # Return the sign in page
-    return render_template(main_flask_system._sign_in(request.form['username'], request.form['password']))
+    return render_template(main_flask_system._sign_in_request(request.form['username'], request.form['password']))
 
 
 # My:OneTrack - create account page
 @app.route('/My-OneTrack/createAccount')
 def create_account_page():
     # Return the create account page
-    return render_template(main_flask_system._create_account())
+    return render_template(main_flask_system._create_account_page())
 
 
 # My:OneTrack - create account request
@@ -204,49 +204,49 @@ def create_account():
 @app.route('/signOut')
 def sign_out():
     # Return the sign out completed page
-    return render_template(main_flask_system._sign_out())
+    return render_template(main_flask_system._sign_out_request())
     
 
 # My:OneTrack - delete account (confirmation)
 @app.route('/deleteAccount')
 def delete_account():
     # Return the confirm delete account page
-    return render_template(main_flask_system._delete_account_1())
+    return render_template(main_flask_system._delete_account_conf())
 
 
 # My:OneTrack - delete account (confirmed)
 @app.route('/deleteAccount/')
 def delete_account2():
     # Return the account deleted page
-    return render_template(main_flask_system._delete_account_2())
+    return render_template(main_flask_system._delete_account_request())
 
 
 # OneTrack - about
 @app.route('/about')
 def about():
     # Return the about page
-    return render_template(main_flask_system._about())
+    return render_template(main_flask_system._about_page())
 
 
 # OneTrack - contact
 @app.route('/about/contact')
 def about_contact():
     # Return the contact page
-    return render_template(main_flask_system._about_contact())
+    return render_template(main_flask_system._about_contact_page())
 
 
 # OneTrack - terms
 @app.route('/policies/terms-of-use')
 def terms_of_use():
     # Return the privacy terms of use
-    return render_template(main_flask_system._terms_of_service())
+    return render_template(main_flask_system._terms_of_service_page())
 
 
 # OneTrack - privacy
 @app.route('/policies/privacy-policy')
 def privacy_policy():
     # Return the privacy policy page
-    return render_template(main_flask_system._privacy_policy())
+    return render_template(main_flask_system._privacy_policy_page())
 
 
 

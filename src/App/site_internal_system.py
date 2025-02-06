@@ -45,7 +45,7 @@ class SiteInternalSystem():
         
 
     #SECTION - Departures
-    def _get_departures(self, station_name) -> str | tuple:
+    def _get_departures(self, station_name) -> tuple:
         # Reset the departures to prevent any conflicts
         self._reset_departures()
         
