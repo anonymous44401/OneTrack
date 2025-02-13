@@ -173,12 +173,13 @@
     <br>
     <div class="mainContent">
         <div class="accBtns">
-            <button class="backBtn" name="btn" type="submit">
+            <button class="backBtn" name="btn" type="submit" >
                 <a href="/departures"><i class="fa-solid fa-chevron-left"></i> Back</a>
             </button>
+            <a class="departuresHeader">Departures and Arrivals</a>
         </div>
         <h1 class="pgTextHead">
-            Departures and Arrivals from {{station_name}} [{{station_crs}}] <a href="/departures/{{station_crs}}/"><i class="fa-solid fa-star"></i></a>
+            {{station_name}} [{{station_crs.upper()}}] <a href="/departures/{{station_crs}}/"><i class="fa-solid fa-star"></i></a>
         </h1>
         <!--<p>
             <img src="{{ url_for ('static', filename='images/RTTLogo.png') }}" class="nrePowered">
@@ -189,7 +190,7 @@
                 <th>
                     <td class="depHeader">Arrival</td>
                     <td class="depHeader">Departure</td>
-                    <td class="depHeader">origin</td>
+                    <td class="depHeader">Origin</td>
                     <td class="depHeader">Destination</td>
                     <td class="depHeader">Platform</td>
                     <td class="depHeader">Expected Arrival</td>
@@ -197,7 +198,7 @@
                 </th>
             </tr>
             {% for Departures in send_service %}
-            <tr class="depAttribute">
+            <tr class="depAttribute" id="dot_matrix">
                 <a href = "/departures/info/{{ Departures.service_uid }}">
                     <td></td>
                     <td><a href="/departures/info/{{ Departures.service_uid }}">{{ Departures.gbtt_arrival }}</a></td> <!-- Arrival time -->

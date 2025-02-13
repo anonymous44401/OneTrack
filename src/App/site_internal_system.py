@@ -57,15 +57,18 @@ class SiteInternalSystem():
             try:
                 # Try to get the station CRS code from the database and get its departure board
                 self._send_code = self.__database._get_values("CRS", "tblStations", "StationName", (self._send_station.upper()))
-                self._send_service = self.__rtt.get_station(tiploc = self._send_code)
-                
+                self._send_service = self.__rtt.get_station(tiploc = self._send_code)   
 
             except:
-                self._send_code = station_name
-                # Use the station CRS code to get its departure board
-                self._send_station = self.__database._get_values("StationName", "tblStations", "CRS", (self._send_code.upper()))
-                self._send_service = self.__rtt.get_station(tiploc = self._send_code)
-                
+                try:
+                    self._send_code = station_name
+                    # Use the station CRS code to get its departure board
+                    self._send_station = self.__database._get_values("StationName", "tblStations", "CRS", (self._send_code.upper()))
+                    self._send_service = self.__rtt.get_station(tiploc = self._send_code)
+
+                except:
+                    return 'departuresNotFound.html', self._send_station, self._send_code, None, return_date
+
             # Return the return information
             return 'departureResults.html', self._send_station.title(), self._send_code, self._send_service, return_date
         

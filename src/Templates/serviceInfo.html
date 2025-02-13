@@ -176,10 +176,8 @@
             <button class="backBtn" name="btn" type="submit">
                 <a href="/departures"><i class="fa-solid fa-chevron-left"></i> Back</a>
             </button>
+            <a class="departuresHeader">Service Information for {{ service.train_id }} ({{ train_UID }})</a>
         </div>
-        <h1 class="pgTextHead">
-           Service Information for {{ service.train_id }} ({{ train_UID }})
-        </h1>
         <h2 class="pgTextSubHead">
             {{ service.train_id }} {{ service.start_time }} {{ service.origin }} to {{ service.destination }}
         </h2>
@@ -208,7 +206,7 @@
                 </th>
             </tr>
             {% for calling_point in service.calling_points %}
-            <tr class="serviceBoardAttribute">
+            <tr class="serviceBoardAttribute" id="dot_matrix">
                 <!--stop_name, booked_arrival, expected_arrival, platform, booked_departure, expected_departure-->
                 <td></td>
                 <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.stop_name }}</a></td>

@@ -17,6 +17,16 @@ html {
     overflow-y: scroll;
 }
 
+@font-face {
+    font-family: "LED Counter";
+    src: url(/static/fonts/led_counter-7.ttf) format("truetype");
+}
+
+#dot_matrix {
+    font-family: "LED Counter";
+    font-weight: bold;
+}
+
 /* vv Menu Items vv */
 
 /* vv Desktop vv */
@@ -431,20 +441,14 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
 
     .header {
         display: block;
-        width: 102%;
+        width: 105%;
         overflow-x: hidden;
         overflow-y: hidden;
-        height: 250px;
+        height: 200px;
         background-color: #01213A;
         /*#EAECED*/
         margin-top: -35px;
         margin-left: -8px;
-    }
-
-    .headerImg {
-        height: 200px;
-        width: auto;
-        border: none;
     }
 
     .signInHeader {
@@ -452,14 +456,14 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
         width: 102%;
         overflow-x: hidden;
         overflow-y: hidden;
-        height: 250px;
+        height: 200px;
         background-color: #01213A;
         margin-top: -35px;
         margin-left: -8px;
     }
 
     .signInHeaderImg {
-        height: 200px;
+        height: 150px;
         width: auto;
         border: none;
     }
@@ -559,11 +563,19 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
         padding-left: 60px;
     }
 
+    .departuresHeader {
+        color: #262626;
+        font-size: 30px;
+        font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
+        padding-left: 30px;
+    }
+
     .pgClauseMain {
         color: #262626;
         font-size: 20px;
         font-family: 'inter_regular', 'inter_regular_fallback', sans-serif;
         padding-left: 60px;
+        font-weight: bold;
     }
 
     .signInPgTextMain {

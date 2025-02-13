@@ -22,7 +22,7 @@
         <link rel="icon" type="image/x-icon" href="{{ url_for ('static', filename='images/OneTrackFavicon.jpeg') }}">
     <!-- Title -->
     <title>
-        Live Departures [{{station_crs}}] | OneTrack
+        Error 404 | OneTrack
     </title>
 </head>
 
@@ -175,15 +175,16 @@
             <button class="backBtn" name="btn" type="submit">
                 <a href="/departures"><i class="fa-solid fa-chevron-left"></i> Back</a>
             </button>
+            <a class="departuresHeader">Departures and Arrivals</a>
         </div>
         <h1 class="pgTextHead">
-            Departures from {{station_name}} [{{station_crs}}] <a href="/departures/{{station_crs}}/"><i class="fa-solid fa-star"></i></a>
+            Error 404
         </h1>
         <!--<p>
             <img src="{{ url_for ('static', filename='images/RTTLogo.png') }}" class="nrePowered">
         </p>-->
         <h2 class="pgTextSubHead">
-            Couldn't find any departures for this station
+            Couldn't find any departures for that station
         </h2>
         <br>
         <h2 class="depRefresh">
@@ -192,9 +193,6 @@
         <h2 class="depRefresh">
              Last updated {{date_now}} 
         </h2>
-        <a href="/departures/{{station_crs}}" class="depRefresh">
-            <i class="fa-solid fa-arrows-rotate"></i> Click to refresh
-        </a>
         <br>
         <br>
         <div class="accBtns">
