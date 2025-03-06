@@ -95,12 +95,6 @@ def add_new_favorite(station_crs=None):
         date_now = departure_data[4] # Date and time of last request
     )
 
-# Share service
-@app.route('/share/<service_uid>')
-def share(service_uid=None):
-    # Return the share page
-    return render_template("share.html", service_uid = service_uid)
-
 
 # Station information
 @app.route('/info/<station_crs>')
@@ -250,7 +244,7 @@ def privacy_policy():
 
 
 
-# Error handlers -  they're all the same, so I won't comment each one
+# Error handlers -  they're pretty much all the same
 @app.errorhandler(400)
 def bad_request(e):
     # Report the error 
@@ -277,9 +271,9 @@ def internal_server_error(e):
 # Run the program
 if __name__ == "__main__":
     print("-------------")
-    print("Program run started", (main_flask_system._time_created[1])) # Time started
+    print(f"Program run started {(main_flask_system._time_created[1])}") # Time started
     print("-------------")
-    print("OneTrack", main_flask_system._site_version) # Version 
+    print(f"OneTrack {main_flask_system._site_version}") # Version 
     print("-------------")
     
     # Run the app

@@ -330,3 +330,12 @@ on 13/02/2025 at 20:15:53
 
 Couldn't connect to RTT API Service in __init__
 on 13/02/2025 at 20:16:19
+
+500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+on 03/03/2025 at 12:09:32
+
+405 Method Not Allowed: The method is not allowed for the requested URL.
+on 03/03/2025 at 12:27:07
+
+405 Method Not Allowed: The method is not allowed for the requested URL.
+on 03/03/2025 at 12:27:37

@@ -4,15 +4,19 @@ OneTrack/
  │   ├── file_directory.txt                     File directory (This file)
  ├── src/                                       Folder with all of OneTrack's core code 
  │   ├── App/                                   Location of all the internal files, such as hashes and python files
+ │   │   ├── database/                          Folder with database(s)
+ │   │   │   └── OneTrack_database.db           OneTrack Database
  │   │   ├── keys/                              Folder with API keys and passwords
  │   │   │   ├── hash.txt                       File with the secret password for encryption and decryption
- │   │   │   ├── rtt_token                      File with API token
- │   │   │   └── rtt_user                       File with API user
+ │   │   │   ├── rtt_token.txt                  File with API token
+ │   │   │   └── rtt_user.txt                   File with API user
  │   │   ├── encryption.py                      File for handling data encryption
  │   │   ├── site_database.py                   File for handling database queries
  │   │   ├── site_flask_system.py               File for handling flask requests
  │   │   └── site_internal_system.py            File for handling anything that needs to be forwarded to other locations (database.py, encryption.py, realtime-trains-py)
  │   ├── Static/                
+ │   │   ├── Fonts/                             Location of some fonts OneTrack uses
+ │   │   │   └── led_counter-7.ttf              Dot matrix font 
  │   │   ├── Images/                            Location of all the images OneTrack uses
  │   │   │   ├── OneTrackLogo.png
  │   │   │   └── OneTrackFavicon.jpeg
@@ -31,11 +35,10 @@ OneTrack/
  │   │   ├── departureResults.html              HTML page for departure results
  │   │   ├── departuresAdv.html                 HTML page for departures advanced
  │   │   ├── departuresFailed.html              HTML page for departure errors
- │   │   ├── departuresNotFound.html.html       HTML page for departures not found
+ │   │   ├── departuresNotFound.html            HTML page for departures not found
  │   │   ├── departuresV1.html                  HTML page for departures search (not signed in)
  │   │   ├── departuresV2.html                  HTML page for departures search (signed in)
  │   │   ├── error.html                         HTML page for errors (401, 404 etc)
- │   │   ├── friends.html                       HTML page for My:OneTrack friends
  │   │   ├── home.html                          HTML page for home
  │   │   ├── planner.html                       HTML page for the planer (not functional)
  │   │   ├── plannerSearch.html                 HTML page for searching the planer (not functional)
@@ -43,7 +46,6 @@ OneTrack/
  │   │   ├── search.html                        HTML page for searching (not functional)
  │   │   ├── serviceInfo.html                   HTML page for service information
  │   │   ├── settings.html                      HTML page for My:OneTrack settings
- │   │   ├── share.html                         HTML page for route sharing
  │   │   ├── signedOut.html                     HTML page for signing out of My:OneTrack
  │   │   ├── signIn.html                        HTML page for signing in
  │   │   ├── signInFail.html                    HTML page for sign in errors
@@ -53,7 +55,6 @@ OneTrack/
  │   └── main_site.py                           Main file for running the flask app
  ├── .gitignore                                 OneTrack gitignore file
  ├── LICENSE.md                                 OneTrack license (GPL license)
- ├── OneTrack_database.db                       OneTrack Database
  ├── README.md                                  README (contents page)
  ├── requirements.txt                           Requirements
  └── TODO.md                                    TODO list

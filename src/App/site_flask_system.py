@@ -141,7 +141,6 @@ class SiteFlask():
         
         else:
             sign_in_check = self.__internal_system._check_sign_in()
-            #print(sign_in_check)
             if sign_in_check != False:
                 return 'account.html'
 
@@ -240,7 +239,6 @@ class SiteFlask():
         
         else:
             sign_in_check = self.__internal_system._check_sign_in()
-            #print(sign_in_check)
             if sign_in_check != False:
                 return 'settings.html'
             

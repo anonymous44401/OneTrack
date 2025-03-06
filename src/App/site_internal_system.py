@@ -41,7 +41,7 @@ class SiteInternalSystem():
             self._all_stations_reversed[value] = key
 
 
-        self._site_version: str = "V2.1.1 [ALPHA]"
+        self._site_version: str = "V2.1.2 [ALPHA]"
         
 
     #SECTION - Departures
