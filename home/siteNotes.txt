@@ -1,8 +1,0 @@
-README docs
-https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
-
-Conventional Commits
-https://www.conventionalcommits.org/en/v1.0.0/ 
-
-API docs
-https://api.rtt.io/

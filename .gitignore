@@ -1,11 +1,8 @@
-.vscode
-.vscode/settings.json
-App/.env
 keys/
-OneTrack-Alpha-V2/src/App/hash.txt
-src/App/hash.txt
-test.py
-test.txt
+tests/
+database/
+*.db
+update_stations.py
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,venv,flask
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,python,venv,flask

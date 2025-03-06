@@ -1,11 +1,9 @@
-import hashlib
-
 from datetime import datetime
 
-
-from App.encryption import Encryption
-from App.site_database import Database
+from app.encryption import Encryption
+from app.site_database import Database
 from realtime_trains_py import RealtimeTrainsPy
+
 
 
 class SiteInternalSystem():
@@ -19,12 +17,8 @@ class SiteInternalSystem():
         self._username: str = ""
         
         try:
-            # Initialise RealtimeTrainsPy using the credentials from the .txt files
-            
-            self.__rtt: RealtimeTrainsPy = RealtimeTrainsPy(complexity = "s.n", username = self.__encryption.__rtt_user, password = self.__encryption.__rtt_token)
-            # Test the connection
-            self.__rtt.get_departures(tiploc = "WAT")
-
+            # Initialise RealtimeTrainsPy using the credentials from the .txt files            
+            self.__rtt: RealtimeTrainsPy = RealtimeTrainsPy(complexity = "s.n", username = self.__encryption._rtt_user, password = self.__encryption._rtt_token)
             self._rtt_departures_failed: bool = False
         except:
             # If an error occurs, report it
@@ -40,11 +34,18 @@ class SiteInternalSystem():
             # Add each pair of values to the dictionary
             self._all_stations[att[0]] = att[1]
 
-        self._site_version: str = "V1.1.1 [ALPHA]"
+        # Reverse the dictionary
+        self._all_stations_reversed = {} 
+
+        for key, value in self._all_stations.items():
+            self._all_stations_reversed[value] = key
+
+
+        self._site_version: str = "V2.1.2 [ALPHA]"
         
 
     #SECTION - Departures
-    def _get_rtt_departures(self, station_name) -> str | tuple:
+    def _get_departures(self, station_name) -> tuple:
         # Reset the departures to prevent any conflicts
         self._reset_departures()
         
@@ -55,16 +56,19 @@ class SiteInternalSystem():
 
             try:
                 # Try to get the station CRS code from the database and get its departure board
-                self._send_code = self.__database._get_values("SID", "tblStations", "StationName", (self._send_station.upper()))
-                self._send_service = self.__rtt.get_departures(tiploc = self._send_code)
-                
+                self._send_code = self.__database._get_values("CRS", "tblStations", "StationName", (self._send_station.upper()))
+                self._send_service = self.__rtt.get_station(tiploc = self._send_code)   
 
             except:
-                self._send_code = station_name
-                # Use the station CRS code to get its departure board
-                self._send_station = self.__database._get_values("StationName", "tblStations", "SID", (self._send_code.upper()))
-                self._send_service = self.__rtt.get_departures(tiploc = self._send_code)
-                
+                try:
+                    self._send_code = station_name
+                    # Use the station CRS code to get its departure board
+                    self._send_station = self.__database._get_values("StationName", "tblStations", "CRS", (self._send_code.upper()))
+                    self._send_service = self.__rtt.get_station(tiploc = self._send_code)
+
+                except:
+                    return 'departuresNotFound.html', self._send_station, self._send_code, None, return_date
+
             # Return the return information
             return 'departureResults.html', self._send_station.title(), self._send_code, self._send_service, return_date
         
@@ -79,29 +83,18 @@ class SiteInternalSystem():
 
     def _get_station_name(self, station_crs) -> None | str:
         # Get the station name from the database
-        return self.__database._get_values("StationName", "tblStations", "SID", station_crs)
+        return self.__database._get_values("StationName", "tblStations", "CRS", station_crs)
 
-    def _get_user_favorites(self) -> list | str:
+    def _get_user_favorites(self) -> list | None | str:
         # Check if the username is null
-        if self._username != "":
-            return_values: list = []
-            for i in range (1, 7):
-                # Get 6 favorites from the database
-                favorite = self.__database._get_values(("Favorite" + str(i)), "tblUserFavorites", "UserID", self.__userID)
+        if self.__signed_in:
+            favorites = self.__database._get_values_in_order("Favorite", "tblUserFavorites", "UserID", self._userID, "Favorite")
 
-                # Check if the favorite is None
-                if str(favorite) != "None":
-                    # Get the CRS of the station
-                    favorite_crs = self.__database._get_values("SID", "tblStations", "StationName", (favorite.upper()))
-                    return_values.append([favorite.title(), favorite_crs])
-                else:
-                    # Break if none
-                    break
-                
-            return return_values
+            # Check if the favorite is None
+            if favorites != None:                
+                return favorites
 
-        else:
-            return "None"
+        return None
 
     def _reset_departures(self) -> None:
         # Set departures related variables to empty
@@ -109,7 +102,7 @@ class SiteInternalSystem():
         self._send_service = []
         self._send_code = ""
 
-    def _get_rtt_service_info(self, service_uid) -> list:
+    def _get_service_info(self, service_uid) -> list:
         # Return the service info
         return self.__rtt.get_service(service_uid = service_uid)
 
@@ -139,19 +132,24 @@ class SiteInternalSystem():
 
 
     #SECTION Account handling 
-    def _sign_in(self, username, password) -> str:
+    def _sign_in(self, username, check_password) -> str:
         # Get the user password
-        password_to_check = self.__database._get_values("Password", "tblUsers", "Username", username)
-        
-        # Hash the provided password
-        password = self.__hash_item(password)
+        # FIXME: Work out encryption for password validation
+        # -> Currently, the username is being encrypted and compared to the encrypted username in the database, which is incorrect
+        # -> It should decrypt the correct password and compare it to the provided password
+        correct_password = self.__database._get_values(
+            "Password", 
+            "tblUsers", 
+            "Username", 
+            username
+        )
 
         # Check if the provided password matches the password in the db
-        if password_to_check == password:
+        if self.__encryption._validate_items(check_password, correct_password):
             # Set the user ID, username and state
             self.__signed_in = True
-            self._username: str = str(username)
-            self.__userID: str = str(self.__database._get_values("UserID", "tblUsers", "Username", username))
+            self._username: str = username
+            self._userID: str = str(self.__database._get_values("UserID", "tblUsers", "Username", username))
             return self._username
 
         else:
@@ -169,68 +167,65 @@ class SiteInternalSystem():
     def _create_account(self, first_name: str, surname: str, email: str, username: str, password1: str, password2: str) ->  bool | str:
         continue_search: bool = True
         username_fail: bool = False
-        password_fail: bool = False
+        password_valid: bool = False
         email_fail: bool = False
 
         # Hash each item
-        first_name: str = self.__hash_item(first_name)
-        surname: str = self.__hash_item(surname)
-        email: str = self.__hash_item(email)
+        first_name: str = self.__encryption._encrypt_item(first_name)
+        surname: str = self.__encryption._encrypt_item(surname)
+        email: str = self.__encryption._encrypt_item(email)
 
         # Check if the password meets validation requirements
-        password_fail = self.__validate_password(password1)
+        password_valid: bool = self.__validate_password(password1)
 
         # Check if the passwords are equal
-        if password1 == password2 and password_fail == False:
+        if password1 == password2 and password_valid:
             # Check if the username already exists
             search_for_username = self.__database._get_values("UserID" , "tblUsers", "Username", username)
-            if search_for_username != "None":
+            if search_for_username != None:
                 username_fail = True
                 continue_search = False
 
             # Check if the email already exists
             search_for_email = self.__database._get_values("UserID" , "tblUsers", "Email", email)
-            if str(search_for_email) != "None":
+            if search_for_email != None:
                 email_fail = True
                 continue_search = False
             
             # Hash the password
-            password = self.__hash_item(password1)
+            password: str = self.__encryption._encrypt_item(password1)
 
-            if continue_search == True:
+            if continue_search:
                 try:
                     # Insert user details
-                    self.__database._insert_values("tblUsers", "FirstName, Surname, Username, Email, Password", [first_name, surname, username, email, password])
+                    self.__database._insert_values(into_table="tblUsers", columns="FirstName, Surname, Username, Email, Password", values=[first_name, surname, username, email, password])
                     # Get user ID
                     self._user_id = self.__database._get_values("UserID" , "tblUsers", "Email", email)
-                    # Set their settings
-                    self.__database._insert_values("tblUserSettings", "UserID, OperatorEnabled, SystemMode", [self._user_id, "0", "0"])
-                    # Add their favorites
-                    self.__database._insert_values("tblUserFavorites", "UserID, Favorite1, Favorite2, Favorite3, Favorite4, Favorite5, Favorite6", [self._user_id, "None", "None", "None", "None", "None", "None"])
 
                     self.__signed_in = True
                     self._username = username
 
                     return True, self._username
+                
                 except:
                     # Report an error if an error occurs
                     self._report_error("***Database crash detected.")
-                    return False, "An unexpected error occurred. Try again."
+                    return False, "An unexpected error occurred in the database. Try again."
 
-            # Return errors based on failure types
-            elif email_fail == True and username_fail == True:
+        # Return errors based on failure types
+            elif email_fail and username_fail:
                 return False, "The username and email you entered appear to be taken. Try a different one."
             
-            elif email_fail == True and username_fail == False:
+            elif email_fail and not username_fail:
                 return False, "The email you entered appears to be taken. Try a different one."
 
-            elif email_fail == False and username_fail == True:
+            elif not email_fail and username_fail:
                 return False, "The username you entered appears to be taken. Try a different one."
 
             else:
                 return False, "An unexpected error occurred. Try again."
 
-        elif password_fail == True:
+        elif not password_valid:
             return False, "The password you entered doesn't meet the requirements. Try again."
 
         else:
@@ -242,12 +237,6 @@ class SiteInternalSystem():
         self.__database._update_values("tblUserSettings")
     
         #NOTE Needs to allow user to update settings in the database 
-
-    #FIXME Not implemented
-    def _get_operator_status(self) -> str:
-        get_status = self.__database._get_values("OperatorStatus", "tblUserSettings", "username", self._username)
-
-        return get_status
 
     def _sign_out(self) -> None:
         # Set username to null and state to false
@@ -268,31 +257,32 @@ class SiteInternalSystem():
         #NOTE See update_settings
         self.__database._update_values()
 
-    def _delete_account(self, username) -> bool:
+    def _delete_account(self) -> bool:
         # Check if the username is null
-        if username != "":
-            try:
-                # Try removing the values from the database
-                user_id = self.__database._get_values("UserID", "tblUsers", "Username", username)
-                self.__database._delete_values("tblUsers", "Username", username)
-                self.__database._delete_values("tblUserSettings", "UserID", user_id)
+        try:
+            # Try removing the values from the database
+            self.__database._delete_values("tblUsers", "Username", self._username)
+            self.__database._delete_values("tblUserSettings", "UserID", self._user_id)
 
-                # Set the username and state
-                self.__signed_in = False
-                self._username = None
-                return True
-            
-            except:
-                # Set the username and state
-                self.__signed_in = True
-                self._username = username
-                return False
-
-        else:
+            # Set the username and state
+            self.__signed_in = False
+            self._username = None
+            self._user_id = None
+            return True
+        
+        except:
             # Set the username and state
             self.__signed_in = True
-            self._username = username
             return False
+
+    def _add_favorite(self, station) -> None:
+        favorites = self.__database._get_values_in_order("Favorite", "tblUserFavorites", "UserID", self._userID, "Favorite")
+
+        if favorites != None and station in favorites:
+            self.__database._delete_values("tblUserFavorites", "Favorite", station, "UserID", self._userID)
+
+        else:
+            self.__database._insert_values("tblUserFavorites", "UserID, Favorite", [self._userID, station])
 
     def _shutdown(self) -> bool:
         # Check if shutdown
@@ -309,12 +299,12 @@ class SiteInternalSystem():
         return self.__close_access
 
     # Report error 
-    def _report_error(self, errorInput) -> None:
+    def _report_error(self, error) -> None:
         try:
             # Open the file
-            with open("home/crashLogs.txt", "a") as file:
+            with open("home/crash_logs.txt", "a") as file:
                 # Write the error to the file
-                file.write("\n\n" + str(errorInput) + "\n" + str(self._get_now(3)))
+                file.write("\n\n" + str(error) + "\n" + str(self._get_now(3)))
         except:
             pass
 
@@ -350,15 +340,6 @@ class SiteInternalSystem():
         else:
             return None
 
-    # Hashing 
-    def __hash_item(self, content) -> str:    
-        # Add the hash key to the content       
-        new_item = content + self.__encryption.__key
-        # Hash the item
-        hashed_item = hashlib.md5(new_item.encode())
-
-        return hashed_item.hexdigest()
-
     # Password validation
     def __validate_password(self, content: str) -> bool:
         # Password validation rules
@@ -381,5 +362,5 @@ class SiteInternalSystem():
                         if any(char.isdigit() for char in content):
                             # Check if there is a special char in the password
                             if any(char in "!@#$%^&*" for char in content):
-                                return False
-        return True
+                                return True
+        return False

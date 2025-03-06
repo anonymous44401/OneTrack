@@ -172,7 +172,7 @@
     <div class="mainContent">
         <br>
         <h1 class="pgTextHead">
-            Live Departures
+            Live Departures and Arrivals
         </h1>
         <!--
         <h2 class="pgTextSubHead">
@@ -190,10 +190,9 @@
             >
         </form>
         <table id="departuresBox">
-            {% for i in favorites %}
+            {% for each in favorites %}
             <tr id="departuresList">
-                
-                <td id="stationName" onclick="" width="450px"><a href="/departures/{{i[1]}}"><i class="fa-solid fa-star" id="starred"></i> {{ i[0] }}</a></td>
+                <td id="stationName" onclick="" width="450px"><a href="/departures/{{ each.upper() }}"><i class="fa-solid fa-star" id="starred"></i> {{ send_reversed[each].title() }} [{{ each.upper() }}]</a></td>
             </tr>
             {% endfor %}
             {% for each in send_departures %}

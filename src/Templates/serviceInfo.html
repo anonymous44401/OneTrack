@@ -176,10 +176,8 @@
             <button class="backBtn" name="btn" type="submit">
                 <a href="/departures"><i class="fa-solid fa-chevron-left"></i> Back</a>
             </button>
+            <a class="departuresHeader">Service Information for {{ service.train_id }} ({{ train_UID }})</a>
         </div>
-        <h1 class="pgTextHead">
-           Service Information for {{ service.train_id }} ({{ train_UID }})
-        </h1>
         <h2 class="pgTextSubHead">
             {{ service.train_id }} {{ service.start_time }} {{ service.origin }} to {{ service.destination }}
         </h2>
@@ -207,8 +205,8 @@
                     <td class="depHeader">Exp Departure</td>
                 </th>
             </tr>
-            {% for calling_point in service.all_calling_points %}
-            <tr class="serviceBoardAttribute">
+            {% for calling_point in service.calling_points %}
+            <tr class="serviceBoardAttribute" id="dot_matrix">
                 <!--stop_name, booked_arrival, expected_arrival, platform, booked_departure, expected_departure-->
                 <td></td>
                 <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.stop_name }}</a></td>
@@ -221,10 +219,6 @@
             {% endfor %}
         </table>
         <br>
-        <p class="depShare">
-            <a href="/share/{{train_UID}}">
-                <i class="fa-solid fa-share-from-square"></i> Share this service
-            </a>
         <br>
         <h2 class="depRefresh">
             Powered by the <a href = "https://www.realtimetrains.co.uk/about/developer/">RealTime Trains API</a> and <a href= "https://github.com/anonymous44401/realtime-trains-py/tree/v2025.1.0">realtime-trains-py</a>.

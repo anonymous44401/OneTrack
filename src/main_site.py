@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request
 
 # Import class from site_flask_system.py
-from App.site_flask_system import SiteFlask
+from app.site_flask_system import SiteFlask
 
 # Name app
 app = Flask(__name__)
@@ -16,7 +16,7 @@ main_flask_system = SiteFlask()
 @app.route('/home')
 def home():
     # Return the home page
-    return render_template(main_flask_system._home(),
+    return render_template(main_flask_system._home_page(),
                            send_departures = main_flask_system._get_stations())
 
 
@@ -25,26 +25,29 @@ def home():
 def search():
     # Just here for show - not functional
     # Return the search results page
-    return render_template(main_flask_system._search(request.form["searchItem"]))  
+    return render_template(main_flask_system._search_page(request.form["searchItem"]))  
 
 
 # Departures page
 @app.route('/departures')
 def departure_page():
     # Get departure items
-    departure_items = main_flask_system._departures()
+    departure_items = main_flask_system._departures_page()
 
     favorites = departure_items[1]
 
     # Select page based on favorites
-    if favorites == "None":
+    if favorites == None:
         return render_template(departure_items[0], # Page
                                send_departures = main_flask_system._get_stations()) # Dict of stations and CRS codes 
     
     else:
-        return render_template(departure_items[0], # Page
-                               favorites = favorites, # List of favorites
-                               send_departures = main_flask_system._get_stations()) # Dict of stations and CRS codes
+        return render_template(
+            departure_items[0], # Page
+            favorites = favorites, # List of favorites
+            send_departures = main_flask_system._get_stations(), # Dict of stations and CRS codes
+            send_reversed = departure_items[2] # Reversed dict of stations and CRS code
+        ) 
 
     
 # Departure results (POST)
@@ -77,18 +80,20 @@ def departures_train_info(train_UID=None):
 # Add station as favorite
 @app.route('/departures/<station_crs>/')
 def add_new_favorite(station_crs=None):
-    # Not functional
-    raise NotImplementedError("Service unavailable")
+    # Add station to favorites
+    main_flask_system._add_new_favorite(station_crs)
 
-    main_flask_system._add_to_favorites(station_crs)
-    return render_template(main_flask_system._departures(), send_departures = main_flask_system._get_stations())
-
-
-# Share service
-@app.route('/share/<service_uid>')
-def share(service_uid=None):
-    # Return the share page
-    return render_template("share.html", service_uid = service_uid)
+    # Get departure items
+    departure_data = main_flask_system._get_departures(station_crs)
+    
+    # Return the departures page
+    return render_template(
+        str(departure_data[0]), # Page
+        station_name = str(departure_data[1]), # Station name
+        station_crs = departure_data[2], # Station CRS
+        send_service = departure_data[3], # List of services
+        date_now = departure_data[4] # Date and time of last request
+    )
 
 
 # Station information
@@ -108,7 +113,7 @@ def station_information(station_crs=None):
 @app.route('/planner')
 def planner():
     # Return the planner page
-    return render_template(main_flask_system._planner())
+    return render_template(main_flask_system._planner_page())
 
 
 #  Planner search
@@ -135,7 +140,7 @@ def planner_search():
 @app.route('/My-OneTrack/settings')
 def settings():
     # Return the settings page
-    return render_template(main_flask_system._open_settings())
+    return render_template(main_flask_system._open_settings_page())
 
 
 # My:OneTrack - save settings
@@ -151,21 +156,21 @@ def save_settings():
 @app.route('/My-OneTrack')
 def my_one_track():
     # Return the My:OneTrack page - or sign in page if not signed in
-    return render_template(main_flask_system._my_one_track())
+    return render_template(main_flask_system._my_one_track_page())
 
 
 # My:OneTrack - sign in
 @app.route('/signIn', methods=['POST'])
 def sign_in():
     # Return the sign in page
-    return render_template(main_flask_system._sign_in(request.form['username'], request.form['password']))
+    return render_template(main_flask_system._sign_in_request(request.form['username'], request.form['password']))
 
 
 # My:OneTrack - create account page
 @app.route('/My-OneTrack/createAccount')
 def create_account_page():
     # Return the create account page
-    return render_template(main_flask_system._create_account())
+    return render_template(main_flask_system._create_account_page())
 
 
 # My:OneTrack - create account request
@@ -193,108 +198,82 @@ def create_account():
 @app.route('/signOut')
 def sign_out():
     # Return the sign out completed page
-    return render_template(main_flask_system._sign_out())
+    return render_template(main_flask_system._sign_out_request())
     
 
 # My:OneTrack - delete account (confirmation)
 @app.route('/deleteAccount')
 def delete_account():
     # Return the confirm delete account page
-    return render_template(main_flask_system._delete_account_1())
+    return render_template(main_flask_system._delete_account_conf())
 
 
 # My:OneTrack - delete account (confirmed)
 @app.route('/deleteAccount/')
 def delete_account2():
     # Return the account deleted page
-    return render_template(main_flask_system._delete_account_2())
-
-
-# My:OneTrack - friends page
-@app.route('/My-OneTrack/friends')
-def friends_page():
-    # Get the content to display
-    content = main_flask_system._friends()
-
-    # Return the friends page
-    return render_template(content[0], friendsList = content[1], friendRequests = content[2], requestsSent = content[3])
-
-
-# My:OneTrack - friend request send
-@app.route('/My-OneTrack/friends/')
-def friends_page_send_request():
-    # Get the content to display
-    content = main_flask_system._friends()
-
-    # Return the updated friends page
-    return render_template(content[0], friendsList = content[1], friendRequests = content[2], requestsSent = content[3])
-
+    return render_template(main_flask_system._delete_account_request())
 
 
 # OneTrack - about
 @app.route('/about')
 def about():
     # Return the about page
-    return render_template(main_flask_system._about())
+    return render_template(main_flask_system._about_page())
 
 
 # OneTrack - contact
 @app.route('/about/contact')
 def about_contact():
     # Return the contact page
-    return render_template(main_flask_system._about_contact())
+    return render_template(main_flask_system._about_contact_page())
 
 
 # OneTrack - terms
 @app.route('/policies/terms-of-use')
 def terms_of_use():
     # Return the privacy terms of use
-    return render_template(main_flask_system._terms_of_service())
+    return render_template(main_flask_system._terms_of_service_page())
 
 
 # OneTrack - privacy
 @app.route('/policies/privacy-policy')
 def privacy_policy():
     # Return the privacy policy page
-    return render_template(main_flask_system._privacy_policy())
+    return render_template(main_flask_system._privacy_policy_page())
 
 
 
-# Error handlers -  they're all the same, so I won't comment each one
+# Error handlers -  they're pretty much all the same
 @app.errorhandler(400)
 def bad_request(e):
     # Report the error 
     main_flask_system._report_error(e)
 
-    return render_template('error.html', error = 400, errorText = e)
-
+    return render_template('error.html', error=400, error_text=e)
 
 @app.errorhandler(404)
 def not_found(e):
-    # Doesn't log error intentionally
-
-    return render_template('error.html', error = 404, errorText = e)
-
+    return render_template('error.html', error=404, error_text=e)
 
 @app.errorhandler(405)
 def method_not_allowed(e):
     main_flask_system._report_error(e)
 
-    return render_template('error.html', error = 405, errorText = e)
-
+    return render_template('error.html', error=405, error_text=e)
 
 @app.errorhandler(500)
 def internal_server_error(e):
     main_flask_system._report_error(e)
 
-    return render_template('error.html', error = 500, errorText = e)
+    return render_template('error.html', error=500, error_text=e)
 
 # Run the program
 if __name__ == "__main__":
     print("-------------")
-    print("Program run started", (main_flask_system._time_created[1])) # Time started
+    print(f"Program run started {(main_flask_system._time_created[1])}") # Time started
     print("-------------")
-    print("OneTrack", main_flask_system._site_version) # Version 
+    print(f"OneTrack {main_flask_system._site_version}") # Version 
     print("-------------")
     
     # Run the app
