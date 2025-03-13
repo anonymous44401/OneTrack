@@ -22,6 +22,9 @@ The database management class.
 ### [realtime-trains-py 2025.2.2](https://github.com/realtime-trains-lang/realtime-trains-py/tree/v2025.2.2)
 A custom-made Python API Wrapper for the RTT API.
 
+### encryption.py
+The file for handling encryption.
+
 ### site_flask_system.py
 The class for managing the internal actions of the flask system.
 
@@ -34,7 +37,8 @@ The file for making the site do cool stuff.
 ### siteStyle.css
 The file that turns ugly boring html into a beautiful formatted heaven.
 
-### create_hash.py
-The file for creating a hash for the site. 
+### create_db.py
+The file that handles creating the database.
 
-> This file isn't used in deployment of the site. 
+### update_db_contents.py
+The file that updates the contets of the database with the required station data.
