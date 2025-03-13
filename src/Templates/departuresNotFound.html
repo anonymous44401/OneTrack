@@ -22,7 +22,7 @@
         <link rel="icon" type="image/x-icon" href="{{ url_for ('static', filename='images/OneTrackFavicon.jpeg') }}">
     <!-- Title -->
     <title>
-        Error 404 | OneTrack
+        {{station_name}} Live | OneTrack
     </title>
 </head>
 
@@ -178,21 +178,24 @@
             <a class="departuresHeader">Departures and Arrivals</a>
         </div>
         <h1 class="pgTextHead">
-            Error 404
+            {{station_name}} [{{station_crs.upper()}}] <a href="/departures/{{station_crs}}/"><i class="fa-solid fa-star"></i></a>
         </h1>
         <!--<p>
             <img src="{{ url_for ('static', filename='images/RTTLogo.png') }}" class="nrePowered">
         </p>-->
         <h2 class="pgTextSubHead">
-            Couldn't find any departures for that station
+            Couldn't find any departures for {{station_name}}.
         </h2>
         <br>
         <h2 class="depRefresh">
-            Powered by the <a href = "https://www.realtimetrains.co.uk/about/developer/">RealTime Trains API</a>
-       </h2>
-        <h2 class="depRefresh">
-             Last updated {{date_now}} 
+            Powered by the <a href = "https://www.realtimetrains.co.uk/about/developer/">RealTime Trains API</a> and <a href = "https://github.com/anonymous44401/realtime-trains-py/tree/v2025.2.2">realtime-trains-py</a>.
         </h2>
+        <h2 class="depRefresh">
+            Last updated {{date_now}} 
+        </h2>
+        <a href="/departures/{{station_crs}}" class="depRefresh">
+            <i class="fa-solid fa-arrows-rotate"></i> Click to refresh. This page also refreshes automatically.
+        </a>
         <br>
         <br>
         <div class="accBtns">

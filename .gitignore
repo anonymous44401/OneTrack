@@ -1,6 +1,5 @@
 keys/
 tests/
-database/
 *.db
 update_stations.py
 

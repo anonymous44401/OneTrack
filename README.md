@@ -1,6 +1,15 @@
 # OneTrack:Alpha
 
-GNU License
+![License](https://img.shields.io/github/license/anonymous44401/OneTrack)
+
+## Setup
+
+1. Create a folder called `keys` inside of `app`. 
+2. Create a file called `hash.txt` for your database hash.
+3. Create a file called `rtt_user.txt` for your RTT API username.
+4. Create a file called `rtt_token.txt` for your RTT API password.
+5. Run `create_db.py` (in the `database` folder). 
+6. Run `main_site.py`.
 
 ## Contents
 

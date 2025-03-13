@@ -8,7 +8,7 @@ from realtime_trains_py import RealtimeTrainsPy
 
 class SiteInternalSystem():
     def __init__(self) -> None:
-        self._time_created: tuple = ("Site created:", self._get_now(3))
+        self._time_created: str = f"Site created: {self._get_now(3)}"
         self.__close_access: bool = False
         self.__database: Database = Database() # Database
         self.__encryption: Encryption = Encryption() # Encryption
