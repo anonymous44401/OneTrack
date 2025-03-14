@@ -88,11 +88,15 @@ class SiteInternalSystem():
     def _get_user_favorites(self) -> list | None | str:
         # Check if the username is null
         if self.__signed_in:
-            favorites = self.__database._get_values_in_order("Favorite", "tblUserFavorites", "UserID", self._userID, "Favorite")
+            try:
+                favorites = self.__database._get_values_in_order("Favorite", "tblUserFavorites", "UserID", self._user_id, "Favorite")
 
-            # Check if the favorite is None
-            if favorites != None:                
-                return favorites
+                # Check if the favorite is None
+                if favorites != None:                
+                    return favorites
+                
+            except:
+                return None
 
         return None
 
@@ -149,7 +153,7 @@ class SiteInternalSystem():
             # Set the user ID, username and state
             self.__signed_in = True
             self._username: str = username
-            self._userID: str = str(self.__database._get_values("UserID", "tblUsers", "Username", username))
+            self._user_id: str = str(self.__database._get_values("UserID", "tblUsers", "Username", username))
             return self._username
 
         else:
@@ -262,7 +266,7 @@ class SiteInternalSystem():
         try:
             # Try removing the values from the database
             self.__database._delete_values("tblUsers", "Username", self._username)
-            self.__database._delete_values("tblUserSettings", "UserID", self._user_id)
+            self.__database._delete_values("tblUserFavorites", "UserID", self._user_id)
 
             # Set the username and state
             self.__signed_in = False
@@ -276,13 +280,13 @@ class SiteInternalSystem():
             return False
 
     def _add_favorite(self, station) -> None:
-        favorites = self.__database._get_values_in_order("Favorite", "tblUserFavorites", "UserID", self._userID, "Favorite")
+        favorites = self.__database._get_values_in_order("Favorite", "tblUserFavorites", "UserID", self._user_id, "Favorite")
 
         if favorites != None and station in favorites:
-            self.__database._delete_values("tblUserFavorites", "Favorite", station, "UserID", self._userID)
+            self.__database._delete_values("tblUserFavorites", "Favorite", station, "UserID", self._user_id)
 
         else:
-            self.__database._insert_values("tblUserFavorites", "UserID, Favorite", [self._userID, station])
+            self.__database._insert_values("tblUserFavorites", "UserID, Favorite", [self._user_id, station])
 
     def _shutdown(self) -> bool:
         # Check if shutdown
