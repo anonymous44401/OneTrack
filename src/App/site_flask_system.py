@@ -79,7 +79,7 @@ class SiteFlask():
         
         else:
             # Return the service info page, the service information and the dictionary of all stations
-            return "serviceInfo.html", self.__internal_system._get_service_info(service_uid), self.__internal_system._all_stations
+            return "serviceInfo.html", self.__internal_system._get_service_info(service_uid), self.__internal_system._all_stations, self.__internal_system._get_now(1)
 
     # Get the station info
     def _station_info(self, station_crs) -> tuple:

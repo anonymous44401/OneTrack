@@ -664,7 +664,7 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
     }
 
     i.fa-arrows-rotate {
-        color: #DEDEDE;
+        color: #01213A;
         transition: ease-in-out 500ms;
     }
 
@@ -1032,6 +1032,57 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
         transition: ease-in-out 400ms;
     }
 
+    #shareLink {
+        height: 40px;
+        width: 50%;
+        border: none;
+        margin-left: 0px;
+        background-color: #DEDEDE;
+        border-radius: 10px;
+        color: #535353;
+        font-size: 20px;
+        
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: ease-in-out 400ms;
+    }
+
+    .shareBtn {
+        height: 40px;
+        width: 120px;
+        border: none;
+        margin-left: 0px;
+        background-color: #E87620;
+        border-radius: 10px;
+        color: #DEDEDE;
+        font-size: 20px;
+        
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: ease-in-out 400ms;
+    }
+
+    .shareBtn:hover {
+        background-color: #E87620;
+        opacity: 70%;
+        cursor: pointer;
+    }
+
+    #shareBtnTooltip {
+        display: none;
+        position: absolute;
+        margin-top: -30px;
+        height: 30px;
+        width: 120px;
+        border: none;
+        margin-left: 0px;
+        background-color: #535353;
+        border-radius: 10px;
+        color: #DEDEDE;
+        font-size: 20px;
+        text-align: center;
+        
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     .infoBtn {
         height: 40px;
         width: 180px;
@@ -1307,7 +1358,7 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
     }
 
     .fa-share-from-square {
-        color: #01213A;
+        color: #DEDEDE;
         transition: ease-in-out 200ms;
     }
 

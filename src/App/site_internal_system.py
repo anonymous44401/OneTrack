@@ -34,6 +34,8 @@ class SiteInternalSystem():
             # Add each pair of values to the dictionary
             self._all_stations[att[0]] = att[1]
 
+        all_stations = []
+
         # Reverse the dictionary
         self._all_stations_reversed = {} 
 
@@ -55,15 +57,15 @@ class SiteInternalSystem():
             self._send_station = station_name.title() # Convert station name to title case
 
             try:
-                # Try to get the station CRS code from the database and get its departure board
-                self._send_code = self.__database._get_values("CRS", "tblStations", "StationName", (self._send_station.upper()))
+                # Try to get the station CRS code from the stations dictionary
+                self._send_code = self._all_stations[self._send_station]
                 self._send_service = self.__rtt.get_station(tiploc = self._send_code)   
 
             except:
                 try:
                     self._send_code = station_name
                     # Use the station CRS code to get its departure board
-                    self._send_station = self.__database._get_values("StationName", "tblStations", "CRS", (self._send_code.upper()))
+                    self._send_station = self._all_stations_reversed[self._send_code]
                     self._send_service = self.__rtt.get_station(tiploc = self._send_code)
 
                 except:
@@ -83,7 +85,7 @@ class SiteInternalSystem():
 
     def _get_station_name(self, station_crs) -> None | str:
         # Get the station name from the database
-        return self.__database._get_values("StationName", "tblStations", "CRS", station_crs)
+        return self._all_stations[station_crs]
 
     def _get_user_favorites(self) -> list | None | str:
         # Check if the username is null

@@ -40,6 +40,26 @@ function copyText() {
     navigator.clipboard.writeText(window.location.href);
 }
 
+function updateText() {
+    // Get the document element by ID of "shareBtnTooltip"
+    var x = document.getElementById("shareBtnTooltip");
+    // Change the text to "Copied!"
+    x.innerHTML = "Copied!";
+}
+
+function showTooltip() {
+    // Get the document element by ID of "mobileMenuArea" 
+    var x = document.getElementById("shareBtnTooltip");
+    // Check if it's displaying a block
+    if (x.style.display === "block") {
+        // Hide the block
+        x.style.display = "none";  
+    } else {
+        // Show the block
+        x.style.display = "block";
+    }
+}
+
 function mapsClick() {
     // Confirm the user choice
     let confirmation = confirm("This link takes you out of OneTrack. Are you sure you want to leave?")

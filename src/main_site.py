@@ -74,7 +74,7 @@ def departures_train_info(train_UID=None):
     service_data = main_flask_system._get_service_info(train_UID)
 
     # Return the service info page
-    return render_template(service_data[0], service = service_data[1], train_UID = train_UID, stations = service_data[2])
+    return render_template(service_data[0], service = service_data[1], train_UID = train_UID, stations = service_data[2], date_now = service_data[3])
 
 
 # Add station as favorite
