@@ -1,6 +1,6 @@
 import sqlite3
 
-from src.app.database.update_db_contents import UpdateDBContents
+from app.database.update_db_contents import UpdateDBContents
 
 def create_database():
     print("Creating database...")
@@ -39,20 +39,29 @@ def create_database():
     """
 
     # Excuse the commands
-    cursor.execute(create_tblStations)
-    print("Creating table 'tblStations'")
-
-    cursor.execute(create_tblUsers)
-    print("Creating table 'tblUsers'")
+    try:
+        print("Creating table 'tblStations'")
+        cursor.execute(create_tblStations)
+    except:
+        print("Unable to create 'tblStations'. It might already exists")
     
-    cursor.execute(create_tblUserFavorites)
-    print("Creating table 'tblUserFavorites'")
+    try:
+        print("Creating table 'tblUsers'")
+        cursor.execute(create_tblUsers)
+    except:
+        print("Unable to create 'tblUsers'. It might already exists")
+    
+    try:
+        print("Creating table 'tblUserFavorites'")
+        cursor.execute(create_tblUserFavorites)
+    except:
+        print("Unable to create 'tblUserFavorites'. It might already exists")
 
     conn.commit()
 
-    conn.close()
+    print("Database created.")
 
+    print("Adding stations to the database...")
     UpdateDBContents()._update_stations()
-
-if __name__ == "__main__":
-    create_database()
+    
+    conn.close()

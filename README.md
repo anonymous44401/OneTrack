@@ -4,12 +4,8 @@
 
 ## Setup
 
-1. Create a folder called `keys` inside of `app`. 
-2. Create a file called `hash.txt` for your database hash.
-3. Create a file called `rtt_user.txt` for your RTT API username.
-4. Create a file called `rtt_token.txt` for your RTT API password.
-5. Run `create_db.py` (in the `database` folder). 
-6. Run `main_site.py`.
+1. Run `create_site.py` (in the `src` folder) and follow the instructions. 
+2. Run `main_site.py`.
 
 ## Contents
 

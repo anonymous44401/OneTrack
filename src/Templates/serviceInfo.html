@@ -23,7 +23,7 @@
         <link rel="icon" type="image/x-icon" href="{{ url_for ('static', filename='images/OneTrackFavicon.jpeg') }}">
     <!-- Title -->
     <title>
-        {{service.train_id}} ({{train_UID}}) | OneTrack
+        {{ service.train_id }} {{ service.start_time }} {{ service.origin }} to {{ service.destination }} ({{train_UID}}) | OneTrack
     </title>
 </head>
 
@@ -238,7 +238,7 @@
         <h2 class="depRefresh">
             Last updated {{date_now}} 
         </h2>
-        <a href="/departures/{{station_crs}}" class="depRefresh">
+        <a href="/departures/info/{{ train_UID }}" class="depRefresh">
             <i class="fa-solid fa-arrows-rotate"></i> Click to refresh. This page also refreshes automatically.
         </a>
         

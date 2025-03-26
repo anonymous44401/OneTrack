@@ -22,7 +22,7 @@
         <link rel="icon" type="image/x-icon" href="{{ url_for ('static', filename='images/OneTrackFavicon.jpeg') }}">
     <!-- Title -->
     <title>
-        {{station_name}} Live | OneTrack
+        {{station_name.title()}} Live | OneTrack
     </title>
 </head>
 
@@ -178,13 +178,13 @@
             <a class="departuresHeader">Departures and Arrivals</a>
         </div>
         <h1 class="pgTextHead">
-            {{station_name}} [{{station_crs.upper()}}] <a href="/departures/{{station_crs}}/"><i class="fa-solid fa-star"></i></a>
+            {{station_name.title()}} [{{station_crs.upper()}}] <a href="/departures/{{station_crs}}/"><i class="fa-solid fa-star"></i></a>
         </h1>
         <!--<p>
             <img src="{{ url_for ('static', filename='images/RTTLogo.png') }}" class="nrePowered">
         </p>-->
         <h2 class="pgTextSubHead">
-            Couldn't find any departures for {{station_name}}.
+            Couldn't find any departures for {{station_name.title()}}.
         </h2>
         <br>
         <h2 class="depRefresh">
@@ -196,13 +196,6 @@
         <a href="/departures/{{station_crs}}" class="depRefresh">
             <i class="fa-solid fa-arrows-rotate"></i> Click to refresh. This page also refreshes automatically.
         </a>
-        <br>
-        <br>
-        <div class="accBtns">
-            <button class="infoBtn" name="btn" type="submit">
-                <a href="/info/{{station_crs}}"><i class="fa-solid fa-circle-info"></i> Station info</a>
-            </button>
-        </div>
         <br>
         <br>
         <p class="ftImg">

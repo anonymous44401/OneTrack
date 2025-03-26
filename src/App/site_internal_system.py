@@ -10,7 +10,7 @@ class SiteInternalSystem():
     def __init__(self) -> None:
         self._time_created: str = f"Site created: {self._get_now(3)}"
         self.__close_access: bool = False
-        self.__database: Database = Database() # Database
+        self.__database: Database = Database('src/app/database/OneTrack_database.db') # Database
         self.__encryption: Encryption = Encryption() # Encryption
         self.__fail_count: int = 0
         self.__signed_in: bool = False
@@ -45,8 +45,6 @@ class SiteInternalSystem():
 
         self._site_version: str = "V2.1.2 [ALPHA]"
         
-
-    #SECTION - Departures
     def _get_departures(self, station_name) -> tuple:
         # Reset the departures to prevent any conflicts
         self._reset_departures()
@@ -63,7 +61,7 @@ class SiteInternalSystem():
 
             except:
                 try:
-                    self._send_code = station_name
+                    self._send_code = station_name.upper()
                     # Use the station CRS code to get its departure board
                     self._send_station = self._all_stations_reversed[self._send_code]
                     self._send_service = self.__rtt.get_station(tiploc = self._send_code)
@@ -112,16 +110,12 @@ class SiteInternalSystem():
         # Return the service info
         return self.__rtt.get_service(service_uid = service_uid)
 
-
-    #SECTION Planner
     def _search_planner(self, origin, destination, departure_date, departure_time) -> None:
         date_now = self._get_now(2)
 
         self.__database._insert_values("tblTicketQueries", "Origin, Destination, DepDate, DepTime, RequestDate, RequestTime", 
                                     [origin, destination, departure_date, departure_time, date_now[0], date_now[1]])
     
-
-    #SECTION Search
     def _search_for_item(self, search_request) -> str:
         pages: list = self._get_pages_list # List of pages
 
@@ -136,8 +130,6 @@ class SiteInternalSystem():
         # Return a list of pages
         return ['About', 'Contact', 'Create Account', 'Departures', 'Home', 'myOneTrack', 'Planner', 'Privacy Policy', 'Terms of Service']
 
-
-    #SECTION Account handling 
     def _sign_in(self, username, check_password) -> str:
         # Get the user password
         # FIXME: Work out encryption for password validation
@@ -257,7 +249,6 @@ class SiteInternalSystem():
         else:
             return False
 
-    #FIXME Not implemented
     def _update_account(self) -> None:
         raise NotImplementedError("Code not added yet.")
         #NOTE See update_settings

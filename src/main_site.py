@@ -1,3 +1,4 @@
+import random
 # Import modules from flask
 from flask import Flask, render_template, request
 
@@ -35,18 +36,22 @@ def departure_page():
     departure_items = main_flask_system._departures_page()
 
     favorites = departure_items[1]
+    stations = main_flask_system._get_stations()
+    r = random.choice(list(stations.values()))
 
     # Select page based on favorites
     if favorites == None:
         return render_template(departure_items[0], # Page
-                               send_departures = main_flask_system._get_stations()) # Dict of stations and CRS codes 
+                               send_departures = stations, # Dict of stations and CRS codes 
+                               r = r) # Random station
     
     else:
         return render_template(
             departure_items[0], # Page
             favorites = favorites, # List of favorites
-            send_departures = main_flask_system._get_stations(), # Dict of stations and CRS codes
-            send_reversed = departure_items[2] # Reversed dict of stations and CRS code
+            send_departures = stations, # Dict of stations and CRS codes
+            send_reversed = departure_items[2], # Reversed dict of stations and CRS code
+            r = r # Random station
         ) 
 
     
@@ -271,7 +276,7 @@ def internal_server_error(e):
 # Run the program
 if __name__ == "__main__":
     print("-------------")
-    print(f"Program run started {(main_flask_system._time_created[1])}") # Time started
+    print(main_flask_system._time_created) # Time started
     print("-------------")
     print(f"OneTrack {main_flask_system._site_version}") # Version 
     print("-------------")

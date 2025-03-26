@@ -1,29 +1,14 @@
-#######################################
-# FUNCTIONS FOR UPDATING THE STATIONS #
-# IN THE DATABASE AUTOMATICALLY       #
-#######################################
+#####################################
+# METHODS FOR UPDATING THE STATIONS #
+# IN THE DATABASE AUTOMATICALLY     #
+#####################################
 
 import requests
+import sqlite3
 
 from bs4 import BeautifulSoup
 
-from src.app.site_database import Database
-
-class UpdateDBContents(Database):
-    # Get the stations from the database
-    def __get_db_stations(self) -> dict:
-        # Create dictionary of all stations
-        all_stations: dict = {}
-        # Get all stations from the database
-        stations: list = self._get_all_values_in_order("tblStations", "StationName")
-        for att in stations:
-            # Add each pair of values to the dictionary
-            all_stations[att[0]] = att[1]
-
-        # Return and clear
-        stations.clear()
-        return all_stations
-    
+class UpdateDBContents():    
     # Get the stations from the web
     def __get_web_stations(self) -> dict:
         letters = [
@@ -37,13 +22,12 @@ class UpdateDBContents(Database):
         # Iterate over each letter in letters
         for letter in range(0, len(letters)):
             l = letters[letter]
-            url = f"https://en.wikipedia.org/wiki/UK_railway_stations_-_{l}"
 
             print(f"Searching for items in '{l}'")
-            response = requests.get(url)
+            response = requests.get(f"https://en.wikipedia.org/wiki/UK_railway_stations_-_{l}")
             
             if response.status_code != 200:
-                print(f"Failed to retrieve data for {l}")
+                print(f"Failed to retrieve data for '{l}'")
             
             # Get the data
             data = BeautifulSoup(response.text, 'html.parser')
@@ -67,26 +51,32 @@ class UpdateDBContents(Database):
         return station_dict
     
     # Compare the stations in the database to the scraped stations
-    def __compare_stations(self, scraped_stations, stations_in_db):
+    def __add_new_stations(self, scraped_stations):
+        database = 'src/app/database/OneTrack_database.db' ### Rename DB here to update data.
+        # Connect
+        conn = sqlite3.connect(database)
+        cursor = conn.cursor()
+        # Commit
+        conn.commit()
+        # Close
         # For each station and crs in the scraped stations
+        f = []
         for station, crs in scraped_stations.items():
-            if station not in stations_in_db:
-                # If the station is not in the dictionary, check a CRS is provided and add to the database
-                if crs != "":
-                    try:
-                        self._insert_values(
-                            "tblStations",
-                            "StationName, CRS",
-                            [station, crs]
-                        )
-                        print(f"Inserted {station} [{crs}] into the database")
+            if crs != "":
+                try:
+                    # Try inserting the station and crs into the database
+                    cursor.execute(f"INSERT INTO tblStations (StationName, CRS) VALUES ('{station}', '{crs}');")
+                    conn.commit()
+                    print(f"Inserted {station} [{crs}] into the database")
 
-                    except:
-                        print(f"Failed to add {station} [{crs}]")
+                except:
+                    f.append(f"Failed to add {station} [{crs}]")
+        
+        for x in f:
+            print(x)
 
     # Update the stations in the database
-    def _update_stations(self):
-        reference_dict = self.__get_db_stations()
-        
+    def _update_stations(self):        
         uk_stations = self.__get_web_stations()
-        self.__compare_stations(uk_stations, reference_dict)
+        self.__add_new_stations(uk_stations)
+        print("Stations updated.")
