@@ -4,9 +4,10 @@
 
 ## Setup
 
-1. If you don't have a username or password for the RTT API, head over to the realtime-trains-py setup documentation by [clicking here](https://github.com/realtime-trains-lang/realtime-trains-py/wiki/Setup#i-dont-have-a-username-or-password).
-2. Run `create_site.py` (in the `src` folder) and follow the instructions. 
-3. Run `main_site.py`.
+1. Install the requirements by running `py -m pip install -r .\requirements.txt`
+2. If you don't have a username or password for the RTT API, head over to the realtime-trains-py setup documentation by [clicking here](https://github.com/realtime-trains-lang/realtime-trains-py/wiki/Setup#i-dont-have-a-username-or-password).
+3. Run `create_site.py` (in the `src` folder) and follow the instructions. 
+4. Run `main_site.py`.
 
 ## Contents
 
