@@ -471,6 +471,10 @@ TODO -> A few of the main page items need moving around as mobile isn't formatte
 
 /* vv Mobile vv */
 @media only screen and (max-width: 600px) {
+    .mainContent {
+        margin-left: -60px;
+    }
+
     .header {
         display: none;
         overflow-x: hidden;

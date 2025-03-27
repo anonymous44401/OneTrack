@@ -212,9 +212,9 @@
                 <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.stop_name }}</a></td>
                 <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.platform }}</a></td>
                 <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.booked_arrival }}</a></td>
-                <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.realtime_arrival }}</a></td>
+                <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}" class="{{ calling_point.realtime_arrival.lower() }}">{{ calling_point.realtime_arrival }}</a></td>
                 <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.booked_departure }}</a></td>
-                <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}">{{ calling_point.realtime_departure }}</a></td>
+                <td><a href="/departures/{{ stations[calling_point.stop_name.upper()] }}" class="{{ calling_point.realtime_departure.lower() }}">{{ calling_point.realtime_departure }}</a></td>
             </tr>
             {% endfor %}
         </table>

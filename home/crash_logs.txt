@@ -387,3 +387,30 @@ on 24/03/2025 at 14:21:21
 
 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
 on 24/03/2025 at 14:21:25
+
+400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+on 27/03/2025 at 09:32:01
+
+500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+on 27/03/2025 at 09:32:13
+
+500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+on 27/03/2025 at 09:32:37
+
+500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+on 27/03/2025 at 09:32:42
+
+500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+on 27/03/2025 at 09:36:55
+
+400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+on 27/03/2025 at 09:38:27
+
+400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+on 27/03/2025 at 09:44:11
+
+400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+on 27/03/2025 at 09:46:22
+
+500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+on 27/03/2025 at 09:48:32

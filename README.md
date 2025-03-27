@@ -38,4 +38,7 @@ The file that turns ugly boring html into a beautiful formatted heaven.
 The file that handles creating the database.
 
 ### update_db_contents.py
-The file that updates the contets of the database with the required station data.
+The file that updates the contents of the database with the required station data.
+
+### create_site.py
+The file that creates the site.
