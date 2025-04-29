@@ -17,7 +17,7 @@ The place where everything comes together.
 ### site_database.py
 The database management class.
 
-### [realtime-trains-py 2025.2.2](https://github.com/realtime-trains-lang/realtime-trains-py/tree/v2025.2.2)
+### [realtime-trains-py 2025.3.0](https://github.com/realtime-trains-lang/realtime-trains-py/tree/v2025.3.0)
 A custom-made Python API Wrapper for the RTT API.
 
 ### encryption.py
